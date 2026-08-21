@@ -22,6 +22,7 @@ export default async function EditionsPage() {
       <SectionHeading
         label="Editions"
         title="Where Invisible Garden has happened"
+        level={1}
         intro="Each gathering runs in a different city, with its own cohort, mentors, and outcomes."
       />
 
@@ -29,7 +30,7 @@ export default async function EditionsPage() {
         <ul className="mt-10 grid gap-6 md:grid-cols-2">
           {upcoming.map((edition) => (
             <li key={edition.slug}>
-              <EditionCard edition={edition} />
+              <EditionCard edition={edition} headingLevel={2} />
             </li>
           ))}
         </ul>
@@ -38,7 +39,7 @@ export default async function EditionsPage() {
       <ul className="mt-6 grid gap-6 md:grid-cols-2">
         {past.map((edition) => (
           <li key={edition.slug}>
-            <EditionCard edition={edition} />
+            <EditionCard edition={edition} headingLevel={2} />
           </li>
         ))}
       </ul>

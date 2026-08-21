@@ -24,6 +24,7 @@ export default async function PeoplePage() {
       <SectionHeading
         label="Community"
         title="Mentors and speakers"
+        level={1}
         intro="Everyone who has taught, spoken, or mentored at an Invisible Garden gathering since 2024. Filter by edition."
       />
       <div className="mt-10">

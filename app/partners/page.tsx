@@ -25,6 +25,7 @@ export default async function PartnersPage() {
       <SectionHeading
         label="Support"
         title="Partners and sponsors"
+        level={1}
         intro="Organisations that have backed Invisible Garden gatherings."
       />
 

@@ -9,10 +9,14 @@ import type { EditionRow } from "@/types/db";
 export function EditionCard({
   edition,
   className,
+  headingLevel = 3,
 }: {
   edition: EditionRow;
   className?: string;
+  /** 2 when the cards are the page's top-level list, 3 inside a section. */
+  headingLevel?: 2 | 3;
 }) {
+  const Heading = headingLevel === 2 ? "h2" : "h3";
   const upcoming = edition.status === "upcoming";
   const href = upcoming ? "/" : `/editions/${edition.slug}`;
   return (
@@ -33,7 +37,7 @@ export function EditionCard({
           </Chip>
         ) : null}
       </div>
-      <h3 className="text-headline-sm mt-4">{edition.name}</h3>
+      <Heading className="text-headline-sm mt-4">{edition.name}</Heading>
       <p className="text-body-sm mt-2 font-mono">
         {formatDateRange(edition.starts_on, edition.ends_on)}
       </p>
