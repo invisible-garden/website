@@ -98,9 +98,12 @@ policy for `anon` and nothing else.
 **Storage paths.** `people.photo_path` holds `people/leo-lara.webp`, never a
 URL. Build URLs with `mediaUrl()` in `lib/media.ts`.
 
-**`people.headline`** holds the Webflow `role` string verbatim. `org` and
-`job_title` are advisory guesses. Render `headline` unless
-`headline_reviewed` is true.
+**`people.headline`** holds the Webflow `role` string verbatim, and that is what
+every page renders. `org` and `job_title` hold advisory guesses that nothing
+reads. Leo decided on 2026-08-21 to keep the headlines as Webflow had them, so
+the review pass over `data/review/headlines.csv` is deferred, possibly forever.
+Do not build UI that depends on `org` or `job_title` until a reviewed row
+exists, and never render them while `headline_reviewed` is false.
 
 ## Data facts worth remembering
 
