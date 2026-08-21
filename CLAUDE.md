@@ -52,10 +52,17 @@ mock-up contains AI-generated people, they are not real.
 
 **Whose site this is.** invisible.garden belongs to Invisible Garden. Nav,
 footer identity, about, editions, recaps and the people directory are Invisible
-Garden's alone, `siteConfig`. The joint branding with Common Compute is scoped
-to the 2026 event, so it applies to the homepage and to any other surface about
-Invisible Commons, `eventConfig`. Never frame the event as "the next Invisible
-Garden edition" with Common Compute supporting it.
+Garden's alone, `siteConfig`. The joint branding is scoped to the 2026 event, so
+it applies to the homepage and to any other surface about Invisible Commons,
+`eventConfig`. Never frame the event as "the next Invisible Garden edition" with
+the others supporting it.
+
+**Invisible Commons has three co-hosts**: Invisible Garden, Common Compute and
+OpenBuild, equal weight, named together. OpenBuild joined on 2026-08-21, after
+the content brief was written, so `mb/content-brief.md` and `mb/mockup-notes.md`
+still describe two organisations and two hero chips. The code is right, the
+documents lag. OpenBuild also appears in the old site's community partner list,
+so the "partners of previous editions" band must not present them as only that.
 
 **Never imply a Goa lineup.** The people grid shows the community from previous
 editions. Copy says "mentors and speakers who taught at previous gatherings",

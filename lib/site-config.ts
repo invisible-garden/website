@@ -31,14 +31,16 @@ export const siteConfig = {
 } as const;
 
 /**
- * The 2026 event. A joint project of Invisible Garden and Common Compute, both
- * named with equal weight wherever the event is the subject.
+ * The 2026 event. A joint project of Invisible Garden, Common Compute and
+ * OpenBuild, all three named with equal weight wherever the event is the
+ * subject. OpenBuild was added as a co-host on 2026-08-21, after the content
+ * brief was last written, so the brief still says two organisations.
  */
 export const eventConfig = {
   name: "Invisible Commons",
-  organisers: ["Invisible Garden", "Common Compute"],
+  organisers: ["Invisible Garden", "Common Compute", "OpenBuild"],
   descriptor:
-    "An unconference in Goa, India, by Invisible Garden and Common Compute. Two weeks of talks, co-working, and building across AI, robotics, ZKP, post-quantum cryptography, and formal verification, on Ethereum common ground.",
+    "An unconference in Goa, India, by Invisible Garden, Common Compute and OpenBuild. Two weeks of talks, co-working, and building across AI, robotics, ZKP, post-quantum cryptography, and formal verification, on Ethereum common ground.",
   slug: "goa-2026",
   city: "Goa",
   country: "India",
