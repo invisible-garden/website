@@ -61,8 +61,9 @@ the others supporting it.
 OpenBuild, equal weight, named together. OpenBuild joined on 2026-08-21, after
 the content brief was written, so `mb/content-brief.md` and `mb/mockup-notes.md`
 still describe two organisations and two hero chips. The code is right, the
-documents lag. OpenBuild also appears in the old site's community partner list,
-so the "partners of previous editions" band must not present them as only that.
+documents lag. OpenBuild also appears in the old site's community partner list.
+Decided 2026-08-21: they stay in both places, a past community partner and a
+2026 co-host, because both are facts.
 
 **Never imply a Goa lineup.** The people grid shows the community from previous
 editions. Copy says "mentors and speakers who taught at previous gatherings",
