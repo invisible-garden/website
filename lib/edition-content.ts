@@ -10,12 +10,26 @@ export interface EditionStat {
   label: string;
 }
 
+export interface EditionPhoto {
+  /** Storage path of the 1600px version. `-800` is the smaller one. */
+  path: string;
+  alt: string;
+}
+
 export interface EditionContent {
   /** YouTube id, embedded near the top of the recap. */
   videoId: string | null;
   stats: EditionStat[];
   /** Projects worth naming on the recap page, by slug. */
   featuredProjects: string[];
+  /**
+   * Photography, published by `pnpm migrate:edition-photos`. The selection is
+   * inherited from the old recap page rather than curated, and the alt text is
+   * therefore generic. Both want a human pass once someone has looked at the
+   * archives, see mb/DEFERRED.md.
+   */
+  hero: EditionPhoto | null;
+  photos: EditionPhoto[];
 }
 
 export const EDITION_CONTENT: Record<string, EditionContent> = {
@@ -31,6 +45,48 @@ export const EDITION_CONTENT: Record<string, EditionContent> = {
       { value: "22", label: "projects graduated" },
     ],
     featuredProjects: ["kalki", "proof-of-invisible", "apstark", "zkcx"],
+    hero: {
+      path: "editions/chiang-mai-2024/hero.webp",
+      alt: "Invisible Garden Chiang Mai 2024",
+    },
+    photos: [
+      {
+        path: "editions/chiang-mai-2024/photo-1.webp",
+        alt: "Invisible Garden Chiang Mai 2024",
+      },
+      {
+        path: "editions/chiang-mai-2024/photo-2.webp",
+        alt: "Invisible Garden Chiang Mai 2024",
+      },
+      {
+        path: "editions/chiang-mai-2024/photo-3.webp",
+        alt: "Invisible Garden Chiang Mai 2024",
+      },
+      {
+        path: "editions/chiang-mai-2024/learn-1.webp",
+        alt: "A workshop at Invisible Garden Chiang Mai 2024",
+      },
+      {
+        path: "editions/chiang-mai-2024/learn-2.webp",
+        alt: "A workshop at Invisible Garden Chiang Mai 2024",
+      },
+      {
+        path: "editions/chiang-mai-2024/community-1.webp",
+        alt: "The Invisible Garden community in Chiang Mai, 2024",
+      },
+      {
+        path: "editions/chiang-mai-2024/community-2.webp",
+        alt: "The Invisible Garden community in Chiang Mai, 2024",
+      },
+      {
+        path: "editions/chiang-mai-2024/community-3.webp",
+        alt: "The Invisible Garden community in Chiang Mai, 2024",
+      },
+      {
+        path: "editions/chiang-mai-2024/community-4.webp",
+        alt: "The Invisible Garden community in Chiang Mai, 2024",
+      },
+    ],
   },
   "buenos-aires-2025": {
     // DEFERRED: the 13 minute recap video is native to the recap post on X.
@@ -45,11 +101,20 @@ export const EDITION_CONTENT: Record<string, EditionContent> = {
       { value: "69", label: "workshops" },
     ],
     featuredProjects: [],
+    // DEFERRED: Buenos Aires has no photography at all, in Webflow or here.
+    hero: null,
+    photos: [],
   },
 };
 
 export function editionContent(slug: string): EditionContent {
   return (
-    EDITION_CONTENT[slug] ?? { videoId: null, stats: [], featuredProjects: [] }
+    EDITION_CONTENT[slug] ?? {
+      videoId: null,
+      stats: [],
+      featuredProjects: [],
+      hero: null,
+      photos: [],
+    }
   );
 }

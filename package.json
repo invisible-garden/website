@@ -31,7 +31,8 @@
     "audit:copy": "tsx scripts/audit/copy-rules.ts",
     "audit:html": "tsx scripts/audit/html-audit.ts",
     "audit:browser": "tsx scripts/audit/browser-check.ts",
-    "audit:a11y": "tsx scripts/audit/a11y.ts"
+    "audit:a11y": "tsx scripts/audit/a11y.ts",
+    "migrate:edition-photos": "tsx scripts/migrate-webflow/index.ts edition-photos"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",

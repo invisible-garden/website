@@ -2,16 +2,19 @@ import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 import { FellowList } from "@/components/fellow-list";
 import { PartnerBand } from "@/components/partner-band";
+import { PhotoStrip } from "@/components/photo-strip";
 import { PersonCard } from "@/components/person-card";
 import { ProjectList } from "@/components/project-list";
 import { StatBand } from "@/components/stat-band";
 import { VideoEmbed } from "@/components/video-embed";
+import Image from "next/image";
 import { Chip } from "@/components/ui/chip";
 import { Container } from "@/components/ui/container";
 import { Section, SectionHeading } from "@/components/ui/section";
 import ChiangMai2024 from "@/content/editions/chiang-mai-2024.mdx";
 import BuenosAires2025 from "@/content/editions/buenos-aires-2025.mdx";
 import { formatDateRange } from "@/lib/dates";
+import { mediaUrl } from "@/lib/media";
 import { editionContent } from "@/lib/edition-content";
 import {
   getEdition,
@@ -122,6 +125,21 @@ export default async function EditionPage({
         </Container>
       </div>
 
+      {content.hero ? (
+        <Container className="-mt-10 md:-mt-14">
+          <div className="bg-paper relative aspect-[16/9] overflow-hidden rounded-[var(--radius-card)] shadow-[var(--shadow-soft)]">
+            <Image
+              src={mediaUrl(content.hero.path)!}
+              alt={content.hero.alt}
+              fill
+              sizes="(max-width: 1024px) 100vw, 1100px"
+              className="object-cover"
+              priority
+            />
+          </div>
+        </Container>
+      ) : null}
+
       {content.videoId ? (
         <Section>
           <VideoEmbed id={content.videoId} title={`${edition.name} recap`} />
@@ -180,6 +198,15 @@ export default async function EditionPage({
           />
           <div className="mt-10">
             <PartnerBand partners={partners} />
+          </div>
+        </Section>
+      ) : null}
+
+      {content.photos.length > 0 ? (
+        <Section>
+          <SectionHeading label="Photos" title="What it looked like" />
+          <div className="mt-10">
+            <PhotoStrip photos={content.photos} />
           </div>
         </Section>
       ) : null}

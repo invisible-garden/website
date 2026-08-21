@@ -1,4 +1,5 @@
 import { assets } from "./assets";
+import { editionPhotos } from "./edition-photos";
 import { extract } from "./extract";
 import { load } from "./load";
 import { review } from "./review";
@@ -9,6 +10,7 @@ const phases = {
   extract,
   assets,
   "site-assets": siteAssets,
+  "edition-photos": editionPhotos,
   transform,
   review,
   load,
