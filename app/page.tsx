@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { siteConfig } from "@/lib/site-config";
+import { eventConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
-  description: siteConfig.description,
+  title: eventConfig.name,
+  description: eventConfig.descriptor,
 };
 
 /**
@@ -13,22 +14,22 @@ export const metadata: Metadata = {
  * sections read from Supabase in phase 4.
  */
 export default function HomePage() {
-  const { edition } = siteConfig;
   return (
     <div>
       <section className="bg-horizon px-4 py-24 text-white md:px-12">
         <div className="mx-auto max-w-6xl">
           <p className="text-label font-mono uppercase">
-            {siteConfig.organisers.join("  +  ")}
+            {eventConfig.organisers.join("  +  ")}
           </p>
           <h1 className="font-display text-display mt-6 max-w-3xl">
-            {siteConfig.name}
+            {eventConfig.name}
           </h1>
           <p className="text-body-lg mt-6 max-w-2xl">
-            {siteConfig.description}
+            {eventConfig.descriptor}
           </p>
           <p className="text-label mt-8 font-mono uppercase">
-            {edition.city}, {edition.country} &middot; 17 to 31 October 2026
+            {eventConfig.city}, {eventConfig.country} &middot;{" "}
+            {eventConfig.datesLabel}
           </p>
         </div>
       </section>

@@ -50,6 +50,13 @@ only.
 data. Never invent a name, a title, or an organisation, not even as filler. The
 mock-up contains AI-generated people, they are not real.
 
+**Whose site this is.** invisible.garden belongs to Invisible Garden. Nav,
+footer identity, about, editions, recaps and the people directory are Invisible
+Garden's alone, `siteConfig`. The joint branding with Common Compute is scoped
+to the 2026 event, so it applies to the homepage and to any other surface about
+Invisible Commons, `eventConfig`. Never frame the event as "the next Invisible
+Garden edition" with Common Compute supporting it.
+
 **Never imply a Goa lineup.** The people grid shows the community from previous
 editions. Copy says "mentors and speakers who taught at previous gatherings",
 never "our speakers", "meet the mentors", or "who you will meet in Goa".

@@ -14,9 +14,7 @@ export function SiteFooter() {
       <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-12 md:flex-row md:items-start md:justify-between md:px-12">
         <div>
           <p className="font-display text-headline-sm">{siteConfig.name}</p>
-          <p className="text-body-sm mt-2">
-            {siteConfig.organisers.join(" and ")}
-          </p>
+          <p className="text-body-sm mt-2">{siteConfig.description}</p>
         </div>
         <ul className="flex flex-wrap gap-4">
           {social.map((link) => (
@@ -38,7 +36,7 @@ export function SiteFooter() {
         </ul>
       </div>
       <p className="text-body-sm px-4 pb-8 md:px-12">
-        &copy; {new Date().getFullYear()} {siteConfig.organisers.join(" and ")}
+        &copy; {new Date().getFullYear()} {siteConfig.name}
       </p>
     </footer>
   );
