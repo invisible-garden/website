@@ -63,7 +63,9 @@ export default async function PersonPage({
         <div>
           <h1 className="text-headline-lg">{person.full_name}</h1>
           {person.headline ? (
-            <p className="text-body-lg mt-3">{person.headline}</p>
+            <p className="text-body-lg mt-3" data-verbatim>
+              {person.headline}
+            </p>
           ) : null}
 
           {person.editions.length > 0 ? (
@@ -81,7 +83,7 @@ export default async function PersonPage({
           ) : null}
 
           {person.bio ? (
-            <p className="text-body-md mt-6 whitespace-pre-line">
+            <p className="text-body-md mt-6 whitespace-pre-line" data-verbatim>
               {person.bio}
             </p>
           ) : null}

@@ -28,7 +28,9 @@ export function FellowList({ fellows }: { fellows: FellowRow[] }) {
               </p>
             ) : null}
             {fellow.bio ? (
-              <p className="text-body-sm mt-2">{fellow.bio}</p>
+              <p className="text-body-sm mt-2" data-verbatim>
+                {fellow.bio}
+              </p>
             ) : null}
           </div>
         </li>

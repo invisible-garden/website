@@ -25,10 +25,11 @@
     "db:verify": "tsx scripts/db/verify.ts && tsx scripts/db/check-anon.ts",
     "db:migrate:api": "tsx scripts/db/apply-migrations.ts",
     "db:seed": "tsx scripts/db/seed-editions.ts",
-    "audit": "tsx scripts/audit/html-audit.ts",
     "migrate:site-assets": "tsx scripts/migrate-webflow/index.ts site-assets",
     "test": "vitest run",
-    "verify": "pnpm typecheck && pnpm lint && pnpm test && pnpm build"
+    "verify": "pnpm typecheck && pnpm lint && pnpm test && pnpm build",
+    "audit:copy": "tsx scripts/audit/copy-rules.ts",
+    "audit:html": "tsx scripts/audit/html-audit.ts"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",
@@ -76,5 +77,11 @@
     "*.{json,md,mdx,css,yml,yaml}": [
       "prettier --write"
     ]
+  },
+  "pnpm": {
+    "overrides": {
+      "postcss": "^8.5.23",
+      "sharp": "^0.35.3"
+    }
   }
 }

@@ -14,7 +14,9 @@ export function ProjectList({ projects }: { projects: ProjectRow[] }) {
             <p className="text-body-sm mt-1 font-mono">{project.authors_raw}</p>
           ) : null}
           {project.description ? (
-            <p className="text-body-md mt-3">{project.description}</p>
+            <p className="text-body-md mt-3" data-verbatim>
+              {project.description}
+            </p>
           ) : null}
           {project.github ? (
             <p className="mt-4">

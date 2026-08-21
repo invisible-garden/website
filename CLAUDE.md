@@ -74,6 +74,13 @@ Berlin, the Mentors Collective, Singapore NGO registration, "Work over Holiday",
 "Professional Punk Excellence", and vacation vocabulary (retreat, paradise,
 escape, relax, beach life).
 
+**Two audits guard the rules.** `pnpm audit:html` checks alt text, link names,
+heading order and metadata. `pnpm audit:copy` checks the banned vocabulary, the
+banned subjects, and the lineup framing. Text that came from the database is
+marked `data-verbatim` in the components and is out of scope: bios and project
+descriptions are their authors' words, not ours, and must not be edited to fit
+our voice.
+
 **Copy voice.** English at B2 level, plain and direct. Short sentences.
 Understatement, real numbers instead of adjectives. No em-dashes for subphrases,
 use commas. Banned: leverage, seamless, robust, cutting-edge, innovative,
@@ -167,7 +174,8 @@ Two documented deviations from the plan: `people` carries an extra
 ```bash
 pnpm dev
 pnpm typecheck && pnpm lint && pnpm build   # what CI runs
-pnpm audit https://ig-website.netlify.app   # alt text, headings, metadata
+pnpm audit:html <origin>                    # alt text, headings, metadata
+pnpm audit:copy <origin>                    # the content-brief voice rules
 pnpm db:migrate && pnpm db:types            # schema changes
 pnpm migrate:extract                        # see scripts/migrate-webflow/README.md
 ```

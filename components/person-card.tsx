@@ -36,7 +36,10 @@ export function PersonCard({
         {person.full_name}
       </p>
       {person.headline ? (
-        <p className="text-body-sm mt-1 text-[color:color-mix(in_srgb,var(--color-ink)_70%,white)]">
+        <p
+          className="text-body-sm mt-1 text-[color:color-mix(in_srgb,var(--color-ink)_70%,white)]"
+          data-verbatim
+        >
           {person.headline}
         </p>
       ) : null}
