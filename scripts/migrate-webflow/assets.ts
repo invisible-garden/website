@@ -31,10 +31,23 @@ interface Source {
   prefix: "people" | "fellows";
 }
 
+interface ManifestEntry {
+  collection: Source["prefix"];
+  slug: string;
+  sourceUrl: string;
+  /** 800px master, this is what `photo_path` stores. */
+  path: string;
+  path400: string;
+}
+
 interface Manifest {
   generatedAt: string;
-  /** Webflow CDN URL to the storage path of the 800px master. */
-  urls: Record<string, string>;
+  /**
+   * One entry per image. Keyed by collection and slug rather than by source
+   * URL, because two records can share one Webflow file: the fellow Surfer_05
+   * and the person Surfer are the same human and the same photo.
+   */
+  entries: ManifestEntry[];
   missing: { collection: string; name: string; reason: string }[];
   failed: { name: string; url: string; error: string }[];
 }
@@ -80,7 +93,7 @@ export async function assets() {
   const sources = [...a.sources, ...b.sources];
   const manifest: Manifest = {
     generatedAt: new Date().toISOString(),
-    urls: {},
+    entries: [],
     missing: [...a.missing, ...b.missing],
     failed: [],
   };
@@ -113,8 +126,14 @@ export async function assets() {
             upsert: true,
           });
         if (error) throw new Error(`upload ${storagePath}: ${error.message}`);
-        if (size.suffix === "") manifest.urls[source.url] = storagePath;
       }
+      manifest.entries.push({
+        collection: source.prefix,
+        slug: source.slug,
+        sourceUrl: source.url,
+        path: `${source.prefix}/${source.slug}.webp`,
+        path400: `${source.prefix}/${source.slug}-400.webp`,
+      });
       done += 1;
       if (done % 10 === 0) console.log(`  ${done}/${sources.length}`);
     } catch (error) {

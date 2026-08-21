@@ -106,7 +106,17 @@ URL. Build URLs with `mediaUrl()` in `lib/media.ts`.
 
 - 2 editions migrate: Chiang Mai 2024 and Buenos Aires 2025. Costa Rica 2025
   never happened and is excluded.
-- Expected load: 2 editions, 87 people, 98 memberships, 22 fellows, 22 projects.
+- Loaded: 2 editions, 88 people, 98 memberships, 22 fellows, 22 projects. The
+  plan says 87 people because it assumed the person with no edition membership
+  would be dropped. Leo decided on 2026-08-21 to keep her: Lauren has a person
+  row and no membership.
+- Three fellows are the same human as a person row and are linked through
+  `fellows.person_id`: Tim Pechersky, Daniel Arroyo, and Surfer_05, who is the
+  person Surfer, also known as Alok, a Chiang Mai fellow and a Buenos Aires
+  mentor.
+- All 22 projects are Chiang Mai 2024. Buenos Aires projects come later from
+  `invisible-garden/arg25-Projects`, once the team decides which graduated.
+- Enrico Bottazzi is the one person with no photo and gets the placeholder.
 - Everyone in `people` is a "mentor / speaker". The source data has no way to
   tell them apart, so the database does not either.
 - Speakers and mentors have no bio and no social links in Webflow. Those columns
@@ -122,9 +132,10 @@ Phase 0 is done: the app scaffolds, builds and passes CI. Routes are stubs.
 
 - Phase 1, database: done. `0001_initial.sql` is applied, RLS verified, types
   generated from the live schema.
-- Phase 2, migration: `extract` and `assets` are done, 111 photos are in the
-  `media` bucket at two widths. `transform`, `review` and `load` are stubs
-  carrying their specification in a comment.
+- Phase 2, migration: done except the human review. The database holds 2
+  editions, 88 people, 98 memberships, 22 fellows and 22 projects, and 111
+  photos are in the `media` bucket at two widths. `review` is still a stub, it
+  waits on the headline pass over `data/review/headlines.csv`.
 - Phase 3, content: MDX files in `content/` are placeholders, blocked on the
   open questions in `mb/content-brief.md` §6.
 - Phase 4, frontend: not started.
