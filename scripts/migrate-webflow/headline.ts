@@ -8,7 +8,7 @@
 export interface HeadlineSplit {
   jobTitle: string | null;
   org: string | null;
-  separator: "pipe" | "comma" | "at" | "slash" | "dash" | "none";
+  separator: "pipe" | "comma" | "at" | "at-word" | "slash" | "dash" | "none";
   confident: boolean;
 }
 
@@ -46,6 +46,16 @@ export function splitHeadline(raw: string | null | undefined): HeadlineSplit {
     // never confident.
     const [org, title] = pair(...(headline.split("/", 2) as [string, string]));
     return { jobTitle: title, org, separator: "slash", confident: false };
+  }
+  const atWord = /^(.*?)\s+at\s+(?:the\s+)?(.+)$/i.exec(headline);
+  if (atWord) {
+    // "Researcher at Ethereum Foundation", title first
+    return {
+      jobTitle: atWord[1].trim(),
+      org: atWord[2].trim(),
+      separator: "at-word",
+      confident: true,
+    };
   }
   if (/\s-\s/.test(headline)) {
     // "Aleph Finance - Senior Protocol Engineer", organisation first here, but
