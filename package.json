@@ -29,7 +29,8 @@
     "test": "vitest run",
     "verify": "pnpm typecheck && pnpm lint && pnpm test && pnpm build",
     "audit:copy": "tsx scripts/audit/copy-rules.ts",
-    "audit:html": "tsx scripts/audit/html-audit.ts"
+    "audit:html": "tsx scripts/audit/html-audit.ts",
+    "audit:browser": "tsx scripts/audit/browser-check.ts"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",
@@ -58,6 +59,7 @@
     "eslint-config-next": "15.5.23",
     "husky": "^9.1.7",
     "lint-staged": "^17.3.0",
+    "playwright": "^1.62.1",
     "prettier": "^3.9.6",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "sharp": "^0.35.3",
