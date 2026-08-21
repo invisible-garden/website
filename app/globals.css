@@ -106,33 +106,41 @@
   border: 1px solid var(--color-peach);
 }
 
-html {
-  -webkit-text-size-adjust: 100%;
-}
+/*
+  Base element styles must live in @layer base. Unlayered CSS beats anything in
+  a layer, so a bare `a { color }` rule outranks the `text-white` utility on a
+  button and paints its label blue on blue. axe caught exactly that on the hero
+  CTA, 2026-08-21.
+*/
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
 
-body {
-  background: var(--color-background);
-  color: var(--color-foreground);
-  font-family: var(--font-sans);
-  font-size: var(--text-body-md);
-  line-height: 1.5;
-}
+  body {
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: var(--text-body-md);
+    line-height: 1.5;
+  }
 
-h1,
-h2,
-h3,
-h4 {
-  font-family: var(--font-display);
-  font-weight: 600;
-}
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+  }
 
-a {
-  color: var(--color-blue-link);
-}
+  a {
+    color: var(--color-blue-link);
+  }
 
-:focus-visible {
-  outline: 2px solid var(--color-blue-deep);
-  outline-offset: 2px;
+  :focus-visible {
+    outline: 2px solid var(--color-blue-deep);
+    outline-offset: 2px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

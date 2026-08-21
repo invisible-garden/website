@@ -30,7 +30,8 @@
     "verify": "pnpm typecheck && pnpm lint && pnpm test && pnpm build",
     "audit:copy": "tsx scripts/audit/copy-rules.ts",
     "audit:html": "tsx scripts/audit/html-audit.ts",
-    "audit:browser": "tsx scripts/audit/browser-check.ts"
+    "audit:browser": "tsx scripts/audit/browser-check.ts",
+    "audit:a11y": "tsx scripts/audit/a11y.ts"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",
@@ -47,6 +48,7 @@
     "tailwind-merge": "^3.4.1"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
     "@eslint/eslintrc": "^3.3.6",
     "@tailwindcss/postcss": "^4",
     "@types/mdx": "^2.0.13",
@@ -54,6 +56,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/turndown": "^5.0.6",
+    "axe-core": "^4.13.0",
     "dotenv": "^17.4.2",
     "eslint": "^9",
     "eslint-config-next": "15.5.23",
