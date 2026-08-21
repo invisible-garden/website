@@ -1,6 +1,6 @@
 import "server-only";
 import { createSupabaseClient } from "@/lib/supabase";
-import type { EditionRow, PersonRow } from "@/types/database";
+import type { EditionRow, PersonRow } from "@/types/db";
 
 /** ISR window for every data-backed route, see tech-design section 6.1. */
 export const REVALIDATE_SECONDS = 300;

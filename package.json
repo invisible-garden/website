@@ -14,13 +14,15 @@
     "typecheck": "next typegen && tsc --noEmit",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "db:types": "supabase gen types typescript --linked > types/database.ts",
+    "db:types": "supabase gen types typescript --project-id jdlldzwwjjbnjqoebqjj --schema public > types/database.ts",
     "migrate:extract": "tsx scripts/migrate-webflow/index.ts extract",
     "migrate:assets": "tsx scripts/migrate-webflow/index.ts assets",
     "migrate:transform": "tsx scripts/migrate-webflow/index.ts transform",
     "migrate:review": "tsx scripts/migrate-webflow/index.ts review",
     "migrate:load": "tsx scripts/migrate-webflow/index.ts load",
-    "prepare": "husky"
+    "prepare": "husky",
+    "db:migrate": "tsx scripts/db/apply-migrations.ts",
+    "db:verify": "tsx scripts/db/verify.ts && tsx scripts/db/check-anon.ts"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",
