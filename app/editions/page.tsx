@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "Editions",
   description:
     "Every Invisible Garden gathering, from Chiang Mai in 2024 onwards.",
+  alternates: { canonical: "/editions" },
 };
 
 export default async function EditionsPage() {

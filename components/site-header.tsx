@@ -7,7 +7,7 @@ export function SiteHeader() {
     <header className="border-b border-[color:var(--color-border-subtle)]">
       <nav
         aria-label="Main"
-        className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-4 py-4 md:px-12"
+        className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-3 px-4 py-4 md:px-12"
       >
         <Link href="/" className="no-underline" aria-label={siteConfig.name}>
           <Image
@@ -19,7 +19,7 @@ export function SiteHeader() {
             className="h-8 w-auto"
           />
         </Link>
-        <ul className="flex flex-wrap items-center gap-4 md:gap-8">
+        <ul className="flex flex-wrap items-center gap-x-5 gap-y-2 md:gap-8">
           {siteConfig.nav.map((item) => (
             <li key={item.href}>
               <Link

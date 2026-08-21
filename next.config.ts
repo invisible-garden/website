@@ -7,6 +7,12 @@ const supabaseHost = supabaseUrl ? new URL(supabaseUrl).hostname : undefined;
 const nextConfig: NextConfig = {
   pageExtensions: ["ts", "tsx", "mdx"],
   images: {
+    // The source files are already WebP at 400 and 800 on the long edge, so a
+    // wide ladder of widths only inflates every srcset in the HTML. The people
+    // grid renders 88 of them at once.
+    deviceSizes: [640, 828, 1080, 1920],
+    imageSizes: [96, 220, 400],
+    formats: ["image/webp"],
     remotePatterns: supabaseHost
       ? [
           {

@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "Mentors and speakers",
   description:
     "The mentors and speakers who have taught at Invisible Garden gatherings since 2024.",
+  alternates: { canonical: "/people" },
 };
 
 /**

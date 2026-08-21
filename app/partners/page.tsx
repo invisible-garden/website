@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "Partners",
   description:
     "Sponsors and community partners who have supported Invisible Garden gatherings.",
+  alternates: { canonical: "/partners" },
 };
 
 /**

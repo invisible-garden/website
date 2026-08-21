@@ -24,6 +24,7 @@ export async function generateMetadata({
   return {
     title: person.full_name,
     description: person.headline ?? undefined,
+    alternates: { canonical: `/people/${person.slug}` },
   };
 }
 

@@ -51,6 +51,7 @@ export async function generateMetadata({
     description:
       edition.summary ??
       `Invisible Garden in ${where}, ${formatDateRange(edition.starts_on, edition.ends_on)}.`,
+    alternates: { canonical: `/editions/${edition.slug}` },
   };
 }
 

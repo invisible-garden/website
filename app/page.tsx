@@ -15,6 +15,7 @@ export const revalidate = 300;
 export const metadata: Metadata = {
   title: eventConfig.name,
   description: eventConfig.descriptor,
+  alternates: { canonical: "/" },
 };
 
 /**
