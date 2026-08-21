@@ -20,6 +20,12 @@ export const metadata: Metadata = {
 export default async function PeoplePage() {
   const [people, editions] = await Promise.all([getPeople(), getEditions()]);
 
+  // Only offer a filter for editions that actually have someone in them. The
+  // upcoming edition has no confirmed lineup, and an empty filter is a dead end.
+  const populated = new Set(
+    people.flatMap((person) => person.editions.map((edition) => edition.slug)),
+  );
+
   return (
     <Section>
       <SectionHeading
@@ -31,7 +37,9 @@ export default async function PeoplePage() {
       <div className="mt-10">
         <PeopleDirectory
           people={people}
-          editions={editions.map((e) => ({ slug: e.slug, name: e.name }))}
+          editions={editions
+            .filter((edition) => populated.has(edition.slug))
+            .map((edition) => ({ slug: edition.slug, name: edition.name }))}
         />
       </div>
     </Section>
