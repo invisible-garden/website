@@ -25,7 +25,8 @@
     "db:verify": "tsx scripts/db/verify.ts && tsx scripts/db/check-anon.ts",
     "db:migrate:api": "tsx scripts/db/apply-migrations.ts",
     "db:seed": "tsx scripts/db/seed-editions.ts",
-    "audit": "tsx scripts/audit/html-audit.ts"
+    "audit": "tsx scripts/audit/html-audit.ts",
+    "migrate:site-assets": "tsx scripts/migrate-webflow/index.ts site-assets"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",

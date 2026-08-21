@@ -9,7 +9,7 @@ async function main() {
     process.env.SUPABASE_SECRET_KEY!,
     { auth: { persistSession: false } },
   );
-  for (const prefix of ["people", "fellows", "partners"]) {
+  for (const prefix of ["people", "fellows", "partners", "webflow-assets"]) {
     const { data, error } = await supabase.storage
       .from(bucket)
       .list(prefix, { limit: 1000 });

@@ -131,7 +131,9 @@ exists, and never render them while `headline_reviewed` is false.
 
 ## Current state
 
-Phase 0 is done: the app scaffolds, builds and passes CI. Routes are stubs.
+Phases 0 to 4 are done. The site builds, deploys to
+https://ig-website.netlify.app on every push to main, and every route renders
+from real data. `DEFERRED.md` lists what is still blocked on the team.
 
 - Phase 1, database: done. `0001_initial.sql` is applied, RLS verified, types
   generated from the live schema.
@@ -139,9 +141,15 @@ Phase 0 is done: the app scaffolds, builds and passes CI. Routes are stubs.
   editions, 88 people, 98 memberships, 22 fellows and 22 projects, and 111
   photos are in the `media` bucket at two widths. `review` is still a stub, it
   waits on the headline pass over `data/review/headlines.csv`.
-- Phase 3, content: MDX files in `content/` are placeholders, blocked on the
-  open questions in `mb/content-brief.md` §6.
-- Phase 4, frontend: not started.
+- Phase 3, content: about and Chiang Mai recap copy are written. Buenos Aires
+  recap is a thin draft, blocked on the deck and the archives. Homepage copy
+  lives in the section components, with the practical block visibly deferred.
+- Phase 4, frontend: done. Homepage, editions index, edition recaps, people
+  directory and profiles, about, partners, sitemap, OpenGraph images.
+- Phase 5, deployment: Netlify is connected with env vars set. Analytics is
+  deferred by Leo until Plausible or Umami is chosen.
+- Phases 6 and 7, cutover: redirects are written and verified, the rest waits
+  on DNS.
 
 ## Open decisions, do not guess these
 
@@ -159,5 +167,10 @@ Two documented deviations from the plan: `people` carries an extra
 ```bash
 pnpm dev
 pnpm typecheck && pnpm lint && pnpm build   # what CI runs
+pnpm audit https://ig-website.netlify.app   # alt text, headings, metadata
+pnpm db:migrate && pnpm db:types            # schema changes
 pnpm migrate:extract                        # see scripts/migrate-webflow/README.md
 ```
+
+Build the site once with a cleared `.next` before pushing anything that touches
+MDX. A warm cache hides MDX parse errors that fail in CI.

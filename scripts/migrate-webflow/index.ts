@@ -2,9 +2,17 @@ import { assets } from "./assets";
 import { extract } from "./extract";
 import { load } from "./load";
 import { review } from "./review";
+import { siteAssets } from "./site-assets";
 import { transform } from "./transform";
 
-const phases = { extract, assets, transform, review, load };
+const phases = {
+  extract,
+  assets,
+  "site-assets": siteAssets,
+  transform,
+  review,
+  load,
+};
 type Phase = keyof typeof phases;
 
 async function main() {
