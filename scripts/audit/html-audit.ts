@@ -23,6 +23,34 @@ interface Problem {
   message: string;
 }
 
+/**
+ * Fetches one image per route and checks the response is really an image.
+ * On 2026-08-21 a next.config `images.formats` entry stopped Netlify routing
+ * /_next/image, and every request returned the app shell HTML with status 200.
+ * The markup was perfect and every page was blank.
+ */
+async function checkImages(
+  origin: string,
+  route: string,
+  html: string,
+  problems: Problem[],
+) {
+  const match = /(?:src|srcSet|srcset)="([^"]*\/_next\/image\?[^"\s]*)"/.exec(
+    html,
+  );
+  const raw = match?.[1]?.split(/\s+/)[0];
+  if (!raw) return;
+  const url = new URL(raw.replaceAll("&amp;", "&"), origin);
+  const response = await fetch(url);
+  const type = response.headers.get("content-type") ?? "";
+  if (!response.ok || !type.startsWith("image/")) {
+    problems.push({
+      route,
+      message: `image did not load: HTTP ${response.status} ${type} for ${url.pathname}${url.search.slice(0, 60)}`,
+    });
+  }
+}
+
 function check(route: string, html: string, problems: Problem[]) {
   const add = (message: string) => problems.push({ route, message });
 
@@ -82,6 +110,7 @@ async function main() {
       continue;
     }
     check(route, html, problems);
+    await checkImages(origin, route, html, problems);
   }
 
   if (problems.length === 0) {

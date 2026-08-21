@@ -183,3 +183,10 @@ pnpm migrate:extract                        # see scripts/migrate-webflow/README
 
 Build the site once with a cleared `.next` before pushing anything that touches
 MDX. A warm cache hides MDX parse errors that fail in CI.
+
+**Netlify runs Next through an adapter, so config it does not understand fails
+silently.** `images.formats` broke `/_next/image` entirely on 2026-08-21: every
+image request returned the app shell with status 200 and the site rendered
+blank grids, while the local build was perfect. After any change to
+`next.config.ts`, deploy and then run `pnpm audit:html <origin>`, which now
+fetches one image per route and checks the response is really an image.
