@@ -71,6 +71,12 @@ adapter and can lag a new Next major, so upgrade only once it catches up. CI run
 every pull request. The Webflow site stays paid and published until the new site
 is verified in production, that is the rollback path.
 
+## Deferred work
+
+`DEFERRED.md` lists everything the site needs from the team: decisions, copy,
+assets, and the partner data. Nothing there blocks a build, every deferred
+surface hides itself or shows an honest placeholder.
+
 ## Plans
 
 Requirements, technical design, content brief, visual language and the phased
