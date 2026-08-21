@@ -5,3 +5,4 @@ data/
 mb/
 types/database.ts
 .env.example
+content/**/*.mdx
