@@ -140,7 +140,8 @@ exists, and never render them while `headline_reviewed` is false.
 
 Phases 0 to 4 are done. The site builds, deploys to
 https://ig-website.netlify.app on every push to main, and every route renders
-from real data. `DEFERRED.md` lists what is still blocked on the team.
+from real data. `mb/DEFERRED.md` lists what is still blocked on the team. It lives in the notes
+vault, not in the repo, so management can read it. Keep it current.
 
 - Phase 1, database: done. `0001_initial.sql` is applied, RLS verified, types
   generated from the live schema.

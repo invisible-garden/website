@@ -33,15 +33,16 @@ export const EDITION_CONTENT: Record<string, EditionContent> = {
     featuredProjects: ["kalki", "proof-of-invisible", "apstark", "zkcx"],
   },
   "buenos-aires-2025": {
-    // DEFERRED: no recap video found on the site or the YouTube channel.
+    // DEFERRED: the 13 minute recap video is native to the recap post on X.
+    // Leo uploads it to the Invisible Garden YouTube channel, then its id goes
+    // here and the page embeds it like Chiang Mai's.
     videoId: null,
-    // Numbers from content-brief section 3.2, which traces them to the sponsor
-    // deck. Not verifiable from the live site, which has no Buenos Aires recap.
+    // Confirmed 2026-08-21 against the official recap post on X.
     stats: [
       { value: "1,038", label: "applications" },
+      { value: "379", label: "accepted" },
       { value: "45", label: "builders on site" },
       { value: "69", label: "workshops" },
-      { value: "27", label: "projects and research outputs" },
     ],
     featuredProjects: [],
   },

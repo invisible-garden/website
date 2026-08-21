@@ -52,3 +52,6 @@ secrets.txt
 .*.swo
 *~
 *.bak
+
+# the deferred register lives in the notes vault, mb/DEFERRED.md
+DEFERRED.md

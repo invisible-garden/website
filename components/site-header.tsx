@@ -11,10 +11,10 @@ export function SiteHeader() {
       >
         <Link href="/" className="no-underline" aria-label={siteConfig.name}>
           <Image
-            src="/images/invisible-garden-logo.svg"
+            src="/images/logo/wordmark.svg"
             alt={siteConfig.name}
-            width={637}
-            height={200}
+            width={577}
+            height={209}
             priority
             className="h-8 w-auto"
           />

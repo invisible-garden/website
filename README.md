@@ -78,9 +78,10 @@ is verified in production, that is the rollback path.
 
 ## Deferred work
 
-`DEFERRED.md` lists everything the site needs from the team: decisions, copy,
-assets, and the partner data. Nothing there blocks a build, every deferred
-surface hides itself or shows an honest placeholder.
+`mb/DEFERRED.md` in the notes vault lists everything the site needs from the
+team: decisions, copy, assets, and the partner data. It lives there rather than
+in the repo so management can read it. Nothing on it blocks a build, every
+deferred surface hides itself or shows an honest placeholder.
 
 ## Plans
 

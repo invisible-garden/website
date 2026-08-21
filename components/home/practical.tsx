@@ -36,6 +36,12 @@ export function Practical() {
         </div>
       </dl>
 
+      <p className="text-body-lg mt-10 max-w-2xl">
+        The edition ends three days before {eventConfig.devcon.name} in{" "}
+        {eventConfig.devcon.city}, {eventConfig.devcon.datesLabel}. Goa first,
+        then Mumbai, without crossing an ocean twice.
+      </p>
+
       <div className="border-flat mt-10 rounded-[--radius-card] p-8">
         <Chip tone="peach">Coming soon</Chip>
         <h3 className="text-headline-sm mt-4">

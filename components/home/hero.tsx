@@ -42,6 +42,11 @@ export function Hero() {
           {formatDateRange(eventConfig.startsOn, eventConfig.endsOn)}
         </p>
 
+        <p className="text-body-md mt-3">
+          Three days before {eventConfig.devcon.name} in{" "}
+          {eventConfig.devcon.city}.
+        </p>
+
         <div className="mt-10 flex flex-wrap gap-4">
           <ButtonLink href="https://t.me/invgarannounce">
             Get updates

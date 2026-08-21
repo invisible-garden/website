@@ -36,7 +36,7 @@ export function SiteFooter() {
         </ul>
       </div>
       <p className="text-body-sm px-4 pb-8 md:px-12">
-        &copy; {new Date().getFullYear()} {siteConfig.name}
+        &copy; {new Date().getFullYear()} {siteConfig.legalName}
       </p>
     </footer>
   );

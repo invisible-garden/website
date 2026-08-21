@@ -1,5 +1,12 @@
+import { readFileSync } from "node:fs";
+import path from "node:path";
 import { ImageResponse } from "next/og";
 import { siteConfig } from "@/lib/site-config";
+
+/** The square mark, inlined once per build. Satori has no file access. */
+const markDataUri = `data:image/jpeg;base64,${readFileSync(
+  path.join(process.cwd(), "public", "images", "logo", "mark-square.jpg"),
+).toString("base64")}`;
 
 export const OG_SIZE = { width: 1200, height: 630 };
 export const OG_CONTENT_TYPE = "image/png";
@@ -9,8 +16,8 @@ export const OG_CONTENT_TYPE = "image/png";
  * 6.5. Two looks, matching the identity split: the event card carries the brand
  * gradient and the co-hosts, the site card is Invisible Garden's own.
  *
- * DEFERRED: a logo mark. None of the three organisations has supplied one that
- * reads at this size, so the cards are type-only.
+ * The Invisible Garden mark is embedded. Common Compute and OpenBuild have not
+ * supplied theirs, so the event card still names them in text.
  */
 export function ogCard({
   eyebrow,
@@ -45,10 +52,22 @@ export function ogCard({
       <div
         style={{
           display: "flex",
+          alignItems: "center",
+          gap: 20,
           fontSize: 28,
           color: event ? "#ffffff" : "#ffbba5",
         }}
       >
+        {/* Satori renders these cards, not the browser, so next/image has no
+            role here and a plain img is the only option. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={markDataUri}
+          width={56}
+          height={56}
+          style={{ borderRadius: 12 }}
+          alt=""
+        />
         {eyebrow}
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>

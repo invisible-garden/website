@@ -12,6 +12,9 @@ export const siteConfig = {
   description:
     "A traveling academy for Ethereum developers, run as pop-up dev cities since 2024.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://invisible.garden",
+  /** Footer credit, decided 2026-08-21. The old "Invisible Garden Foundation"
+   *  and the Singapore NGO claim are stale and must not reappear. */
+  legalName: "Invisible Garden Operations LLC",
   // Taken from the live Webflow site, 2026-08-21. Note the X handle has no
   // second "e". The contact email is still missing, the old site only offered
   // Google Forms.
@@ -47,4 +50,11 @@ export const eventConfig = {
   startsOn: "2026-10-17",
   endsOn: "2026-10-31",
   datesLabel: "17 to 31 October 2026",
+  /** Devcon anchoring approved 2026-08-21. Devcon 8 runs 3 to 6 November 2026
+   *  in Mumbai, three days after this edition ends. */
+  devcon: {
+    name: "Devcon 8",
+    city: "Mumbai",
+    datesLabel: "3 to 6 November 2026",
+  },
 } as const;
