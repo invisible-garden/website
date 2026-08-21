@@ -6,6 +6,7 @@ Three checks, each taking an origin so they run against localhost or a deploy.
 pnpm audit:html    https://ig-website.netlify.app   # markup and metadata
 pnpm audit:copy    https://ig-website.netlify.app   # content-brief voice rules
 pnpm audit:browser https://ig-website.netlify.app   # a real browser
+pnpm audit:a11y    https://ig-website.netlify.app   # axe, WCAG 2.1 AA
 ```
 
 ## Why three
@@ -17,10 +18,14 @@ Each has caught something the others could not see:
 - `audit:browser` catches what neither can. Two real failures found this way:
   `/_next/image` returning the app shell on Netlify, and a client-side throw
   that blanked the people directory while its HTML looked perfect.
+- `audit:a11y` catches contrast and ARIA problems. It found the hero CTA
+  rendering blue on blue, because base element styles sat outside `@layer base`
+  and unlayered CSS outranks utilities.
 
 ## Running the browser check without root
 
-`audit:browser` needs Playwright's Chromium plus system libraries and fonts.
+`audit:browser` and `audit:a11y` need Playwright's Chromium plus system
+libraries and fonts.
 Where you cannot install packages, extract them into a directory and point the
 loader at it. What worked on Debian 13:
 
