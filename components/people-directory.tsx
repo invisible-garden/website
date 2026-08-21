@@ -21,6 +21,8 @@ export function PeopleDirectory({
   const [edition, setEdition] = useState<string>("all");
   const [query, setQuery] = useState("");
 
+  // The server ships the list already ranked by prominence, so filtering keeps
+  // that order rather than imposing its own.
   const filtered = useMemo(() => {
     const needle = query.trim().toLowerCase();
     return people.filter((person) => {

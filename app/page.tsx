@@ -30,8 +30,9 @@ export default async function HomePage() {
     getPartners(),
   ]);
 
-  // A sample of the community, the full directory lives at /people. Take the
-  // people with photos first so the grid does not fill with placeholders.
+  // A sample of the community, the full directory lives at /people. getPeople
+  // already ranks by Webflow's prominence order, so this takes the top of that
+  // list, skipping the one person with no photo.
   const featured = people.filter((person) => person.photo_path).slice(0, 12);
 
   return (

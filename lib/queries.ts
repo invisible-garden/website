@@ -1,4 +1,5 @@
 import "server-only";
+import { byProminence, personOrder } from "@/lib/people-order";
 import { createSupabaseClient } from "@/lib/supabase";
 import type {
   EditionRow,
@@ -19,6 +20,8 @@ export type EditionRef = Pick<EditionRow, "slug" | "name">;
 
 export type PersonWithEditions = PersonRow & {
   editions: EditionRef[];
+  /** Webflow's prominence ranking, higher first. See lib/people-order.ts. */
+  order: number;
 };
 
 type PersonJoined = PersonRow & {
@@ -32,6 +35,7 @@ function flattenPerson(person: PersonJoined): PersonWithEditions {
   const { edition_people, ...rest } = person;
   return {
     ...rest,
+    order: personOrder(edition_people.map((link) => link.sort_order)),
     editions: edition_people
       .map((link) => link.editions)
       .filter((edition): edition is EditionRef => Boolean(edition)),
@@ -67,10 +71,11 @@ export async function getPeople(): Promise<PersonWithEditions[]> {
   const supabase = createSupabaseClient();
   const { data, error } = await supabase
     .from("people")
-    .select("*, edition_people(sort_order, editions(slug, name))")
-    .order("full_name", { ascending: true });
+    .select("*, edition_people(sort_order, editions(slug, name))");
   if (error) throw error;
-  return ((data ?? []) as PersonJoined[]).map(flattenPerson);
+  // Ranked in the application, not in Postgres: the rank lives on the join
+  // rows, and a person can hold more than one.
+  return ((data ?? []) as PersonJoined[]).map(flattenPerson).sort(byProminence);
 }
 
 export async function getPerson(
@@ -95,7 +100,8 @@ export async function getEditionPeople(
     .from("edition_people")
     .select("sort_order, people(*), editions!inner(slug)")
     .eq("editions.slug", editionSlug)
-    .order("sort_order", { ascending: true });
+    // Higher order first, it is a prominence ranking, see lib/people-order.ts.
+    .order("sort_order", { ascending: false });
   if (error) throw error;
   type Row = { sort_order: number; people: PersonRow | null };
   return ((data ?? []) as unknown as Row[])
