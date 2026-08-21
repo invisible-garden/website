@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 import { FellowList } from "@/components/fellow-list";
+import { PartnerBand } from "@/components/partner-band";
 import { PersonCard } from "@/components/person-card";
 import { ProjectList } from "@/components/project-list";
 import { StatBand } from "@/components/stat-band";
@@ -14,6 +15,7 @@ import { formatDateRange } from "@/lib/dates";
 import { editionContent } from "@/lib/edition-content";
 import {
   getEdition,
+  getEditionPartners,
   getEditionPeople,
   getEditions,
   getFellows,
@@ -64,10 +66,11 @@ export default async function EditionPage({
   // The upcoming edition has no recap to show, the homepage is about it.
   if (edition.status !== "past") redirect("/");
 
-  const [people, fellows, projects] = await Promise.all([
+  const [people, fellows, projects, partners] = await Promise.all([
     getEditionPeople(slug),
     getFellows(slug),
     getProjects(slug),
+    getEditionPartners(slug),
   ]);
   const content = editionContent(slug);
   const Recap = RECAP_COPY[slug];
@@ -164,6 +167,19 @@ export default async function EditionPage({
           />
           <div className="mt-10">
             <ProjectList projects={projects} />
+          </div>
+        </Section>
+      ) : null}
+
+      {partners.length > 0 ? (
+        <Section>
+          <SectionHeading
+            label="Support"
+            title="Who backed this edition"
+            intro="Sponsors and community partners who made it possible."
+          />
+          <div className="mt-10">
+            <PartnerBand partners={partners} />
           </div>
         </Section>
       ) : null}

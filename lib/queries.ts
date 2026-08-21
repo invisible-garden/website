@@ -4,6 +4,7 @@ import type {
   EditionRow,
   FellowRow,
   PartnerRow,
+  PartnerTier,
   PersonRow,
   ProjectRow,
 } from "@/types/db";
@@ -102,6 +103,25 @@ export async function getEditionPeople(
     .filter((person): person is PersonRow => Boolean(person));
 }
 
+/** The fellowship record for a person, when the same human is in both tables.
+ *  Three exist: Tim Pechersky, Daniel Arroyo, and Surfer_05 who is Surfer. */
+export async function getFellowForPerson(
+  personId: string,
+): Promise<(FellowRow & { edition: EditionRef | null }) | null> {
+  const supabase = createSupabaseClient();
+  const { data, error } = await supabase
+    .from("fellows")
+    .select("*, editions(slug, name)")
+    .eq("person_id", personId)
+    .maybeSingle();
+  if (error) throw error;
+  if (!data) return null;
+  const { editions, ...fellow } = data as FellowRow & {
+    editions: EditionRef | null;
+  };
+  return { ...fellow, edition: editions };
+}
+
 export async function getFellows(editionSlug?: string): Promise<FellowRow[]> {
   const supabase = createSupabaseClient();
   let query = supabase.from("fellows").select("*, editions(slug)");
@@ -133,6 +153,30 @@ export async function getProjects(editionSlug?: string): Promise<ProjectRow[]> {
       void editions;
       return project;
     });
+}
+
+export type PartnerWithTier = PartnerRow & { tier: PartnerTier };
+
+/**
+ * Partners of one edition, split by tier. Empty until the list is re-authored,
+ * tech-design 5.6, so every partner surface must handle that.
+ */
+export async function getEditionPartners(
+  editionSlug: string,
+): Promise<PartnerWithTier[]> {
+  const supabase = createSupabaseClient();
+  const { data, error } = await supabase
+    .from("edition_partners")
+    .select("tier, sort_order, partners(*), editions!inner(slug)")
+    .eq("editions.slug", editionSlug)
+    .order("sort_order", { ascending: true });
+  if (error) throw error;
+  type Row = { tier: PartnerTier; partners: PartnerRow | null };
+  return ((data ?? []) as unknown as Row[])
+    .filter((row): row is Row & { partners: PartnerRow } =>
+      Boolean(row.partners),
+    )
+    .map((row) => ({ ...row.partners, tier: row.tier }));
 }
 
 /**

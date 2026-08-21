@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { Chip } from "@/components/ui/chip";
 import { Section } from "@/components/ui/section";
 import { personPhotoUrl } from "@/lib/media";
-import { getPeople, getPerson } from "@/lib/queries";
+import { getFellowForPerson, getPeople, getPerson } from "@/lib/queries";
 
 // ISR, see tech-design 6.1. Next requires a literal here.
 export const revalidate = 300;
@@ -34,6 +34,9 @@ export default async function PersonPage({
   const { slug } = await params;
   const person = await getPerson(slug);
   if (!person) notFound();
+
+  // Some people are also fellows of an edition they attended as a builder.
+  const fellow = await getFellowForPerson(person.id);
 
   const links = [
     person.x_handle
@@ -80,6 +83,21 @@ export default async function PersonPage({
                 </Link>
               ))}
             </div>
+          ) : null}
+
+          {fellow ? (
+            <p className="text-body-md mt-6">
+              <Chip tone="sage">
+                {fellow.category ? `${fellow.category} fellow` : "Fellow"}
+                {fellow.edition ? ` · ${fellow.edition.name}` : ""}
+              </Chip>
+            </p>
+          ) : null}
+
+          {fellow?.bio && !person.bio ? (
+            <p className="text-body-md mt-6" data-verbatim>
+              {fellow.bio}
+            </p>
           ) : null}
 
           {person.bio ? (
