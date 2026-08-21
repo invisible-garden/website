@@ -1,20 +1,37 @@
 import type { Metadata } from "next";
+import { PeopleDirectory } from "@/components/people-directory";
+import { Section, SectionHeading } from "@/components/ui/section";
+import { getEditions, getPeople } from "@/lib/queries";
 
-export const metadata: Metadata = { title: "Mentors and speakers" };
+// ISR, see tech-design 6.1. Next requires a literal here.
+export const revalidate = 300;
+
+export const metadata: Metadata = {
+  title: "Mentors and speakers",
+  description:
+    "The mentors and speakers who have taught at Invisible Garden gatherings since 2024.",
+};
 
 /**
- * Phase 4: the one genuinely dynamic surface. Server fetches the whole payload
- * once, filtering by edition happens client side. First row gets `priority`,
- * the rest lazy load. See tech-design section 6.2.
- *
  * Framing rule from content-brief 3.5: these people are the community around
- * the project, never the Goa lineup.
+ * Invisible Garden, never a lineup for an upcoming edition.
  */
-export default function PeoplePage() {
+export default async function PeoplePage() {
+  const [people, editions] = await Promise.all([getPeople(), getEditions()]);
+
   return (
-    <div className="mx-auto max-w-6xl px-4 py-20 md:px-12">
-      <h1 className="text-headline-lg">Mentors and speakers</h1>
-      <p className="text-body-lg mt-6">Built in phase 4 from the database.</p>
-    </div>
+    <Section>
+      <SectionHeading
+        label="Community"
+        title="Mentors and speakers"
+        intro="Everyone who has taught, spoken, or mentored at an Invisible Garden gathering since 2024. Filter by edition."
+      />
+      <div className="mt-10">
+        <PeopleDirectory
+          people={people}
+          editions={editions.map((e) => ({ slug: e.slug, name: e.name }))}
+        />
+      </div>
+    </Section>
   );
 }

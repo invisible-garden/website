@@ -1,13 +1,41 @@
 import "server-only";
 import { createSupabaseClient } from "@/lib/supabase";
-import type { EditionRow, PersonRow } from "@/types/db";
+import type {
+  EditionRow,
+  FellowRow,
+  PartnerRow,
+  PersonRow,
+  ProjectRow,
+} from "@/types/db";
 
-/** ISR window for every data-backed route, see tech-design section 6.1. */
-export const REVALIDATE_SECONDS = 300;
+/**
+ * ISR window for every data-backed route is 300 seconds, see tech-design 6.1.
+ * Next needs `export const revalidate = 300` as a literal in each page file, so
+ * it cannot be imported from here.
+ */
+
+export type EditionRef = Pick<EditionRow, "slug" | "name">;
 
 export type PersonWithEditions = PersonRow & {
-  editions: Pick<EditionRow, "slug" | "name">[];
+  editions: EditionRef[];
 };
+
+type PersonJoined = PersonRow & {
+  edition_people: {
+    sort_order: number;
+    editions: EditionRef | null;
+  }[];
+};
+
+function flattenPerson(person: PersonJoined): PersonWithEditions {
+  const { edition_people, ...rest } = person;
+  return {
+    ...rest,
+    editions: edition_people
+      .map((link) => link.editions)
+      .filter((edition): edition is EditionRef => Boolean(edition)),
+  };
+}
 
 export async function getEditions(): Promise<EditionRow[]> {
   const supabase = createSupabaseClient();
@@ -38,30 +66,86 @@ export async function getPeople(): Promise<PersonWithEditions[]> {
   const supabase = createSupabaseClient();
   const { data, error } = await supabase
     .from("people")
-    .select("*, edition_people(editions(slug, name))")
+    .select("*, edition_people(sort_order, editions(slug, name))")
     .order("full_name", { ascending: true });
   if (error) throw error;
-
-  type Joined = PersonRow & {
-    edition_people: { editions: Pick<EditionRow, "slug" | "name"> | null }[];
-  };
-
-  return ((data ?? []) as Joined[]).map((person) => {
-    const { edition_people, ...rest } = person;
-    return {
-      ...rest,
-      editions: edition_people
-        .map((link) => link.editions)
-        .filter((edition): edition is Pick<EditionRow, "slug" | "name"> =>
-          Boolean(edition),
-        ),
-    };
-  });
+  return ((data ?? []) as PersonJoined[]).map(flattenPerson);
 }
 
 export async function getPerson(
   slug: string,
 ): Promise<PersonWithEditions | null> {
-  const people = await getPeople();
-  return people.find((person) => person.slug === slug) ?? null;
+  const supabase = createSupabaseClient();
+  const { data, error } = await supabase
+    .from("people")
+    .select("*, edition_people(sort_order, editions(slug, name))")
+    .eq("slug", slug)
+    .maybeSingle();
+  if (error) throw error;
+  return data ? flattenPerson(data as PersonJoined) : null;
+}
+
+/** People of one edition, in the order the old site used. */
+export async function getEditionPeople(
+  editionSlug: string,
+): Promise<PersonRow[]> {
+  const supabase = createSupabaseClient();
+  const { data, error } = await supabase
+    .from("edition_people")
+    .select("sort_order, people(*), editions!inner(slug)")
+    .eq("editions.slug", editionSlug)
+    .order("sort_order", { ascending: true });
+  if (error) throw error;
+  type Row = { sort_order: number; people: PersonRow | null };
+  return ((data ?? []) as unknown as Row[])
+    .map((row) => row.people)
+    .filter((person): person is PersonRow => Boolean(person));
+}
+
+export async function getFellows(editionSlug?: string): Promise<FellowRow[]> {
+  const supabase = createSupabaseClient();
+  let query = supabase.from("fellows").select("*, editions(slug)");
+  if (editionSlug) query = query.eq("editions.slug", editionSlug);
+  const { data, error } = await query.order("name", { ascending: true });
+  if (error) throw error;
+  type Row = FellowRow & { editions: { slug: string } | null };
+  return ((data ?? []) as Row[])
+    .filter((row) => !editionSlug || row.editions?.slug === editionSlug)
+    .map((row): FellowRow => {
+      const { editions, ...fellow } = row;
+      void editions;
+      return fellow;
+    });
+}
+
+export async function getProjects(editionSlug?: string): Promise<ProjectRow[]> {
+  const supabase = createSupabaseClient();
+  const { data, error } = await supabase
+    .from("projects")
+    .select("*, editions(slug)")
+    .order("name", { ascending: true });
+  if (error) throw error;
+  type Row = ProjectRow & { editions: { slug: string } | null };
+  return ((data ?? []) as Row[])
+    .filter((row) => !editionSlug || row.editions?.slug === editionSlug)
+    .map((row): ProjectRow => {
+      const { editions, ...project } = row;
+      void editions;
+      return project;
+    });
+}
+
+/**
+ * Partners have no source data in Webflow, so this returns nothing until the
+ * list is re-authored by hand, see tech-design 5.6. Every partner surface must
+ * handle the empty case.
+ */
+export async function getPartners(): Promise<PartnerRow[]> {
+  const supabase = createSupabaseClient();
+  const { data, error } = await supabase
+    .from("partners")
+    .select("*")
+    .order("name", { ascending: true });
+  if (error) throw error;
+  return data ?? [];
 }

@@ -1,14 +1,35 @@
 import type { MetadataRoute } from "next";
+import { getEditions, getPeople } from "@/lib/queries";
 import { siteConfig } from "@/lib/site-config";
 
-/**
- * Static routes only for now. Phase 4 adds the edition and person slugs from
- * the database, see tech-design section 6.5.
- */
-export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = ["", "/about", "/editions", "/people", "/partners"];
-  return routes.map((route) => ({
-    url: `${siteConfig.url}${route}`,
-    lastModified: new Date(),
-  }));
+// Regenerated on the same ISR window as the pages it lists.
+export const revalidate = 300;
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const [editions, people] = await Promise.all([getEditions(), getPeople()]);
+  const now = new Date();
+
+  const staticRoutes = ["", "/about", "/editions", "/people", "/partners"].map(
+    (route) => ({
+      url: `${siteConfig.url}${route}`,
+      lastModified: now,
+      priority: route === "" ? 1 : 0.7,
+    }),
+  );
+
+  return [
+    ...staticRoutes,
+    ...editions
+      .filter((edition) => edition.status === "past")
+      .map((edition) => ({
+        url: `${siteConfig.url}/editions/${edition.slug}`,
+        lastModified: now,
+        priority: 0.6,
+      })),
+    ...people.map((person) => ({
+      url: `${siteConfig.url}/people/${person.slug}`,
+      lastModified: now,
+      priority: 0.4,
+    })),
+  ];
 }

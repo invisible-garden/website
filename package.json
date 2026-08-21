@@ -23,7 +23,8 @@
     "prepare": "husky",
     "db:migrate": "supabase db push",
     "db:verify": "tsx scripts/db/verify.ts && tsx scripts/db/check-anon.ts",
-    "db:migrate:api": "tsx scripts/db/apply-migrations.ts"
+    "db:migrate:api": "tsx scripts/db/apply-migrations.ts",
+    "db:seed": "tsx scripts/db/seed-editions.ts"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",

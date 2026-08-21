@@ -1,5 +1,16 @@
 import type { Metadata } from "next";
+import { Community } from "@/components/home/community";
+import { FormatExplainer } from "@/components/home/format-explainer";
+import { Hero } from "@/components/home/hero";
+import { PastPartners } from "@/components/home/past-partners";
+import { Practical } from "@/components/home/practical";
+import { Subjects } from "@/components/home/subjects";
+import { TrackRecord } from "@/components/home/track-record";
+import { getEditions, getPartners, getPeople } from "@/lib/queries";
 import { eventConfig } from "@/lib/site-config";
+
+// ISR, see tech-design 6.1. Next requires a literal here.
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: eventConfig.name,
@@ -7,41 +18,30 @@ export const metadata: Metadata = {
 };
 
 /**
- * Homepage skeleton. Section order follows content-brief section 3.1:
- * hero, what it is, subjects, practical block, community grid, past partners,
- * track record, footer. Real copy lands in content/home.mdx once the blocking
- * decisions in content-brief section 6 are answered. The community and partner
- * sections read from Supabase in phase 4.
+ * The homepage is the one page about the 2026 event. Section order follows
+ * content-brief 3.1: hero, format, subjects, practical, community, past
+ * partners, track record.
  */
-export default function HomePage() {
-  return (
-    <div>
-      <section className="bg-horizon px-4 py-24 text-white md:px-12">
-        <div className="mx-auto max-w-6xl">
-          <p className="text-label font-mono uppercase">
-            {eventConfig.organisers.join("  +  ")}
-          </p>
-          <h1 className="font-display text-display mt-6 max-w-3xl">
-            {eventConfig.name}
-          </h1>
-          <p className="text-body-lg mt-6 max-w-2xl">
-            {eventConfig.descriptor}
-          </p>
-          <p className="text-label mt-8 font-mono uppercase">
-            {eventConfig.city}, {eventConfig.country} &middot;{" "}
-            {eventConfig.datesLabel}
-          </p>
-        </div>
-      </section>
+export default async function HomePage() {
+  const [people, editions, partners] = await Promise.all([
+    getPeople(),
+    getEditions(),
+    getPartners(),
+  ]);
 
-      <section className="mx-auto max-w-6xl px-4 py-20 md:px-12">
-        <h2 className="text-headline-lg">Copy pending</h2>
-        <p className="text-body-lg mt-4 max-w-2xl">
-          The remaining sections are built in phase 4: what Invisible Commons
-          is, the subjects, the practical block, the community grid, partners of
-          previous editions, and the track record strip.
-        </p>
-      </section>
-    </div>
+  // A sample of the community, the full directory lives at /people. Take the
+  // people with photos first so the grid does not fill with placeholders.
+  const featured = people.filter((person) => person.photo_path).slice(0, 12);
+
+  return (
+    <>
+      <Hero />
+      <FormatExplainer />
+      <Subjects />
+      <Practical />
+      <Community people={featured} />
+      <PastPartners partners={partners} />
+      <TrackRecord editions={editions} />
+    </>
   );
 }

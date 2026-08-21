@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
 
@@ -8,11 +9,15 @@ export function SiteHeader() {
         aria-label="Main"
         className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-4 py-4 md:px-12"
       >
-        <Link
-          href="/"
-          className="font-display text-ink text-headline-sm no-underline"
-        >
-          {siteConfig.name}
+        <Link href="/" className="no-underline" aria-label={siteConfig.name}>
+          <Image
+            src="/images/invisible-garden-logo.svg"
+            alt={siteConfig.name}
+            width={637}
+            height={200}
+            priority
+            className="h-8 w-auto"
+          />
         </Link>
         <ul className="flex flex-wrap items-center gap-4 md:gap-8">
           {siteConfig.nav.map((item) => (
