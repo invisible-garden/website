@@ -90,7 +90,8 @@ they are for large text and non-text elements only. Alt text on every photo,
 visible focus states, keyboard navigable.
 
 **Database.** Schema changes go in `supabase/migrations/` and get applied with
-the Supabase CLI, never edited in the dashboard. `types/database.ts` is
+`pnpm db:migrate` (`supabase db push`), never edited in the dashboard. The CLI
+is linked and the database password lives in the local `.env`. `types/database.ts` is
 generated with `pnpm db:types`, not hand-written. RLS stays on with a `select`
 policy for `anon` and nothing else.
 
@@ -119,10 +120,11 @@ URL. Build URLs with `mediaUrl()` in `lib/media.ts`.
 
 Phase 0 is done: the app scaffolds, builds and passes CI. Routes are stubs.
 
-- Phase 1, database: `supabase/migrations/0001_initial.sql` is written and not
-  yet applied. It needs the database password or a Management API token.
-- Phase 2, migration: `extract` is implemented, `assets`, `transform`, `review`
-  and `load` are stubs carrying their specification in a comment.
+- Phase 1, database: done. `0001_initial.sql` is applied, RLS verified, types
+  generated from the live schema.
+- Phase 2, migration: `extract` and `assets` are done, 111 photos are in the
+  `media` bucket at two widths. `transform`, `review` and `load` are stubs
+  carrying their specification in a comment.
 - Phase 3, content: MDX files in `content/` are placeholders, blocked on the
   open questions in `mb/content-brief.md` §6.
 - Phase 4, frontend: not started.

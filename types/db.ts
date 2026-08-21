@@ -1,5 +1,11 @@
 import type { Database } from "@/types/database";
 
+/**
+ * `types/database.ts` is generated from the live schema by `pnpm db:types`
+ * (`supabase gen types typescript --linked`). Never hand-edit it. Everything
+ * the app imports comes from here instead.
+ */
+
 /** Row aliases, so components never spell out the generated type path. */
 type Tables = Database["public"]["Tables"];
 type Enums = Database["public"]["Enums"];
