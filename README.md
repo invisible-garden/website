@@ -63,6 +63,11 @@ Every variable is listed in `.env.example`. Two rules, no exceptions:
   build environment.
 - The publishable key is safe to ship. RLS allows `select` and nothing else.
 
+## Where it runs
+
+The site deploys to https://ig-website.netlify.app on every push to `main`,
+and the real domain still points at the old Webflow site until cutover.
+
 ## Deployment
 
 Netlify free tier, preview deploy per pull request. Build config in

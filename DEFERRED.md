@@ -3,6 +3,10 @@
 Everything the site needs that the implementer cannot decide or supply. Each
 item says where it bites and what unblocks it. Updated 2026-08-21.
 
+Two audits keep the shipped site honest while these are open:
+`pnpm audit:copy <origin>` for the voice and naming rules, `pnpm audit:html
+<origin>` for alt text, heading order and metadata. Both pass today.
+
 Nothing here blocks the build. Every deferred surface either hides itself or
 shows an honest placeholder, so the site can ship without inventing facts.
 
