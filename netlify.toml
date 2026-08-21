@@ -1,0 +1,16 @@
+# Netlify build config. The only host-specific file in the repo, everything
+# else is standard Next.js so moving hosts stays cheap, see tech-requirements.
+# Redirects live in next.config.ts, which the Next runtime honours, rather than
+# in a _redirects file, for the same portability reason.
+
+[build]
+  command = "pnpm build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Pinned deliberately. The runtime is an adapter, so it can lag a new Next
+# major. Upgrade Next majors only after the runtime supports them.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
