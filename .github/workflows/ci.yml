@@ -20,5 +20,9 @@ jobs:
       - run: pnpm lint
       - run: pnpm build
         env:
-          # Build-time values only, no secret. Real ones live in Vercel.
-          NEXT_PUBLIC_SITE_URL: https://invisible.garden
+          # The build reads the database, so it needs the publishable key. Both
+          # values are public by design, RLS allows select only. No secret key
+          # is ever available to CI.
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+          NEXT_PUBLIC_SITE_URL: https://ig-website.netlify.app
