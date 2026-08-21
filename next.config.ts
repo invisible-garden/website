@@ -12,7 +12,6 @@ const nextConfig: NextConfig = {
     // grid renders 88 of them at once.
     deviceSizes: [640, 828, 1080, 1920],
     imageSizes: [96, 220, 400],
-    formats: ["image/webp"],
     remotePatterns: supabaseHost
       ? [
           {
