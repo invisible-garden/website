@@ -45,3 +45,10 @@ yarn-error.log*
 
 # credentials pasted for local use, never committed
 secrets.txt
+# editor swap and backup files, which can hold fragments of open files
+*.swp
+*.swo
+.*.swp
+.*.swo
+*~
+*.bak
