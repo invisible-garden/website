@@ -34,7 +34,8 @@
     "audit:a11y": "tsx scripts/audit/a11y.ts",
     "migrate:edition-photos": "tsx scripts/migrate-webflow/index.ts edition-photos",
     "photos:discord": "tsx scripts/photos/discord-download.ts",
-    "photos:coverage": "tsx scripts/photos/webflow-coverage.ts"
+    "photos:coverage": "tsx scripts/photos/webflow-coverage.ts",
+    "db:seed-people": "tsx scripts/db/seed-people.ts"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",

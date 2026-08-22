@@ -1,0 +1,19 @@
+{
+  "$comment": [
+    "People added by hand, not migrated from Webflow. Every entry needs a",
+    "source line saying why we are certain they took part, because the site",
+    "states plainly that these people taught or spoke at that edition.",
+    "Load with: pnpm db:seed-people"
+  ],
+  "people": [
+    {
+      "slug": "vitalik-buterin",
+      "full_name": "Vitalik Buterin",
+      "headline": "Co-founder, Ethereum",
+      "source": "Spoke at the Chiang Mai 2024 opening ceremony. Confirmed by Leo on 2026-08-22, recording published on YouTube. Absent from the Webflow CMS, which is why he was missing.",
+      "editions": [
+        { "edition": "chiang-mai-2024", "sort_order": 1100, "featured": true }
+      ]
+    }
+  ]
+}
