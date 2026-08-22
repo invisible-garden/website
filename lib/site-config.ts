@@ -50,19 +50,26 @@ export const eventConfig = {
   organisers: [
     {
       name: "Invisible Garden",
+      url: "/about",
       logo: "/images/logo/wordmark-white.svg",
       description:
         "Invisible Garden is a traveling academy for Ethereum developers, run as pop-up dev cities since 2024.",
     },
     {
       name: "Common Compute",
+      url: "https://commoncompute.org",
       logo: null,
-      // DEFERRED: no self-description has arrived. Nothing invented in its
-      // place, the section simply names them, see mb/DEFERRED.md.
-      description: null,
+      // Written from their own site on 2026-08-22, at Leo's direction. Their
+      // sign-off is still outstanding, and they have not sent a line of their
+      // own. Their words: a network of small machines "in homes, schools,
+      // workshops and fields, each running AI on its own, for the people in
+      // the room, with nothing leaving the room unless you say so".
+      description:
+        "Common Compute builds small machines that run AI on their own, in homes, schools and workshops, with nothing leaving the room unless you say so. The hardware and the code are open source.",
     },
     {
       name: "OpenBuild",
+      url: "https://openbuild.xyz",
       logo: "/images/logo/openbuild-white.svg",
       // Drafted from openbuild.xyz, shipped on Leo's instruction 2026-08-22.
       // Their own sign-off is still outstanding.
