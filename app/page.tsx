@@ -11,6 +11,9 @@ import { eventConfig } from "@/lib/site-config";
 
 // ISR, see tech-design 6.1. Next requires a literal here.
 export const revalidate = 300;
+// Read the database on every regeneration. Without this the page rebuilds on
+// schedule and replays cached rows, so an edit never lands, see lib/supabase.ts.
+export const fetchCache = "default-no-store";
 
 export const metadata: Metadata = {
   title: eventConfig.name,
