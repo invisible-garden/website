@@ -48,9 +48,27 @@ export const eventConfig = {
    * picked one yet, see mb/DEFERRED.md.
    */
   organisers: [
-    { name: "Invisible Garden", logo: "/images/logo/wordmark-white.svg" },
-    { name: "Common Compute", logo: null },
-    { name: "OpenBuild", logo: "/images/logo/openbuild-white.svg" },
+    {
+      name: "Invisible Garden",
+      logo: "/images/logo/wordmark-white.svg",
+      description:
+        "Invisible Garden is a traveling academy for Ethereum developers, run as pop-up dev cities since 2024.",
+    },
+    {
+      name: "Common Compute",
+      logo: null,
+      // DEFERRED: no self-description has arrived. Nothing invented in its
+      // place, the section simply names them, see mb/DEFERRED.md.
+      description: null,
+    },
+    {
+      name: "OpenBuild",
+      logo: "/images/logo/openbuild-white.svg",
+      // Drafted from openbuild.xyz, shipped on Leo's instruction 2026-08-22.
+      // Their own sign-off is still outstanding.
+      description:
+        "OpenBuild is an open community that helps developers get into Web3. It runs more than 90 courses and 150 hands-on challenges, plus bounties that turn learning into paid work.",
+    },
   ] as const,
   descriptor:
     "An unconference in Goa, India, by Invisible Garden, Common Compute and OpenBuild. Two weeks of talks, co-working, and building across AI, robotics, ZKP, post-quantum cryptography, and formal verification, on Ethereum common ground.",

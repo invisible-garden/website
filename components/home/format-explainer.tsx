@@ -10,10 +10,11 @@ const CHECKLIST = [
 
 /**
  * What Invisible Commons is. Text left, checklist card right, the layout the
- * mock-up got right.
+ * mock-up got right, followed by a line on each co-host.
  *
- * DEFERRED: one or two lines about each co-host. Common Compute and OpenBuild
- * each need to supply and approve their own description, content-brief 6.3.
+ * DEFERRED: Common Compute has sent no self-description, so they are named
+ * without one rather than described by us. OpenBuild's line is drafted from
+ * their own site and still wants their sign-off, content-brief 6.3.
  */
 export function FormatExplainer() {
   const organisers = eventConfig.organiserNames;
@@ -53,6 +54,22 @@ export function FormatExplainer() {
                 &#10003;
               </span>
               {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="mt-16">
+        <h3 className="text-headline-sm">Who is behind it</h3>
+        <ul className="mt-6 grid gap-8 md:grid-cols-3">
+          {eventConfig.organisers.map((organiser) => (
+            <li key={organiser.name}>
+              <p className="font-display text-body-lg font-semibold">
+                {organiser.name}
+              </p>
+              {organiser.description ? (
+                <p className="text-body-md mt-2">{organiser.description}</p>
+              ) : null}
             </li>
           ))}
         </ul>
