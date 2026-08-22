@@ -3,8 +3,10 @@ import { PeopleDirectory } from "@/components/people-directory";
 import { Section, SectionHeading } from "@/components/ui/section";
 import { getEditions, getPeople } from "@/lib/queries";
 
-// ISR, see tech-design 6.1. Next requires a literal here.
-export const revalidate = 300;
+// Rendered per request, so an edit in Supabase shows up at once. The edge
+// caches the result for a minute, see the headers in next.config.ts, so the
+// database is not queried for every visitor.
+export const fetchCache = "default-no-store";
 
 export const metadata: Metadata = {
   title: "Mentors and speakers",
