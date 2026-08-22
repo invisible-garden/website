@@ -22,20 +22,6 @@ const nextConfig: NextConfig = {
         ]
       : [],
   },
-  async headers() {
-    // Netlify's own CDN control, which is separate from the Cache-Control the
-    // browser sees. The pages render per request so the data is never stale in
-    // the origin, and the edge holds each response for a minute and serves the
-    // previous one while it refreshes. Netlify's ISR path is not used: on-demand
-    // revalidation 500s every data-backed route on their runtime, 2026-08-22.
-    const cdn = "public, durable, s-maxage=60, stale-while-revalidate=300";
-    return [
-      {
-        source: "/:path((?!_next|api).*)",
-        headers: [{ key: "Netlify-CDN-Cache-Control", value: cdn }],
-      },
-    ];
-  },
   async redirects() {
     // Old Webflow paths. Complete list, taken from the Webflow pages API and a
     // crawl of the live site on 2026-08-21. Live pages were: /, /apply,

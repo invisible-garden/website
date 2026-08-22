@@ -26,10 +26,9 @@ import {
 } from "@/lib/queries";
 import { siteConfig } from "@/lib/site-config";
 
-// Rendered per request, so an edit in Supabase shows up at once. The edge
-// caches the result for a minute, see the headers in next.config.ts, so the
-// database is not queried for every visitor.
-export const fetchCache = "default-no-store";
+// Statically generated and refreshed every 5 minutes. The data behind it is
+// refreshed in step, see the cache window in lib/supabase.ts.
+export const revalidate = 300;
 
 /** Recap prose per edition. A registry rather than a dynamic import, so a
  *  missing file is a build error rather than a runtime one. */
