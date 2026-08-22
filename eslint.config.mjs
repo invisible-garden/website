@@ -9,7 +9,15 @@ const compat = new FlatCompat({ baseDirectory: __dirname });
 
 const eslintConfig = [
   {
-    ignores: [".next/**", "out/**", "build/**", "next-env.d.ts", "data/**"],
+    ignores: [
+      ".next/**",
+      // Local output of `netlify build`, used to reproduce their runtime.
+      ".netlify/**",
+      "out/**",
+      "build/**",
+      "next-env.d.ts",
+      "data/**",
+    ],
   },
   ...compat.extends("next/core-web-vitals", "next/typescript"),
 ];
