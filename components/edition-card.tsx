@@ -28,7 +28,16 @@ export function EditionCard({
       )}
     >
       <div className="flex flex-wrap items-center gap-2">
-        <Chip tone={upcoming ? "peach" : "sky"}>
+        {/* Per-edition accent, `editions.accent_color`. Ink on the accent, which
+            is the pairing that holds AA, see tech-design section 7. */}
+        <Chip
+          tone={upcoming ? "peach" : "sky"}
+          style={
+            edition.accent_color
+              ? { backgroundColor: edition.accent_color, color: "#1a1b1f" }
+              : undefined
+          }
+        >
           {upcoming ? "Upcoming" : "Past edition"}
         </Chip>
         {edition.city ? (

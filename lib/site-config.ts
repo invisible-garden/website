@@ -41,7 +41,17 @@ export const siteConfig = {
  */
 export const eventConfig = {
   name: "Invisible Commons",
-  organisers: ["Invisible Garden", "Common Compute", "OpenBuild"],
+  /**
+   * The three co-hosts, equal weight. `logo` is a white-on-transparent mark for
+   * the gradient hero; the rest render as text until their artwork is final.
+   * Common Compute sent 12 "Commons Ring" variants on 2026-08-21 and nobody has
+   * picked one yet, see mb/DEFERRED.md.
+   */
+  organisers: [
+    { name: "Invisible Garden", logo: "/images/logo/wordmark-white.svg" },
+    { name: "Common Compute", logo: null },
+    { name: "OpenBuild", logo: "/images/logo/openbuild-white.svg" },
+  ] as const,
   descriptor:
     "An unconference in Goa, India, by Invisible Garden, Common Compute and OpenBuild. Two weeks of talks, co-working, and building across AI, robotics, ZKP, post-quantum cryptography, and formal verification, on Ethereum common ground.",
   slug: "goa-2026",
@@ -50,6 +60,10 @@ export const eventConfig = {
   startsOn: "2026-10-17",
   endsOn: "2026-10-31",
   datesLabel: "17 to 31 October 2026",
+  /** Names only, for prose and social cards. */
+  get organiserNames(): string[] {
+    return this.organisers.map((organiser) => organiser.name);
+  },
   /** Devcon anchoring approved 2026-08-21. Devcon 8 runs 3 to 6 November 2026
    *  in Mumbai, three days after this edition ends. */
   devcon: {

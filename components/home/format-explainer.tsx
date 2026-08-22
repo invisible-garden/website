@@ -16,7 +16,7 @@ const CHECKLIST = [
  * each need to supply and approve their own description, content-brief 6.3.
  */
 export function FormatExplainer() {
-  const organisers = eventConfig.organisers;
+  const organisers = eventConfig.organiserNames;
   return (
     <Section>
       <div className="grid gap-10 md:grid-cols-2 md:gap-16">

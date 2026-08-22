@@ -5,13 +5,17 @@ export function Chip({
   children,
   tone = "sky",
   className,
+  style,
 }: {
   children: React.ReactNode;
   tone?: "sky" | "sage" | "peach" | "outline";
   className?: string;
+  /** Only for per-edition accent colours, which come from the database. */
+  style?: React.CSSProperties;
 }) {
   return (
     <span
+      style={style}
       className={cn(
         "text-label inline-flex items-center rounded-full px-3 py-1 font-mono",
         tone === "sky" && "bg-sky/30 text-ink",

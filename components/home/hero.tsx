@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ButtonLink } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { formatDateRange } from "@/lib/dates";
@@ -16,13 +17,23 @@ export function Hero() {
   return (
     <div className="bg-horizon text-white">
       <Container className="py-20 md:py-28">
-        <ul className="flex flex-wrap gap-3">
+        <ul className="flex flex-wrap items-center gap-x-8 gap-y-4">
           {eventConfig.organisers.map((organiser) => (
-            <li
-              key={organiser}
-              className="text-label rounded-full border border-white/70 px-4 py-1.5 font-mono"
-            >
-              {organiser}
+            <li key={organiser.name} className="flex items-center">
+              {organiser.logo ? (
+                <Image
+                  src={organiser.logo}
+                  alt={organiser.name}
+                  width={169}
+                  height={36}
+                  className="h-7 w-auto"
+                  priority
+                />
+              ) : (
+                <span className="text-label rounded-full border border-white/70 px-4 py-1.5 font-mono">
+                  {organiser.name}
+                </span>
+              )}
             </li>
           ))}
         </ul>

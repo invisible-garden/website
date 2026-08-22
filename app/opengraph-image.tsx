@@ -8,7 +8,7 @@ export const alt = `${eventConfig.name}, ${eventConfig.city}, ${eventConfig.coun
 /** The homepage is the event, so this card is the event's. */
 export default function OpengraphImage() {
   return ogCard({
-    eyebrow: eventConfig.organisers.join("   +   "),
+    eyebrow: eventConfig.organiserNames.join("   +   "),
     title: eventConfig.name,
     subtitle: `${eventConfig.city}, ${eventConfig.country} · 17 to 31 October 2026`,
     footer: siteConfig.url,

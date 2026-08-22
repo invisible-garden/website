@@ -32,7 +32,9 @@
     "audit:html": "tsx scripts/audit/html-audit.ts",
     "audit:browser": "tsx scripts/audit/browser-check.ts",
     "audit:a11y": "tsx scripts/audit/a11y.ts",
-    "migrate:edition-photos": "tsx scripts/migrate-webflow/index.ts edition-photos"
+    "migrate:edition-photos": "tsx scripts/migrate-webflow/index.ts edition-photos",
+    "photos:discord": "tsx scripts/photos/discord-download.ts",
+    "photos:coverage": "tsx scripts/photos/webflow-coverage.ts"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",

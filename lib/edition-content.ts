@@ -89,10 +89,9 @@ export const EDITION_CONTENT: Record<string, EditionContent> = {
     ],
   },
   "buenos-aires-2025": {
-    // DEFERRED: the 13 minute recap video is native to the recap post on X.
-    // Leo uploads it to the Invisible Garden YouTube channel, then its id goes
-    // here and the page embeds it like Chiang Mai's.
-    videoId: null,
+    // Uploaded to the Invisible Garden channel 2026-08-21, from the recap post
+    // on X. Title: "Invisible Garden Buenos Aires, Recap Video".
+    videoId: "Op3Syvqt_f8",
     // Confirmed 2026-08-21 against the official recap post on X.
     stats: [
       { value: "1,038", label: "applications" },
