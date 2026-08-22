@@ -185,14 +185,20 @@ pnpm migrate:extract                        # see scripts/migrate-webflow/README
 Build the site once with a cleared `.next` before pushing anything that touches
 MDX. A warm cache hides MDX parse errors that fail in CI.
 
-**Data freshness has two layers, and both must be right.** Pages are ISR at 300
-seconds, and each data page also sets `fetchCache = "default-no-store"` so a
-regeneration actually reads the database instead of replaying a cached
-response. Without the second, a page rebuilds on schedule and still shows old
-rows. `POST /api/revalidate?secret=...` refreshes everything at once. Do not
-add a custom `fetch` to the Supabase client and do not use `revalidateTag`:
-both work locally and both 500 every data-backed route on Netlify's runtime,
-2026-08-22.
+**A database edit reaches the site by rebuilding it.** Statement-level triggers
+on all seven content tables call a Netlify build hook through `pg_net`, see
+`supabase/migrations/0002` and `0003`. The hook URL lives in `internal.settings`,
+never in git. An edit is live in a couple of minutes and the pages stay fully
+static.
+
+That indirect route is deliberate. On Netlify's runtime, every direct way to
+refresh cached data failed on 2026-08-22: pages regenerate on their ISR
+schedule but replay the same cached Supabase response; `revalidateTag` and
+`revalidatePath` 500 every data-backed route; a custom `fetch` carrying
+`next: { revalidate }` does the same; varying a request header does not change
+their cache key; and rendering per request truncates the streamed HTML in
+production, which breaks hydration and empties the page. Do not reach for any
+of those again without testing in a browser against the deploy.
 
 **Netlify runs Next through an adapter, so config it does not understand fails
 silently.** `images.formats` broke `/_next/image` entirely on 2026-08-21: every
