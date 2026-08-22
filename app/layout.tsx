@@ -47,7 +47,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${sora.variable} ${openSans.variable} ${dmMono.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col">
+      {/* Netlify injects its HUD script after </body>, which browsers reparent
+          into the body. Without this React treats it as a hydration mismatch,
+          and in production that took the homepage to the error boundary. */}
+      <body className="flex min-h-full flex-col" suppressHydrationWarning>
         <a
           href="#main"
           className="bg-ink sr-only rounded-full px-4 py-2 text-white focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50"

@@ -65,6 +65,7 @@
     "eslint-config-next": "15.5.23",
     "husky": "^9.1.7",
     "lint-staged": "^17.3.0",
+    "netlify-cli": "^27.1.2",
     "playwright": "^1.62.1",
     "prettier": "^3.9.6",
     "prettier-plugin-tailwindcss": "^0.8.1",

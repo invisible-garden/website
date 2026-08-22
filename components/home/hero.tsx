@@ -28,6 +28,8 @@ export function Hero() {
                   height={36}
                   className="h-7 w-auto"
                   priority
+                  // SVG through the optimizer 400s, see site-header.
+                  unoptimized
                 />
               ) : (
                 <span className="text-label rounded-full border border-white/70 px-4 py-1.5 font-mono">

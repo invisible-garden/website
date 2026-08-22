@@ -16,6 +16,9 @@ export function SiteHeader() {
             width={577}
             height={209}
             priority
+            // next/image refuses to optimise SVG, the request 400s. These are
+            // already small static files, so serve them as they are.
+            unoptimized
             className="h-8 w-auto"
           />
         </Link>
