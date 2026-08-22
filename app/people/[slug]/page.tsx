@@ -9,9 +9,6 @@ import { getFellowForPerson, getPeople, getPerson } from "@/lib/queries";
 
 // ISR, see tech-design 6.1. Next requires a literal here.
 export const revalidate = 300;
-// Read the database on every regeneration. Without this the page rebuilds on
-// schedule and replays cached rows, so an edit never lands, see lib/supabase.ts.
-export const fetchCache = "default-no-store";
 
 export async function generateStaticParams() {
   const people = await getPeople();
