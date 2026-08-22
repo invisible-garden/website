@@ -11,22 +11,19 @@ export const REVALIDATE_SECONDS = 300;
  * and RLS allows nothing but SELECT, so there is still no reason for it to
  * reach the browser. No client component may import this file.
  *
- * The custom fetch matters. Supabase reads are plain GET requests, which land
- * in Next's Data Cache, and that cache has its own lifetime independent of the
- * page's `revalidate`. Without this, a page regenerates on schedule and
- * re-renders the same stale rows: on 2026-08-22 an edited sort order did not
- * reach the site even though the page had been rebuilt. Tying the fetch
- * lifetime to the page's keeps the two in step.
+ * The custom fetch bounds Next's Data Cache. Supabase reads are plain GETs, so
+ * they land in that cache, which has a lifetime independent of the page's
+ * `revalidate`: without this a page regenerates on schedule and re-renders the
+ * same stale rows, which is what happened to an edited sort order on
+ * 2026-08-22. Cache tags are deliberately absent, they take Netlify's runtime
+ * down, see app/api/revalidate/route.ts.
  */
 export function createSupabaseClient() {
   return createClient<Database>(env.supabaseUrl, env.supabaseAnonKey, {
     auth: { persistSession: false, autoRefreshToken: false },
     global: {
       fetch: (input, init) =>
-        fetch(input, {
-          ...init,
-          next: { revalidate: REVALIDATE_SECONDS, tags: ["supabase"] },
-        }),
+        fetch(input, { ...init, next: { revalidate: REVALIDATE_SECONDS } }),
     },
   });
 }

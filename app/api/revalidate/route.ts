@@ -1,4 +1,4 @@
-import { revalidateTag } from "next/cache";
+import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 
 /**
@@ -7,8 +7,9 @@ import { NextResponse } from "next/server";
  *
  *   curl -X POST "https://<site>/api/revalidate?secret=<REVALIDATE_SECRET>"
  *
- * It clears the `supabase` cache tag, which every server-side read carries, so
- * the next request to any data-backed page fetches fresh rows.
+ * It refreshes every data-backed route. Paths rather than cache tags:
+ * `revalidateTag` took all of those routes to a 500 on Netlify's runtime on
+ * 2026-08-22, while `revalidatePath` behaves.
  *
  * Point a Supabase database webhook at it to make edits appear automatically:
  * Database, Webhooks, new webhook on the tables that matter, HTTP POST to this
@@ -34,6 +35,15 @@ export async function POST(request: Request) {
     );
   }
 
-  revalidateTag("supabase");
-  return NextResponse.json({ revalidated: true, at: new Date().toISOString() });
+  const paths = ["/", "/people", "/editions", "/partners"];
+  for (const path of paths) revalidatePath(path);
+  // Recap and profile pages are generated per slug, so refresh those trees too.
+  revalidatePath("/editions/[slug]", "page");
+  revalidatePath("/people/[slug]", "page");
+
+  return NextResponse.json({
+    revalidated: true,
+    paths,
+    at: new Date().toISOString(),
+  });
 }
