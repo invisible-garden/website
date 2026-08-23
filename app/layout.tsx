@@ -14,7 +14,7 @@ const sora = Sora({
 
 const openSans = Open_Sans({
   variable: "--font-open-sans-src",
-  subsets: ["latin", "latin-ext", "cyrillic", "greek"],
+  subsets: ["latin", "latin-ext"],
   display: "swap",
 });
 

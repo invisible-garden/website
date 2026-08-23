@@ -1,12 +1,22 @@
-# Invisible Garden website
+# Invisible Commons website
 
-The new https://invisible.garden, replacing the Webflow site. Built for
-**Invisible Commons**, Goa, India, 17 to 31 October 2026, a joint project of
-Invisible Garden and Common Compute.
+https://invisiblecommons.org, a one-page site for **Invisible Commons**, Goa,
+India, 17 to 31 October 2026, a joint project of Invisible Garden, Common
+Compute and OpenBuild.
 
-Next.js 15 (App Router, TypeScript), Tailwind CSS 4, Supabase Postgres and
-Storage, deployed on Netlify. Page copy is MDX in this repo. Mentors, speakers,
-editions, fellows, projects and partners come from Supabase.
+Next.js 15 (App Router, TypeScript), Tailwind CSS 4, deployed on Netlify.
+There is no database and no CMS. Every word on the page is in this repository.
+
+## This is a branch, and it stays a branch
+
+`main` is the Invisible Garden site, https://invisible.garden, and it has a
+database, a people directory and edition recaps. This branch,
+`invisible-commons`, is a different site built from the same repository so the
+design system and components are shared.
+
+It is a fork that drifts. It is never merged back. Shared fixes land on `main`
+first and get cherry-picked here when wanted. See
+`mb/site-split-instructions.md`.
 
 ## Requirements
 
@@ -17,74 +27,55 @@ editions, fellows, projects and partners come from Supabase.
 
 ```bash
 pnpm install
-cp .env.example .env.local     # fill in the Supabase URL and publishable key
 pnpm dev                       # http://localhost:3000
 ```
 
-The app runs without Supabase values until a route reads the database. Phase 4
-routes will need them.
+Nothing needs configuring. `.env.example` holds the site URL and the two
+optional analytics values, and that is the whole list.
 
 ## Scripts
 
-| Command                     | What it does                                                                  |
-| --------------------------- | ----------------------------------------------------------------------------- |
-| `pnpm dev`                  | Development server                                                            |
-| `pnpm build` / `pnpm start` | Production build and server                                                   |
-| `pnpm typecheck`            | `next typegen` then `tsc --noEmit`                                            |
-| `pnpm lint`                 | ESLint                                                                        |
-| `pnpm format`               | Prettier over the repo                                                        |
-| `pnpm db:types`             | Regenerate `types/database.ts` from the linked project                        |
-| `pnpm migrate:*`            | Webflow to Supabase migration phases, see `scripts/migrate-webflow/README.md` |
+| Command                     | What it does                  |
+| --------------------------- | ----------------------------- |
+| `pnpm dev`                  | Development server            |
+| `pnpm build` / `pnpm start` | Production build and server   |
+| `pnpm verify`               | typecheck, lint, test, build  |
+| `pnpm audit:*`              | See `scripts/audit/README.md` |
 
 ## Layout
 
 ```
-app/            routes, App Router
-  editions/[slug]/   edition recap pages
-  people/[slug]/     mentor and speaker profiles
-components/     shared UI
-content/        MDX page copy
-lib/            supabase client, media URLs, typed queries, site config
-scripts/
-  migrate-webflow/   extract | assets | transform | review | load
-supabase/
-  migrations/        versioned schema, applied through the CLI
-types/
-  database.ts        generated, do not hand-edit after the first generation
-mb/                  planning notes, symlinked, never committed
+app/            the single route, plus robots, sitemap, icon and OG image
+components/
+  home/         the five sections of the page
+  ui/           button, chip, container, section
+lib/            dates, site config, OG card
+scripts/audit/  html, copy, browser and axe checks
+mb/             planning notes, symlinked, never committed
 ```
 
 ## Environment
 
-Every variable is listed in `.env.example`. Two rules, no exceptions:
-
-- `SUPABASE_SECRET_KEY` and `WEBFLOW_API_TOKEN` live only in a local gitignored
-  `.env`. They never reach the repo, a `NEXT_PUBLIC_` variable, or the Netlify
-  build environment.
-- The publishable key is safe to ship. RLS allows `select` and nothing else.
+`NEXT_PUBLIC_SITE_URL` and, optionally, the two Umami values. There are no
+secrets, because there is nothing to authenticate against. If you are adding a
+Supabase or Webflow variable, you are on the wrong branch.
 
 ## Where it runs
 
-The site deploys to https://ig-website.netlify.app on every push to `main`,
-and the real domain still points at the old Webflow site until cutover.
+Its own Netlify site, from this branch, with its own deploy token and its own
+Umami site id. The domain is registered and points at Netlify when the page is
+ready, independently of the invisible.garden cutover.
 
 ## Deployment
 
 Netlify free tier, preview deploy per pull request. Build config in
 `netlify.toml`. The Next major version is pinned: the Netlify runtime is an
-adapter and can lag a new Next major, so upgrade only once it catches up. CI runs typecheck, lint and build on
-every pull request. The Webflow site stays paid and published until the new site
-is verified in production, that is the rollback path.
-
-## Deferred work
-
-`mb/DEFERRED.md` in the notes vault lists everything the site needs from the
-team: decisions, copy, assets, and the partner data. It lives there rather than
-in the repo so management can read it. Nothing on it blocks a build, every
-deferred surface hides itself or shows an honest placeholder.
+adapter and can lag a new Next major, so upgrade only once it catches up. CI
+runs typecheck, lint, test and build with no database variables set, which is
+the test that this site stays static.
 
 ## Plans
 
-Requirements, technical design, content brief, visual language and the phased
-implementation plan live in `mb/` (a symlink to the notes vault, not part of the
-repository).
+The site brief is `mb/invisible-commons/invisiblecommons-brief.md`, the split
+instructions are `mb/site-split-instructions.md`. `mb/` is a symlink to the
+notes vault and is not part of the repository.

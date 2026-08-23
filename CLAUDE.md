@@ -1,208 +1,161 @@
 # CLAUDE.md
 
-Guidance for working in this repository.
+Guidance for working in this repository, on the `invisible-commons` branch.
 
-## What this is
+## Which site this is
 
-The website for **Invisible Commons**, Goa, India, 17 to 31 October 2026, a
-joint project of Invisible Garden and Common Compute. It replaces the current
-Webflow site at https://invisible.garden and takes the Webflow CMS data with it
-into Supabase.
+This branch is **invisiblecommons.org**, a one-page site for **Invisible
+Commons**, Goa, India, 17 to 31 October 2026, a joint project of Invisible
+Garden, Common Compute and OpenBuild.
+
+It is not invisible.garden. That site is `main`, it has a Supabase database, a
+people directory and edition recaps, and none of it belongs here. The two sites
+share a repository so the design system and the components are shared, nothing
+more.
+
+**The branch is a fork that drifts, and it is never merged back.** Shared fixes
+land on `main` first and get cherry-picked here when wanted. Never merge this
+branch into `main`, and never merge `main` into it wholesale.
 
 Planning documents live in `mb/`, a symlink to the notes vault. They are not
 committed and they outrank anything written here:
 
-| File                        | Covers                                                |
-| --------------------------- | ----------------------------------------------------- |
-| `mb/tech-requirements.md`   | Scope and the stack decision                          |
-| `mb/tech-design.md`         | Architecture, schema, migration design, routes        |
-| `mb/implementation-plan.md` | Phases 0 to 7, what "done" means for each             |
-| `mb/content-brief.md`       | What every page says, voice rules, open questions     |
-| `mb/visual-language.md`     | Type, colour, shape, spacing, components              |
-| `mb/mockup-notes.md`        | How to read `mb/stich-mockup.png`, and what to ignore |
+| File                                             | Covers                              |
+| ------------------------------------------------ | ----------------------------------- |
+| `mb/invisible-commons/invisiblecommons-brief.md` | This site: scope, content, identity |
+| `mb/site-split-instructions.md`                  | Why there are two sites, and how    |
+| `mb/visual-language.md`                          | Type, shape, spacing, components    |
+| `mb/participation-model-memo.md`                 | The open question behind the CTA    |
 
-Read the relevant one before changing anything in its area.
+`mb/content-brief.md` and `mb/mockup-notes.md` describe the Invisible Garden
+site. Its voice rules in section 4 apply here too. Nothing else in them does.
 
 ## Stack
 
-Next.js 15 App Router, React 19, TypeScript strict, Tailwind CSS 4,
-Supabase (Postgres and Storage, Singapore region), MDX for page copy, Netlify
-free tier.
+Next.js 15 App Router, React 19, TypeScript strict, Tailwind CSS 4, MDX
+available for page copy, Netlify free tier. Every page is statically generated
+at build time.
 
 The Next major version is pinned. Netlify runs Next through an adapter, so a new
 Next major waits until the runtime supports it. Keep the repo standard Next.js,
-`netlify.toml` is the only host-specific file, and redirects stay in
-`next.config.ts` rather than a `_redirects` file.
-
-Pages are statically generated and revalidated on a timer, `revalidate = 300`.
-Server components query Supabase directly. There are no client-side database
-calls, so no database key reaches the browser.
+`netlify.toml` is the only host-specific file.
 
 ## Rules that are not negotiable
 
-**Secrets.** `SUPABASE_SECRET_KEY` and `WEBFLOW_API_TOKEN` never enter the repo,
-never a `NEXT_PUBLIC_` variable, never a commit, never `mb/`. They belong in a
-local gitignored `.env`. `secrets.txt` in the repo root holds the credentials
-Leo pasted and is gitignored, never read it into a committed file. The publishable key is safe to ship, RLS grants `select`
-only.
+**No database.** No Supabase, no CMS, no data fetching at build or at request
+time. Every word on the page is in this repository. The test is that the build
+succeeds with no environment variable set but `NEXT_PUBLIC_SITE_URL`, which is
+what CI runs. If a task seems to need a database, it belongs on `main`.
 
-**Real people only.** Nobody appears on the site unless they are in the Supabase
-data. Never invent a name, a title, or an organisation, not even as filler. The
-mock-up contains AI-generated people, they are not real.
+**No secrets.** There is nothing to authenticate against, so nothing to leak
+and nothing to rotate. `secrets.txt` in the repo root is gitignored and holds
+the Netlify deploy token only, never read it into a committed file.
 
-**Whose site this is.** invisible.garden belongs to Invisible Garden. Nav,
-footer identity, about, editions, recaps and the people directory are Invisible
-Garden's alone, `siteConfig`. The joint branding is scoped to the 2026 event, so
-it applies to the homepage and to any other surface about Invisible Commons,
-`eventConfig`. Never frame the event as "the next Invisible Garden edition" with
-the others supporting it.
+**Three co-hosts, equal weight.** Invisible Garden, Common Compute and
+OpenBuild, named together, same billing everywhere. This site must never
+present Invisible Garden's history, community or identity as its own, and must
+never frame the event as the next Invisible Garden edition. Invisible Garden is
+one co-host name here.
 
-**Invisible Commons has three co-hosts**: Invisible Garden, Common Compute and
-OpenBuild, equal weight, named together. OpenBuild joined on 2026-08-21, after
-the content brief was written, so `mb/content-brief.md` and `mb/mockup-notes.md`
-still describe two organisations and two hero chips. The code is right, the
-documents lag. OpenBuild also appears in the old site's community partner list.
-Decided 2026-08-21: they stay in both places, a past community partner and a
-2026 co-host, because both are facts.
+**No Invisible Garden imagery.** No participant photos, no photo-booth archive,
+no Webflow photos, no leaf mark, no Invisible Garden wordmark as the site's own
+identity. Those are Invisible Garden's community material and stay on
+invisible.garden. The page is design-led, type and colour, until the event
+produces its own photos. Venue photos are out while the venue is unnamed.
 
-**Never imply a Goa lineup.** The people grid shows the community from previous
-editions. Copy says "mentors and speakers who taught at previous gatherings",
-never "our speakers", "meet the mentors", or "who you will meet in Goa".
+**Real people only.** Nobody appears on this site unless they are real and
+confirmed. Never invent a name, a title, or an organisation, not even as
+filler. Today the page names no individuals at all, and that is correct.
+
+**Never imply a lineup.** No speakers are confirmed. Copy must not suggest who
+will be there.
+
+**Do not name the venue.** The place is the region, "Goa, India". The venue
+agreement is not closed (Leo, 2026-08-23).
 
 **Words that must not appear on the site:** "program" and the old "our program"
 framing, "apply" as a flow, Edge City or any other pop-up village, Costa Rica,
-Berlin, the Mentors Collective, Singapore NGO registration, "Work over Holiday",
-"Professional Punk Excellence", and vacation vocabulary (retreat, paradise,
-escape, relax, beach life).
-
-**Two audits guard the rules.** `pnpm audit:html` checks alt text, link names,
-heading order and metadata. `pnpm audit:copy` checks the banned vocabulary, the
-banned subjects, and the lineup framing. Text that came from the database is
-marked `data-verbatim` in the components and is out of scope: bios and project
-descriptions are their authors' words, not ours, and must not be edited to fit
-our voice.
+Berlin, the Mentors Collective, Singapore NGO registration, "Work over
+Holiday", "Professional Punk Excellence", and vacation vocabulary (retreat,
+paradise, escape, relax, beach life).
 
 **Copy voice.** English at B2 level, plain and direct. Short sentences.
-Understatement, real numbers instead of adjectives. No em-dashes for subphrases,
-use commas. Banned: leverage, seamless, robust, cutting-edge, innovative,
-journey, unlock, ecosystem as filler. Full rules in `mb/content-brief.md` §4.
+Understatement, real numbers instead of adjectives. No em-dashes for
+subphrases, use commas. Banned: leverage, seamless, robust, cutting-edge,
+innovative, journey, unlock, ecosystem as filler. Full rules in
+`mb/content-brief.md` section 4.
 
 **Design tokens.** Colours, type sizes, radii and shadows live in
 `app/globals.css` under `@theme`. Never hard-code a hex in a component. The
-brand gradient is vertical, `linear-gradient(#0040b1, #74acdf 30%, #ffe174 70%,
-#ffe174)`, available as the `bg-horizon` utility. Peach `#ffbba5` is the
-canonical accent, the exact hex is the brand.
+accent is **sea teal**, decided 2026-08-23:
 
-**Accessibility.** WCAG AA. Peach and yellow fail AA on white for body text,
-they are for large text and non-text elements only. Alt text on every photo,
-visible focus states, keyboard navigable.
+- `--color-teal` `#0e9594`, the accent. 3.66:1 on white, so large text and
+  non-text elements only, never body text.
+- `--color-teal-deep` `#0b7c7b`, 5.02:1 on white. Links, labels, button fills.
+- `--color-teal-dark` `#0a4f57` and `--color-sea-night` `#04222e`, the top of
+  the hero gradient.
+- `--color-teal-soft` `#bfe9e6`, chip backgrounds against ink.
 
-**Database.** Schema changes go in `supabase/migrations/` and get applied with
-`pnpm db:migrate` (`supabase db push`), never edited in the dashboard. The CLI
-is linked and the database password lives in the local `.env`. `types/database.ts` is
-generated with `pnpm db:types`, not hand-written. RLS stays on with a `select`
-policy for `anon` and nothing else.
+The hero gradient is vertical, `bg-deep-sea`, and every stop stays at 5:1 or
+better against white so hero body text is readable at the foot of the block.
+Invisible Garden's blue-to-sun `bg-horizon` is theirs, do not bring it back.
 
-**Storage paths.** `people.photo_path` holds `people/leo-lara.webp`, never a
-URL. Build URLs with `mediaUrl()` in `lib/media.ts`.
+**Accessibility.** WCAG AA. Alt text on every image, visible focus states,
+keyboard navigable.
 
-**`people.headline`** holds the Webflow `role` string verbatim, and that is what
-every page renders. `org` and `job_title` hold advisory guesses that nothing
-reads. Leo decided on 2026-08-21 to keep the headlines as Webflow had them, so
-the review pass over `data/review/headlines.csv` is deferred, possibly forever.
-Do not build UI that depends on `org` or `job_title` until a reviewed row
-exists, and never render them while `headline_reviewed` is false.
-
-## Data facts worth remembering
-
-- 2 editions migrate: Chiang Mai 2024 and Buenos Aires 2025. Costa Rica 2025
-  never happened and is excluded.
-- Loaded: 2 editions, 88 people, 98 memberships, 22 fellows, 22 projects. The
-  plan says 87 people because it assumed the person with no edition membership
-  would be dropped. Leo decided on 2026-08-21 to keep her: Lauren has a person
-  row and no membership.
-- Three fellows are the same human as a person row and are linked through
-  `fellows.person_id`: Tim Pechersky, Daniel Arroyo, and Surfer_05, who is the
-  person Surfer, also known as Alok, a Chiang Mai fellow and a Buenos Aires
-  mentor.
-- All 22 projects are Chiang Mai 2024. Buenos Aires projects come later from
-  `invisible-garden/arg25-Projects`, once the team decides which graduated.
-- Enrico Bottazzi is the one person with no photo and gets the placeholder.
-- Everyone in `people` is a "mentor / speaker". The source data has no way to
-  tell them apart, so the database does not either.
-- Speakers and mentors have no bio and no social links in Webflow. Those columns
-  exist but stay null after the migration.
-- Partners have no source data at all. The list is re-authored by hand, the
-  logos are recovered from Webflow site assets.
-- Mentor names include Chinese, Thai, Cyrillic and accented Latin. Keep the font
-  fallback chains, and transliterate slugs to ASCII.
-
-## Current state
-
-Phases 0 to 4 are done. The site builds, deploys to
-https://ig-website.netlify.app on every push to main, and every route renders
-from real data. `mb/DEFERRED.md` lists what is still blocked on the team. It lives in the notes
-vault, not in the repo, so management can read it. Keep it current.
-
-- Phase 1, database: done. `0001_initial.sql` is applied, RLS verified, types
-  generated from the live schema.
-- Phase 2, migration: done except the human review. The database holds 2
-  editions, 88 people, 98 memberships, 22 fellows and 22 projects, and 111
-  photos are in the `media` bucket at two widths. `review` is still a stub, it
-  waits on the headline pass over `data/review/headlines.csv`.
-- Phase 3, content: about and Chiang Mai recap copy are written. Buenos Aires
-  recap is a thin draft, blocked on the deck and the archives. Homepage copy
-  lives in the section components, with the practical block visibly deferred.
-- Phase 4, frontend: done. Homepage, editions index, edition recaps, people
-  directory and profiles, about, partners, sitemap, OpenGraph images.
-- Phase 5, deployment: Netlify is connected with env vars set. Analytics is
-  deferred by Leo until Plausible or Umami is chosen.
-- Phases 6 and 7, cutover: redirects are written and verified, the rest waits
-  on DNS.
-
-## Open decisions, do not guess these
-
-Participation model, registration flow and the hero CTA, Devcon anchoring,
-edition numbering, legal entity wording for the footer, and whether Invisible
-Commons reuses the IG visual identity or gets a joint one with Common Compute.
-Ask, do not invent an answer in copy.
-
-Two documented deviations from the plan: `people` carries an extra
-`headline_reviewed` column that the review phase needs, and routes use
-`/people`, with `/mentors` redirecting to it.
-
-## Commands
-
-```bash
-pnpm dev
-pnpm typecheck && pnpm lint && pnpm build   # what CI runs
-pnpm audit:html <origin>                    # alt text, headings, metadata
-pnpm audit:copy <origin>                    # the content-brief voice rules
-pnpm db:migrate && pnpm db:types            # schema changes
-pnpm migrate:extract                        # see scripts/migrate-webflow/README.md
-```
-
-Build the site once with a cleared `.next` before pushing anything that touches
-MDX. A warm cache hides MDX parse errors that fail in CI.
-
-**A database edit reaches the site by rebuilding it.** Statement-level triggers
-on all seven content tables call a Netlify build hook through `pg_net`, see
-`supabase/migrations/0002` and `0003`. The hook URL lives in `internal.settings`,
-never in git. An edit is live in a couple of minutes and the pages stay fully
-static.
-
-That indirect route is deliberate. On Netlify's runtime, every direct way to
-refresh cached data failed on 2026-08-22: pages regenerate on their ISR
-schedule but replay the same cached Supabase response; `revalidateTag` and
-`revalidatePath` 500 every data-backed route; a custom `fetch` carrying
-`next: { revalidate }` does the same; varying a request header does not change
-their cache key; and rendering per request truncates the streamed HTML in
-production, which breaks hydration and empties the page. Do not reach for any
-of those again without testing in a browser against the deploy.
+**Audits.** `pnpm audit:html <origin>` checks alt text, link names, heading
+order and metadata. `pnpm audit:copy <origin>` checks the banned vocabulary and
+the framing rules above, including the rules that keep Invisible Garden's
+history off this site. `pnpm audit:browser` and `pnpm audit:a11y` need
+Playwright's Chromium, see `scripts/audit/README.md`.
 
 **Netlify runs Next through an adapter, so config it does not understand fails
 silently.** `images.formats` broke `/_next/image` entirely on 2026-08-21: every
 image request returned the app shell with status 200 and the site rendered
 blank grids, while the local build was perfect. After any change to
-`next.config.ts`, deploy and then run `pnpm audit:html <origin>`, which now
-fetches one image per route and checks the response is really an image.
+`next.config.ts`, deploy and then run `pnpm audit:html <origin>`.
+
+## The page
+
+One route, `app/page.tsx`. Five sections, order decided by Leo 2026-08-23:
+
+1. `components/home/hero.tsx`, co-host names, title, dates, place, CTA.
+2. `components/home/format-explainer.tsx`, what an unconference is here.
+3. `components/home/co-hosts.tsx`, the three, equal billing.
+4. `components/home/subjects.tsx`, the five tracks.
+5. `components/home/practical.tsx`, dates, place, format, and the deferred card.
+
+Dropped from the Invisible Garden homepage on purpose: the heading block with
+links, the community section, and the track record section. They belong to
+invisible.garden. Do not reintroduce them.
+
+**Tracks**, from Leo 2026-08-23, overriding the deck: AI, Robotics,
+Post-Quantum Cryptography, Formal Verification, ZKP.
+
+**CTA**: `https://t.me/invisiblecommons`, the announcements channel. It becomes
+a registration link when the participation model is decided.
+
+## Open decisions, do not guess these
+
+- Participation model and registration flow. The practical card says so
+  visibly, which is the agreed placeholder.
+- The site's own mark. `app/icon.svg` is a neutral placeholder, the site
+  gradient and a horizon. Leo approves the real pick. A co-host's mark cannot
+  stand in for it.
+- The exact accent hexes above are the implementer's tuning of Leo's "sea
+  teal", and still want his approval.
+- Common Compute and OpenBuild have not signed off their own blurbs. Both were
+  drafted from their public sites at Leo's direction.
+- The deck's tagline stays out, Leo has not decided on it.
+
+## Commands
+
+```bash
+pnpm dev
+pnpm verify                                 # typecheck, lint, test, build
+pnpm audit:html <origin>                    # alt text, headings, metadata
+pnpm audit:copy <origin>                    # voice and framing rules
+```
+
+Build the site once with a cleared `.next` before pushing anything that touches
+MDX. A warm cache hides MDX parse errors that fail in CI.

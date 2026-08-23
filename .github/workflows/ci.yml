@@ -3,7 +3,7 @@ name: CI
 on:
   pull_request:
   push:
-    branches: [main]
+    branches: [invisible-commons]
 
 jobs:
   check:
@@ -21,9 +21,6 @@ jobs:
       - run: pnpm test
       - run: pnpm build
         env:
-          # The build reads the database, so it needs the publishable key. Both
-          # values are public by design, RLS allows select only. No secret key
-          # is ever available to CI.
-          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
-          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
-          NEXT_PUBLIC_SITE_URL: https://ig-website.netlify.app
+          # No database and no secrets. The build has to pass with nothing but
+          # the site URL set, that is the test that this site stays static.
+          NEXT_PUBLIC_SITE_URL: https://invisiblecommons.org

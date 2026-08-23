@@ -47,7 +47,7 @@ export function SectionHeading({
   return (
     <header className={cn("max-w-2xl", className)}>
       {label ? (
-        <p className="text-label text-blue-link font-mono uppercase">{label}</p>
+        <p className="text-label text-teal-deep font-mono uppercase">{label}</p>
       ) : null}
       <Heading className="text-headline-lg mt-3">{title}</Heading>
       {intro ? <p className="text-body-lg mt-4">{intro}</p> : null}

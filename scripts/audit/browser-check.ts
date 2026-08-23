@@ -5,17 +5,9 @@ import { chromium } from "playwright";
  * and what actually rendered. curl only proves the HTML is right, which the
  * Netlify image break showed is not the same as the page working.
  *
- *   pnpm tsx scripts/audit/browser-check.ts https://ig-website.netlify.app
+ *   pnpm tsx scripts/audit/browser-check.ts https://invisiblecommons.org
  */
-const ROUTES = [
-  "/",
-  "/about",
-  "/people",
-  "/people/justin-drake",
-  "/editions",
-  "/editions/chiang-mai-2024",
-  "/partners",
-];
+const ROUTES = ["/"];
 
 async function main() {
   const origin = process.argv[2] ?? "http://localhost:3000";

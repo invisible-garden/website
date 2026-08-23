@@ -1,21 +1,14 @@
 /**
- * Checks the rendered copy against the rules in mb/content-brief.md section 4
- * and the naming bans in section 3. These are the mistakes that would embarrass
- * the project, and they are easy to reintroduce by accident.
+ * Checks the rendered copy against the voice rules in mb/content-brief.md
+ * section 4 and the naming bans in section 3, plus the rules that are specific
+ * to this site. These are the mistakes that would embarrass the project, and
+ * they are easy to reintroduce by accident.
  *
- *   pnpm tsx scripts/audit/copy-rules.ts https://ig-website.netlify.app
+ *   pnpm tsx scripts/audit/copy-rules.ts https://invisiblecommons.org
  *
  * Runs on visible text only, so metadata and code are ignored.
  */
-const ROUTES = [
-  "/",
-  "/about",
-  "/editions",
-  "/editions/chiang-mai-2024",
-  "/editions/buenos-aires-2025",
-  "/people",
-  "/partners",
-];
+const ROUTES = ["/"];
 
 interface Rule {
   pattern: RegExp;
@@ -66,22 +59,39 @@ const RULES: Rule[] = [
   },
   // Punctuation, section 4.
   { pattern: /\w\s*—\s*\w/, why: "em-dash used for a subphrase, use commas" },
+
+  // Rules specific to invisiblecommons.org. Invisible Garden is one co-host
+  // name here, nothing more. Its history, its identity and its community
+  // belong to invisible.garden.
+  {
+    pattern:
+      /\bour (previous|past|last) (edition|editions|gathering|gatherings|cohort|cohorts)\b/i,
+    why: "this event has no history of its own, and no co-host's history is ours",
+  },
+  {
+    pattern:
+      /next Invisible Garden edition|Invisible Garden'?s? (next|latest) (edition|event)/i,
+    why: "this is a joint event, not the next edition of one co-host",
+  },
+  {
+    pattern: /Invisible Garden Operations|Invisible Garden Foundation/i,
+    why: "a co-host's legal entity, this site names no entity",
+  },
+  {
+    pattern:
+      /\b(mentors|speakers|fellows) (who taught|from previous)\b|\bour (mentors|fellows|alumni)\b/i,
+    why: "the Invisible Garden community stays on invisible.garden",
+  },
 ];
 
 function visibleText(html: string): string {
-  return (
-    html
-      // Text that came from the database was written by the people it describes,
-      // bios and project descriptions. Our voice rules are ours, not theirs, so
-      // anything marked data-verbatim is out of scope.
-      .replace(/<(\w+)[^>]*\bdata-verbatim\b[^>]*>[\s\S]*?<\/\1>/g, " ")
-      .replace(/<script[\s\S]*?<\/script>/g, " ")
-      .replace(/<style[\s\S]*?<\/style>/g, " ")
-      .replace(/<head[\s\S]*?<\/head>/g, " ")
-      .replace(/<[^>]+>/g, " ")
-      .replace(/&[a-z]+;/g, " ")
-      .replace(/\s+/g, " ")
-  );
+  return html
+    .replace(/<script[\s\S]*?<\/script>/g, " ")
+    .replace(/<style[\s\S]*?<\/style>/g, " ")
+    .replace(/<head[\s\S]*?<\/head>/g, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&[a-z]+;/g, " ")
+    .replace(/\s+/g, " ");
 }
 
 async function main() {

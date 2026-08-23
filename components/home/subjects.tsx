@@ -1,11 +1,11 @@
 import { Section, SectionHeading } from "@/components/ui/section";
 
 /**
- * Subjects, two tiers. AI and robotics lead, they are Common Compute's domain
- * and mark the event as a joint project, content-brief section 1.
+ * The five subjects, in two tiers. AI and robotics lead. The list is Leo's,
+ * 2026-08-23, and it overrides the deck.
  *
- * DEFERRED: the mock-up puts photography on the two lead cards. No photo
- * selects have arrived, so these are type-led for now.
+ * Type-led by design: the site carries no photography until the event produces
+ * its own, see the imagery rule in mb/site-split-instructions.md section 6.
  */
 const LEAD = [
   {
@@ -32,7 +32,7 @@ const REST = [
 
 export function Subjects() {
   return (
-    <Section tone="paper">
+    <Section>
       <SectionHeading
         label="Subjects"
         title="What people come here to work on"
@@ -43,7 +43,7 @@ export function Subjects() {
         {LEAD.map((subject) => (
           <li
             key={subject.title}
-            className="rounded-[--radius-card] bg-white p-8 shadow-[var(--shadow-soft)]"
+            className="bg-paper rounded-[--radius-card] p-8"
           >
             <h3 className="text-headline-md">{subject.title}</h3>
             <p className="text-body-lg mt-3">{subject.body}</p>

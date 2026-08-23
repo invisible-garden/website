@@ -2,10 +2,7 @@
 
 import { Section } from "@/components/ui/section";
 
-/**
- * Runtime failures, most likely the database being unreachable while a page
- * revalidates. Says what happened without leaking the error, and offers a retry.
- */
+/** Runtime failures. Says what happened without leaking the error. */
 export default function Error({ reset }: { error: Error; reset: () => void }) {
   return (
     <Section>
@@ -17,7 +14,7 @@ export default function Error({ reset }: { error: Error; reset: () => void }) {
         <button
           type="button"
           onClick={reset}
-          className="text-body-md bg-blue-deep mt-8 rounded-full px-6 py-3 text-white"
+          className="text-body-md bg-teal-deep mt-8 rounded-full px-6 py-3 text-white"
         >
           Try again
         </button>

@@ -1,40 +1,31 @@
-import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
 
+/**
+ * A slim bar, not a navigation. The site is one page, and the brief drops the
+ * heading block with links that the Invisible Garden homepage carries.
+ *
+ * The name is set in type. No mark: the Invisible Garden leaf would brand the
+ * event as Invisible Garden's, and Invisible Commons has no mark of its own
+ * yet, see the open item in mb/site-split-instructions.md section 5.
+ */
 export function SiteHeader() {
   return (
     <header className="border-b border-[color:var(--color-border-subtle)]">
-      <nav
-        aria-label="Main"
-        className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-3 px-4 py-4 md:px-12"
-      >
-        <Link href="/" className="no-underline" aria-label={siteConfig.name}>
-          <Image
-            src="/images/logo/wordmark.svg"
-            alt={siteConfig.name}
-            width={577}
-            height={209}
-            priority
-            // next/image refuses to optimise SVG, the request 400s. These are
-            // already small static files, so serve them as they are.
-            unoptimized
-            className="h-8 w-auto"
-          />
+      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-3 px-4 py-4 md:px-12">
+        <Link href="/" className="text-ink no-underline">
+          <span className="font-display text-headline-sm">
+            {siteConfig.name}
+          </span>
         </Link>
-        <ul className="flex flex-wrap items-center gap-x-5 gap-y-2 md:gap-8">
-          {siteConfig.nav.map((item) => (
-            <li key={item.href}>
-              <Link
-                href={item.href}
-                className="text-label text-ink font-mono uppercase no-underline hover:underline"
-              >
-                {item.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
+        <a
+          href={siteConfig.telegram}
+          className="text-label font-mono uppercase"
+          rel="noreferrer"
+        >
+          Telegram
+        </a>
+      </div>
     </header>
   );
 }

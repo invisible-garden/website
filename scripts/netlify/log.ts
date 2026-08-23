@@ -4,8 +4,12 @@ import { readFile } from "node:fs/promises";
 /**
  * Prints the build log of the latest Netlify deploy, or of the deploy id given
  * as an argument. Reads the token from secrets.txt, which is gitignored.
+ *
+ * This site has its own Netlify site and its own deploy token, kept apart from
+ * invisible.garden's. Put the site id in NETLIFY_SITE_ID in the local .env,
+ * not here: a hardcoded id is how you end up reading the other site's logs.
  */
-const SITE_ID = "9e1e9ad2-7e5b-4834-96d1-86af3ee2b36d";
+const SITE_ID = process.env.NETLIFY_SITE_ID;
 
 async function token(): Promise<string> {
   const raw = await readFile("secrets.txt", "utf8");
@@ -19,6 +23,9 @@ async function main() {
   const auth = { Authorization: `Bearer ${await token()}` };
   let id = process.argv[2];
   if (!id) {
+    if (!SITE_ID) {
+      throw new Error("Set NETLIFY_SITE_ID, or pass a deploy id");
+    }
     const response = await fetch(
       `https://api.netlify.com/api/v1/sites/${SITE_ID}/deploys?per_page=1`,
       { headers: auth },

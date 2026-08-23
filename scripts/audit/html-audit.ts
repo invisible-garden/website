@@ -4,19 +4,12 @@
  * actually happen: missing alt text, empty links, skipped heading levels, and
  * missing metadata. Run against any origin:
  *
- *   pnpm tsx scripts/audit/html-audit.ts https://ig-website.netlify.app
+ *   pnpm tsx scripts/audit/html-audit.ts https://invisiblecommons.org
+ *
+ * The site is one page. The missing route is here so a 404 that answers 200,
+ * which is what a broken adapter does, still shows up.
  */
-const ROUTES = [
-  "/",
-  "/about",
-  "/editions",
-  "/editions/chiang-mai-2024",
-  "/editions/buenos-aires-2025",
-  "/people",
-  "/people/justin-drake",
-  "/partners",
-  "/does-not-exist",
-];
+const ROUTES = ["/", "/does-not-exist"];
 
 interface Problem {
   route: string;

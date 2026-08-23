@@ -3,10 +3,10 @@
 Three checks, each taking an origin so they run against localhost or a deploy.
 
 ```bash
-pnpm audit:html    https://ig-website.netlify.app   # markup and metadata
-pnpm audit:copy    https://ig-website.netlify.app   # content-brief voice rules
-pnpm audit:browser https://ig-website.netlify.app   # a real browser
-pnpm audit:a11y    https://ig-website.netlify.app   # axe, WCAG 2.1 AA
+pnpm audit:html    https://invisiblecommons.org   # markup and metadata
+pnpm audit:copy    https://invisiblecommons.org   # content-brief voice rules
+pnpm audit:browser https://invisiblecommons.org   # a real browser
+pnpm audit:a11y    https://invisiblecommons.org   # axe, WCAG 2.1 AA
 ```
 
 ## Why three
@@ -14,13 +14,15 @@ pnpm audit:a11y    https://ig-website.netlify.app   # axe, WCAG 2.1 AA
 Each has caught something the others could not see:
 
 - `audit:html` catches missing alt text, empty links and heading order.
-- `audit:copy` catches banned vocabulary or a banned subject reaching a page.
-- `audit:browser` catches what neither can. Two real failures found this way:
-  `/_next/image` returning the app shell on Netlify, and a client-side throw
-  that blanked the people directory while its HTML looked perfect.
-- `audit:a11y` catches contrast and ARIA problems. It found the hero CTA
-  rendering blue on blue, because base element styles sat outside `@layer base`
-  and unlayered CSS outranks utilities.
+- `audit:copy` catches banned vocabulary, a banned subject, or Invisible
+  Garden's history being written as this event's.
+- `audit:browser` catches what neither can. Two real failures were found this
+  way on invisible.garden: `/_next/image` returning the app shell on Netlify,
+  and a client-side throw that blanked a page while its HTML looked perfect.
+- `audit:a11y` catches contrast and ARIA problems. It found a hero CTA
+  rendering its label in the link colour on the button fill, because base
+  element styles sat outside `@layer base` and unlayered CSS outranks
+  utilities.
 
 ## Running the browser check without root
 

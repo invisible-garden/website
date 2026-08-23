@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Invisible Commons">
+  <!-- Placeholder mark, pending Leo's pick, see mb/site-split-instructions.md
+       section 5. Deliberately neutral: the site's own gradient and a horizon,
+       no co-host's mark, which would brand the event as theirs. -->
+  <defs>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#04222e"/>
+      <stop offset="45%" stop-color="#0a4f57"/>
+      <stop offset="100%" stop-color="#0b7c7b"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#sea)"/>
+  <rect x="12" y="26" width="40" height="5" rx="2.5" fill="#ffffff"/>
+  <rect x="12" y="38" width="24" height="5" rx="2.5" fill="#bfe9e6"/>
+</svg>

@@ -11,15 +11,7 @@ import { chromium } from "playwright";
  * WCAG AA is the target, so the tags are limited to the AA rule sets rather
  * than every best-practice rule.
  */
-const ROUTES = [
-  "/",
-  "/about",
-  "/editions",
-  "/editions/chiang-mai-2024",
-  "/people",
-  "/people/justin-drake",
-  "/partners",
-];
+const ROUTES = ["/"];
 
 async function main() {
   const origin = process.argv[2] ?? "http://localhost:3000";

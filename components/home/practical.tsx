@@ -1,20 +1,20 @@
+import { ButtonLink } from "@/components/ui/button";
 import { Chip } from "@/components/ui/chip";
 import { Section, SectionHeading } from "@/components/ui/section";
 import { formatDateRange } from "@/lib/dates";
-import { eventConfig } from "@/lib/site-config";
+import { eventConfig, siteConfig } from "@/lib/site-config";
 
 /**
  * Practical block.
  *
- * DEFERRED, and visibly so: the participation model, whether there are
- * scholarships, a ticket, or nothing to pay, and how speakers book a talk.
- * content-brief 3.1 says this section ships with placeholders until the team
- * decides, and 6.1 and 6.6 are the open questions. The placeholder says so
- * plainly rather than inventing terms.
+ * DEFERRED, and visibly so: the participation model, whether there is a
+ * ticket, a scholarship or nothing to pay, and how speakers book a talk. The
+ * card says that plainly rather than inventing terms. The place is the region
+ * only, the venue agreement is not closed.
  */
 export function Practical() {
   return (
-    <Section>
+    <Section tone="paper">
       <SectionHeading label="Practical" title="When, where, and how to join" />
 
       <dl className="mt-10 grid gap-8 md:grid-cols-3">
@@ -37,13 +37,13 @@ export function Practical() {
       </dl>
 
       <p className="text-body-lg mt-10 max-w-2xl">
-        The edition ends three days before {eventConfig.devcon.name} in{" "}
+        {eventConfig.name} ends three days before {eventConfig.devcon.name} in{" "}
         {eventConfig.devcon.city}, {eventConfig.devcon.datesLabel}. Goa first,
         then Mumbai, without crossing an ocean twice.
       </p>
 
-      <div className="border-flat mt-10 rounded-[--radius-card] p-8">
-        <Chip tone="peach">Coming soon</Chip>
+      <div className="border-flat mt-10 rounded-[--radius-card] bg-white p-8">
+        <Chip>Coming soon</Chip>
         <h3 className="text-headline-sm mt-4">
           Participation and speaker booking
         </h3>
@@ -52,6 +52,9 @@ export function Practical() {
           being worked out now. Follow the Telegram channel and we will announce
           it there first.
         </p>
+        <div className="mt-6">
+          <ButtonLink href={siteConfig.telegram}>Get updates</ButtonLink>
+        </div>
       </div>
     </Section>
   );
