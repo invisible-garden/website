@@ -1,35 +1,30 @@
 import type { Metadata } from "next";
 import { Community } from "@/components/home/community";
-import { FormatExplainer } from "@/components/home/format-explainer";
 import { Hero } from "@/components/home/hero";
-import { PastPartners } from "@/components/home/past-partners";
-import { Practical } from "@/components/home/practical";
-import { Subjects } from "@/components/home/subjects";
 import { TrackRecord } from "@/components/home/track-record";
-import { getEditions, getPartners, getPeople } from "@/lib/queries";
-import { eventConfig } from "@/lib/site-config";
+import { WhatNext } from "@/components/home/what-next";
+import { getEditions, getPeople } from "@/lib/queries";
+import { siteConfig } from "@/lib/site-config";
 
 // Statically generated and refreshed every 5 minutes. The data behind it is
 // refreshed in step, see the cache window in lib/supabase.ts.
 export const revalidate = 300;
 
 export const metadata: Metadata = {
-  title: eventConfig.name,
-  description: eventConfig.descriptor,
+  description: siteConfig.description,
   alternates: { canonical: "/" },
 };
 
 /**
- * The homepage is the one page about the 2026 event. Section order follows
- * content-brief 3.1: hero, format, subjects, practical, community, past
- * partners, track record.
+ * The homepage is Invisible Garden's front door. Section order follows
+ * mb/ig/ig-homepage-brief.md: heading, what next, track record, community.
+ *
+ * It used to be a page about the 2026 event, content-brief 3.1. That event now
+ * has its own site at invisiblecommons.org, so the format, subjects and
+ * practical blocks moved there and the homepage links out instead.
  */
 export default async function HomePage() {
-  const [people, editions, partners] = await Promise.all([
-    getPeople(),
-    getEditions(),
-    getPartners(),
-  ]);
+  const [people, editions] = await Promise.all([getPeople(), getEditions()]);
 
   // A sample of the community, the full directory lives at /people. getPeople
   // already ranks by Webflow's prominence order, so this takes the top of that
@@ -39,12 +34,9 @@ export default async function HomePage() {
   return (
     <>
       <Hero />
-      <FormatExplainer />
-      <Subjects />
-      <Practical />
-      <Community people={featured} />
-      <PastPartners partners={partners} />
+      <WhatNext />
       <TrackRecord editions={editions} />
+      <Community people={featured} />
     </>
   );
 }

@@ -77,6 +77,9 @@ export const eventConfig = {
         "OpenBuild is an open community that helps developers get into Web3. It runs more than 90 courses and 150 hands-on challenges, plus bounties that turn learning into paid work.",
     },
   ] as const,
+  /** Its own site since 2026-08-23, which is where the event is described in
+   *  full. This site links out to it rather than repeating it. */
+  url: "https://invisiblecommons.org",
   descriptor:
     "An unconference in Goa, India, by Invisible Garden, Common Compute and OpenBuild. Two weeks of talks, co-working, and building across AI, robotics, ZKP, post-quantum cryptography, and formal verification, on Ethereum common ground.",
   slug: "goa-2026",

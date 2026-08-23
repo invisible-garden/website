@@ -4,24 +4,38 @@ Guidance for working in this repository.
 
 ## What this is
 
-The website for **Invisible Commons**, Goa, India, 17 to 31 October 2026, a
-joint project of Invisible Garden and Common Compute. It replaces the current
-Webflow site at https://invisible.garden and takes the Webflow CMS data with it
-into Supabase.
+`main` is the website for **Invisible Garden**, replacing the Webflow site at
+https://invisible.garden and taking the Webflow CMS data with it into Supabase.
+
+**There are two sites in this repository.** Since 2026-08-23 the 2026 event,
+Invisible Commons, has its own site at invisiblecommons.org, built from the
+`invisible-commons` branch. That branch has no database and none of this
+site's content. It is a fork that drifts and is never merged back: shared
+fixes land here first and get cherry-picked there. Do not carry Invisible
+Commons work onto `main`, and do not bring the people directory, editions or
+Supabase onto that branch.
+
+The homepage is Invisible Garden's front door: heading, what next, track
+record, community. It used to be a page about the 2026 event, and it is not
+any more.
 
 Planning documents live in `mb/`, a symlink to the notes vault. They are not
 committed and they outrank anything written here:
 
-| File                        | Covers                                                |
-| --------------------------- | ----------------------------------------------------- |
-| `mb/tech-requirements.md`   | Scope and the stack decision                          |
-| `mb/tech-design.md`         | Architecture, schema, migration design, routes        |
-| `mb/implementation-plan.md` | Phases 0 to 7, what "done" means for each             |
-| `mb/content-brief.md`       | What every page says, voice rules, open questions     |
-| `mb/visual-language.md`     | Type, colour, shape, spacing, components              |
-| `mb/mockup-notes.md`        | How to read `mb/stich-mockup.png`, and what to ignore |
+| File                            | Covers                                                |
+| ------------------------------- | ----------------------------------------------------- |
+| `mb/site-split-instructions.md` | Why there are two sites, and how they divide          |
+| `mb/ig/ig-homepage-brief.md`    | The homepage, which supersedes content-brief 3.1      |
+| `mb/tech-requirements.md`       | Scope and the stack decision                          |
+| `mb/tech-design.md`             | Architecture, schema, migration design, routes        |
+| `mb/implementation-plan.md`     | Phases 0 to 7, what "done" means for each             |
+| `mb/content-brief.md`           | What every page says, voice rules, open questions     |
+| `mb/visual-language.md`         | Type, colour, shape, spacing, components              |
+| `mb/mockup-notes.md`            | How to read `mb/stich-mockup.png`, and what to ignore |
 
-Read the relevant one before changing anything in its area.
+Read the relevant one before changing anything in its area. Where
+`mb/content-brief.md` describes the homepage, `mb/ig/ig-homepage-brief.md`
+wins: section 3.1 is superseded.
 
 ## Stack
 
@@ -51,11 +65,13 @@ data. Never invent a name, a title, or an organisation, not even as filler. The
 mock-up contains AI-generated people, they are not real.
 
 **Whose site this is.** invisible.garden belongs to Invisible Garden. Nav,
-footer identity, about, editions, recaps and the people directory are Invisible
-Garden's alone, `siteConfig`. The joint branding is scoped to the 2026 event, so
-it applies to the homepage and to any other surface about Invisible Commons,
-`eventConfig`. Never frame the event as "the next Invisible Garden edition" with
-the others supporting it.
+footer identity, about, editions, recaps, the people directory and now the
+homepage are Invisible Garden's alone, `siteConfig`. Invisible Commons appears
+in exactly one place, the "What next" section, as an event Invisible Garden
+co-hosts with two others, `eventConfig`, linking out to its own site. Never
+frame the event as "the next Invisible Garden edition" with the others
+supporting it, and never rebuild the event's format, subjects or practical
+blocks here: they live on invisiblecommons.org.
 
 **Invisible Commons has three co-hosts**: Invisible Garden, Common Compute and
 OpenBuild, equal weight, named together. OpenBuild joined on 2026-08-21, after
@@ -152,9 +168,12 @@ vault, not in the repo, so management can read it. Keep it current.
   waits on the headline pass over `data/review/headlines.csv`.
 - Phase 3, content: about and Chiang Mai recap copy are written. Buenos Aires
   recap is a thin draft, blocked on the deck and the archives. Homepage copy
-  lives in the section components, with the practical block visibly deferred.
+  lives in the section components.
 - Phase 4, frontend: done. Homepage, editions index, edition recaps, people
-  directory and profiles, about, partners, sitemap, OpenGraph images.
+  directory and profiles, about, partners, sitemap, OpenGraph images. The
+  homepage was re-scoped on 2026-08-23 to Invisible Garden's own front door,
+  and the event's format, subjects and practical sections were deleted here
+  because they now live on the `invisible-commons` branch.
 - Phase 5, deployment: Netlify is connected with env vars set. Analytics is
   deferred by Leo until Plausible or Umami is chosen.
 - Phases 6 and 7, cutover: redirects are written and verified, the rest waits

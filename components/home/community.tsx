@@ -17,7 +17,7 @@ export function Community({ people }: { people: PersonWithEditions[] }) {
       <SectionHeading
         label="Community"
         title="The Invisible Garden community"
-        intro="Mentors and speakers who have taught at previous Invisible Garden gatherings. The lineup for Goa is not confirmed yet."
+        intro="Mentors and speakers who have taught at previous Invisible Garden gatherings. It is not a lineup for anything upcoming."
       />
 
       <ul className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-6">

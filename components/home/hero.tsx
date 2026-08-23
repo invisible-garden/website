@@ -1,67 +1,33 @@
-import Image from "next/image";
 import { ButtonLink } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
-import { formatDateRange } from "@/lib/dates";
-import { eventConfig } from "@/lib/site-config";
+import { siteConfig } from "@/lib/site-config";
 
 /**
- * Hero. Three co-host chips above the title, equal weight, per mockup-notes
- * and the 2026-08-21 decision that added OpenBuild.
- *
- * DEFERRED: the primary CTA. content-brief 3.1 wants "Get updates" until
- * registration opens, then "Join us in Goa". The registration flow is an open
- * question, so the CTA points at the Telegram announcement channel, the one
- * place that exists today.
+ * The hero is about Invisible Garden itself, not about any one event, per
+ * mb/ig/ig-homepage-brief.md section 1. The 2026 event has its own site and
+ * its own hero; here it appears one section down, in "What next".
  */
 export function Hero() {
   return (
     <div className="bg-horizon text-white">
       <Container className="py-20 md:py-28">
-        <ul className="flex flex-wrap items-center gap-x-8 gap-y-4">
-          {eventConfig.organisers.map((organiser) => (
-            <li key={organiser.name} className="flex items-center">
-              {organiser.logo ? (
-                <Image
-                  src={organiser.logo}
-                  alt={organiser.name}
-                  width={169}
-                  height={36}
-                  className="h-7 w-auto"
-                  priority
-                  // SVG through the optimizer 400s, see site-header.
-                  unoptimized
-                />
-              ) : (
-                <span className="text-label rounded-full border border-white/70 px-4 py-1.5 font-mono">
-                  {organiser.name}
-                </span>
-              )}
-            </li>
-          ))}
-        </ul>
-
-        <h1 className="font-display text-display mt-8 max-w-4xl">
-          {eventConfig.name}
+        <h1 className="font-display text-display max-w-4xl">
+          {siteConfig.name}
         </h1>
 
         <p className="text-body-lg mt-6 max-w-2xl">
-          An unconference in Goa, India. Two weeks of talks, co-working, and
-          building across AI, robotics, ZKP, post-quantum cryptography, and
-          formal verification, with Ethereum as the common ground.
+          A traveling academy for Ethereum developers. Since 2024 it has run as
+          pop-up dev cities: a few weeks in one place, a cohort of builders, and
+          mentors who teach in the room rather than over video.
         </p>
 
         <p className="text-body-lg mt-8 font-mono">
-          {eventConfig.city}, {eventConfig.country} &middot;{" "}
-          {formatDateRange(eventConfig.startsOn, eventConfig.endsOn)}
-        </p>
-
-        <p className="text-body-md mt-3">
-          Three days before {eventConfig.devcon.name} in{" "}
-          {eventConfig.devcon.city}.
+          Chiang Mai 2024 &middot; Buenos Aires 2025
         </p>
 
         <div className="mt-10 flex flex-wrap gap-4">
-          <ButtonLink href="https://t.me/invgarannounce">
+          <ButtonLink href="/editions">Past editions</ButtonLink>
+          <ButtonLink href={siteConfig.social.telegram} variant="secondary">
             Get updates
           </ButtonLink>
         </div>

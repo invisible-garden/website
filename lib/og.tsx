@@ -13,11 +13,13 @@ export const OG_CONTENT_TYPE = "image/png";
 
 /**
  * Social cards, generated from a template rather than hand-made, tech-design
- * 6.5. Two looks, matching the identity split: the event card carries the brand
- * gradient and the co-hosts, the site card is Invisible Garden's own.
+ * 6.5. Two looks, both Invisible Garden's: `brand` carries the horizon
+ * gradient and is used for the homepage, `dark` is the quieter card every
+ * inside page uses.
  *
- * The Invisible Garden mark is embedded. Common Compute and OpenBuild have not
- * supplied theirs, so the event card still names them in text.
+ * The gradient used to mean "this card is about the 2026 event". That event
+ * has its own site since 2026-08-23, and the gradient is Invisible Garden's
+ * own, so it now marks the front door rather than the event.
  */
 export function ogCard({
   eyebrow,
@@ -30,9 +32,9 @@ export function ogCard({
   title: string;
   subtitle?: string;
   footer: string;
-  tone: "event" | "site";
+  tone: "brand" | "dark";
 }) {
-  const event = tone === "event";
+  const brand = tone === "brand";
   return new ImageResponse(
     <div
       style={{
@@ -42,10 +44,10 @@ export function ogCard({
         flexDirection: "column",
         justifyContent: "space-between",
         padding: 72,
-        background: event
+        background: brand
           ? "linear-gradient(180deg, #0040b1 0%, #74acdf 30%, #ffe174 70%, #ffe174 100%)"
           : "#14181c",
-        color: event ? "#14181c" : "#ffffff",
+        color: brand ? "#14181c" : "#ffffff",
         fontFamily: "sans-serif",
       }}
     >
@@ -55,7 +57,7 @@ export function ogCard({
           alignItems: "center",
           gap: 20,
           fontSize: 28,
-          color: event ? "#ffffff" : "#ffbba5",
+          color: brand ? "#ffffff" : "#ffbba5",
         }}
       >
         {/* Satori renders these cards, not the browser, so next/image has no
@@ -86,7 +88,7 @@ export function ogCard({
             style={{
               display: "flex",
               fontSize: 32,
-              color: event ? "#14181c" : "#ffe174",
+              color: brand ? "#14181c" : "#ffe174",
             }}
           >
             {subtitle}
@@ -105,6 +107,6 @@ export function siteCard(title: string, subtitle?: string) {
     title,
     subtitle,
     footer: siteConfig.url,
-    tone: "site",
+    tone: "dark",
   });
 }

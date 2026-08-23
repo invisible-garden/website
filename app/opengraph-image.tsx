@@ -1,17 +1,18 @@
 import { ogCard, OG_CONTENT_TYPE, OG_SIZE } from "@/lib/og";
-import { eventConfig, siteConfig } from "@/lib/site-config";
+import { siteConfig } from "@/lib/site-config";
 
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
-export const alt = `${eventConfig.name}, ${eventConfig.city}, ${eventConfig.country}`;
+export const alt = `${siteConfig.name}, a traveling academy for Ethereum developers`;
 
-/** The homepage is the event, so this card is the event's. */
+/** The homepage is Invisible Garden's front door, so this card is the site's,
+ *  on the brand gradient. The 2026 event has its own card on its own site. */
 export default function OpengraphImage() {
   return ogCard({
-    eyebrow: eventConfig.organiserNames.join("   +   "),
-    title: eventConfig.name,
-    subtitle: `${eventConfig.city}, ${eventConfig.country} · 17 to 31 October 2026`,
+    eyebrow: siteConfig.name,
+    title: "A traveling academy for Ethereum developers",
+    subtitle: "Chiang Mai 2024  ·  Buenos Aires 2025",
     footer: siteConfig.url,
-    tone: "event",
+    tone: "brand",
   });
 }

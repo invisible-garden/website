@@ -32,6 +32,6 @@ export default async function EditionOgImage({
     title: edition?.name ?? "Edition",
     subtitle: [where, dates].filter(Boolean).join("  ·  "),
     footer: `${siteConfig.url}/editions/${slug}`,
-    tone: "site",
+    tone: "dark",
   });
 }
