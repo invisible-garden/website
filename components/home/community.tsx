@@ -6,9 +6,10 @@ import type { PersonWithEditions } from "@/lib/queries";
 /**
  * The community grid.
  *
- * Framing rule, content-brief 3.1 item 5: these are the people who taught at
- * previous gatherings. Nothing here may suggest a Goa lineup, so no "our
- * speakers", no "meet the mentors", no "who you will meet".
+ * Framing rule: these are the people who taught at previous gatherings, and
+ * the past tense carries it. Nothing here may suggest a lineup for anything
+ * upcoming, so no "our speakers", no "meet the mentors", no "who you will
+ * meet". The copy audit enforces those three.
  */
 export function Community({ people }: { people: PersonWithEditions[] }) {
   if (people.length === 0) return null;
@@ -17,7 +18,7 @@ export function Community({ people }: { people: PersonWithEditions[] }) {
       <SectionHeading
         label="Community"
         title="The Invisible Garden community"
-        intro="Mentors and speakers who have taught at previous Invisible Garden gatherings. It is not a lineup for anything upcoming."
+        intro="Mentors and speakers who have taught at previous Invisible Garden gatherings."
       />
 
       <ul className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-6">

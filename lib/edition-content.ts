@@ -32,6 +32,28 @@ export interface EditionContent {
   photos: EditionPhoto[];
 }
 
+/**
+ * Sums one headline number across every edition, matched by label.
+ *
+ * By label, never by position. Buenos Aires carries an "accepted" line that
+ * Chiang Mai does not, so summing the nth stat of each edition adds unrelated
+ * things: on 2026-08-23 the homepage published 459 "builders on site", which
+ * was Chiang Mai's 80 builders plus Buenos Aires' 379 accepted, and 128
+ * "workshops", which was Chiang Mai's 83 workshops plus Buenos Aires' 45
+ * builders. The real figures, 125 and 152, are the ones the about page has
+ * always carried.
+ *
+ * Values are strings because they are rendered as written, "1,038" and such,
+ * so the digits are pulled out before adding.
+ */
+export function sumStat(label: string): number {
+  return Object.values(EDITION_CONTENT).reduce((total, edition) => {
+    const stat = edition.stats.find((entry) => entry.label === label);
+    if (!stat) return total;
+    return total + Number(stat.value.replace(/[^0-9]/g, ""));
+  }, 0);
+}
+
 export const EDITION_CONTENT: Record<string, EditionContent> = {
   "chiang-mai-2024": {
     // "recap 8 min" on the Invisible Garden YouTube channel, embedded on the
