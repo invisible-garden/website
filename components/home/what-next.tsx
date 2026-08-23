@@ -34,9 +34,8 @@ export function WhatNext() {
       <div className="text-body-lg mt-6 max-w-2xl space-y-4">
         <p>
           Invisible Garden co-hosts {eventConfig.name} with{" "}
-          {others.join(" and ")}, three organisations with equal weight. Two
-          weeks of talks, co-working, and building, in {eventConfig.city},{" "}
-          {eventConfig.country}.
+          {others.join(" and ")}. Two weeks of talks, co-working, and building,
+          in {eventConfig.city}, {eventConfig.country}.
         </p>
         <p>
           It ends three days before {eventConfig.devcon.name} in{" "}
