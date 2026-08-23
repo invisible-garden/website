@@ -24,7 +24,9 @@
     "artwork does not show. Most of those are Latin American and probably",
     "Buenos Aires 2025, but probably is not good enough to publish.",
     "",
-    "Load with: pnpm tsx scripts/db/seed-partners.ts content/partners.chiang-mai-2024.json"
+    "Load with: pnpm tsx scripts/db/seed-partners.ts content/partners.chiang-mai-2024.json",
+    "",
+    "Community logos were cut out of the Webflow mosaic webflow-assets/Group-81.png on 2026-08-23: 16 tiles, found by the transparent gaps between them. OpenBuild uses the white wordmark this repo already ships instead of its tile."
   ],
   "partners": [
     {
@@ -32,169 +34,288 @@
       "name": "Polygon",
       "url": null,
       "logo_candidate": "partners/polygon.webp",
-      "editions": [{ "edition": "chiang-mai-2024", "tier": "sponsor" }]
+      "editions": [
+        {
+          "edition": "chiang-mai-2024",
+          "tier": "sponsor"
+        }
+      ]
     },
     {
       "slug": "push-protocol",
       "name": "Push",
       "url": null,
       "logo_candidate": "partners/push-protocol.webp",
-      "editions": [{ "edition": "chiang-mai-2024", "tier": "sponsor" }]
+      "editions": [
+        {
+          "edition": "chiang-mai-2024",
+          "tier": "sponsor"
+        }
+      ]
     },
     {
       "slug": "brevis",
       "name": "Brevis",
       "url": null,
       "logo_candidate": "partners/brevis.webp",
-      "editions": [{ "edition": "chiang-mai-2024", "tier": "sponsor" }]
+      "editions": [
+        {
+          "edition": "chiang-mai-2024",
+          "tier": "sponsor"
+        }
+      ]
     },
     {
       "slug": "altlayer",
       "name": "AltLayer",
       "url": null,
       "logo_candidate": "partners/altlayer.webp",
-      "editions": [{ "edition": "chiang-mai-2024", "tier": "sponsor" }]
+      "editions": [
+        {
+          "edition": "chiang-mai-2024",
+          "tier": "sponsor"
+        }
+      ]
     },
     {
       "slug": "chainlink",
       "name": "Chainlink",
       "url": null,
       "logo_candidate": "partners/chainlink.webp",
-      "editions": [{ "edition": "chiang-mai-2024", "tier": "sponsor" }]
+      "editions": [
+        {
+          "edition": "chiang-mai-2024",
+          "tier": "sponsor"
+        }
+      ]
     },
     {
       "slug": "orbiter-finance",
       "name": "Orbiter Finance",
       "url": null,
       "logo_candidate": "partners/orbiter-finance.webp",
-      "editions": [{ "edition": "chiang-mai-2024", "tier": "sponsor" }]
+      "editions": [
+        {
+          "edition": "chiang-mai-2024",
+          "tier": "sponsor"
+        }
+      ]
     },
     {
       "slug": "nethermind",
       "name": "Nethermind",
       "url": null,
       "logo_candidate": "partners/nethermind.webp",
-      "editions": [{ "edition": "chiang-mai-2024", "tier": "sponsor" }]
+      "editions": [
+        {
+          "edition": "chiang-mai-2024",
+          "tier": "sponsor"
+        }
+      ]
     },
     {
       "slug": "zkm",
       "name": "ZKM",
       "url": null,
       "logo_candidate": "partners/zkm.webp",
-      "editions": [{ "edition": "chiang-mai-2024", "tier": "sponsor" }]
+      "editions": [
+        {
+          "edition": "chiang-mai-2024",
+          "tier": "sponsor"
+        }
+      ]
     },
-
     {
       "slug": "openbuild",
       "name": "OpenBuild",
       "url": null,
-      "logo_candidate": null,
-      "editions": [{ "edition": "chiang-mai-2024", "tier": "community" }]
+      "logo_candidate": "partners/openbuild.webp",
+      "editions": [
+        {
+          "edition": "chiang-mai-2024",
+          "tier": "community"
+        }
+      ]
     },
     {
       "slug": "ethkl",
       "name": "EthKL",
       "url": null,
-      "logo_candidate": null,
-      "editions": [{ "edition": "chiang-mai-2024", "tier": "community" }]
+      "logo_candidate": "partners/ethkl.webp",
+      "editions": [
+        {
+          "edition": "chiang-mai-2024",
+          "tier": "community"
+        }
+      ]
     },
     {
       "slug": "antalpha-labs",
       "name": "Antalpha Labs",
       "url": null,
-      "logo_candidate": null,
-      "editions": [{ "edition": "chiang-mai-2024", "tier": "community" }]
+      "logo_candidate": "partners/antalpha-labs.webp",
+      "editions": [
+        {
+          "edition": "chiang-mai-2024",
+          "tier": "community"
+        }
+      ]
     },
     {
       "slug": "eth-vietnam",
       "name": "ETH Vietnam",
       "url": null,
-      "logo_candidate": null,
-      "editions": [{ "edition": "chiang-mai-2024", "tier": "community" }]
+      "logo_candidate": "partners/eth-vietnam.webp",
+      "editions": [
+        {
+          "edition": "chiang-mai-2024",
+          "tier": "community"
+        }
+      ]
     },
     {
       "slug": "ethpanda",
       "name": "EthPanda",
       "url": null,
-      "logo_candidate": null,
-      "editions": [{ "edition": "chiang-mai-2024", "tier": "community" }]
+      "logo_candidate": "partners/ethpanda.webp",
+      "editions": [
+        {
+          "edition": "chiang-mai-2024",
+          "tier": "community"
+        }
+      ]
     },
     {
       "slug": "devfolio",
       "name": "Devfolio",
       "url": null,
-      "logo_candidate": null,
-      "editions": [{ "edition": "chiang-mai-2024", "tier": "community" }]
+      "logo_candidate": "partners/devfolio.webp",
+      "editions": [
+        {
+          "edition": "chiang-mai-2024",
+          "tier": "community"
+        }
+      ]
     },
     {
       "slug": "yellow-coworking",
       "name": "Yellow Co-working",
       "url": null,
-      "logo_candidate": null,
-      "editions": [{ "edition": "chiang-mai-2024", "tier": "community" }]
+      "logo_candidate": "partners/yellow-coworking.webp",
+      "editions": [
+        {
+          "edition": "chiang-mai-2024",
+          "tier": "community"
+        }
+      ]
     },
     {
       "slug": "ethereum-costa-rica",
       "name": "Ethereum Costa Rica",
       "url": null,
-      "logo_candidate": null,
-      "editions": [{ "edition": "chiang-mai-2024", "tier": "community" }]
+      "logo_candidate": "partners/ethereum-costa-rica.webp",
+      "editions": [
+        {
+          "edition": "chiang-mai-2024",
+          "tier": "community"
+        }
+      ]
     },
     {
       "slug": "shanhaiwoo",
       "name": "ShanHaiWoo",
       "url": null,
-      "logo_candidate": null,
-      "editions": [{ "edition": "chiang-mai-2024", "tier": "community" }]
+      "logo_candidate": "partners/shanhaiwoo.webp",
+      "editions": [
+        {
+          "edition": "chiang-mai-2024",
+          "tier": "community"
+        }
+      ]
     },
     {
       "slug": "zugarden",
       "name": "ZuGarden",
       "url": null,
-      "logo_candidate": null,
-      "editions": [{ "edition": "chiang-mai-2024", "tier": "community" }]
+      "logo_candidate": "partners/zugarden.webp",
+      "editions": [
+        {
+          "edition": "chiang-mai-2024",
+          "tier": "community"
+        }
+      ]
     },
     {
       "slug": "ethpadthai",
       "name": "EthPadThai",
       "url": null,
-      "logo_candidate": null,
-      "editions": [{ "edition": "chiang-mai-2024", "tier": "community" }]
+      "logo_candidate": "partners/ethpadthai.webp",
+      "editions": [
+        {
+          "edition": "chiang-mai-2024",
+          "tier": "community"
+        }
+      ]
     },
     {
       "slug": "dapp-learning",
       "name": "Dapp Learning",
       "url": null,
-      "logo_candidate": null,
-      "editions": [{ "edition": "chiang-mai-2024", "tier": "community" }]
+      "logo_candidate": "partners/dapp-learning.webp",
+      "editions": [
+        {
+          "edition": "chiang-mai-2024",
+          "tier": "community"
+        }
+      ]
     },
     {
       "slug": "zkbankai",
       "name": "zkBankai",
       "url": null,
-      "logo_candidate": null,
-      "editions": [{ "edition": "chiang-mai-2024", "tier": "community" }]
+      "logo_candidate": "partners/zkbankai.webp",
+      "editions": [
+        {
+          "edition": "chiang-mai-2024",
+          "tier": "community"
+        }
+      ]
     },
     {
       "slug": "zkp-labs",
       "name": "ZKP Labs",
       "url": null,
-      "logo_candidate": null,
-      "editions": [{ "edition": "chiang-mai-2024", "tier": "community" }]
+      "logo_candidate": "partners/zkp-labs.webp",
+      "editions": [
+        {
+          "edition": "chiang-mai-2024",
+          "tier": "community"
+        }
+      ]
     },
     {
       "slug": "web3-village",
       "name": "Web3 Village",
       "url": null,
-      "logo_candidate": null,
-      "editions": [{ "edition": "chiang-mai-2024", "tier": "community" }]
+      "logo_candidate": "partners/web3-village.webp",
+      "editions": [
+        {
+          "edition": "chiang-mai-2024",
+          "tier": "community"
+        }
+      ]
     },
     {
       "slug": "ethereum-colombia",
       "name": "Ethereum Colombia",
       "url": null,
-      "logo_candidate": null,
-      "editions": [{ "edition": "chiang-mai-2024", "tier": "community" }]
+      "logo_candidate": "partners/ethereum-colombia.webp",
+      "editions": [
+        {
+          "edition": "chiang-mai-2024",
+          "tier": "community"
+        }
+      ]
     }
   ]
 }

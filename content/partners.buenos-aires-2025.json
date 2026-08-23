@@ -19,7 +19,9 @@
     "with the individual file, which is cleaner than the crop out of the Chiang",
     "Mai composite.",
     "",
-    "Load with: pnpm tsx scripts/db/seed-partners.ts content/partners.buenos-aires-2025.json"
+    "Load with: pnpm tsx scripts/db/seed-partners.ts content/partners.buenos-aires-2025.json",
+    "",
+    "Community logos were cut out of the Webflow mosaic webflow-assets/Group-81.png on 2026-08-23: 16 tiles, found by the transparent gaps between them. OpenBuild uses the white wordmark this repo already ships instead of its tile."
   ],
   "partners": [
     {
@@ -110,7 +112,7 @@
       "slug": "ethereum-costa-rica",
       "name": "Ethereum Costa Rica",
       "url": null,
-      "logo_candidate": null,
+      "logo_candidate": "partners/ethereum-costa-rica.webp",
       "editions": [
         {
           "edition": "buenos-aires-2025",
@@ -122,7 +124,7 @@
       "slug": "ethpadthai",
       "name": "EthPadThai",
       "url": null,
-      "logo_candidate": null,
+      "logo_candidate": "partners/ethpadthai.webp",
       "editions": [
         {
           "edition": "buenos-aires-2025",
@@ -134,7 +136,7 @@
       "slug": "ethkl",
       "name": "EthKL",
       "url": null,
-      "logo_candidate": null,
+      "logo_candidate": "partners/ethkl.webp",
       "editions": [
         {
           "edition": "buenos-aires-2025",
@@ -146,7 +148,7 @@
       "slug": "openbuild",
       "name": "OpenBuild",
       "url": null,
-      "logo_candidate": null,
+      "logo_candidate": "partners/openbuild.webp",
       "editions": [
         {
           "edition": "buenos-aires-2025",
@@ -158,7 +160,7 @@
       "slug": "ethpanda",
       "name": "EthPanda",
       "url": null,
-      "logo_candidate": null,
+      "logo_candidate": "partners/ethpanda.webp",
       "editions": [
         {
           "edition": "buenos-aires-2025",
@@ -182,7 +184,7 @@
       "slug": "shanhaiwoo",
       "name": "ShanHaiWoo",
       "url": null,
-      "logo_candidate": null,
+      "logo_candidate": "partners/shanhaiwoo.webp",
       "editions": [
         {
           "edition": "buenos-aires-2025",
@@ -194,7 +196,7 @@
       "slug": "dapp-learning",
       "name": "Dapp Learning",
       "url": null,
-      "logo_candidate": null,
+      "logo_candidate": "partners/dapp-learning.webp",
       "editions": [
         {
           "edition": "buenos-aires-2025",
@@ -206,7 +208,7 @@
       "slug": "yellow-coworking",
       "name": "Yellow Co-working",
       "url": null,
-      "logo_candidate": null,
+      "logo_candidate": "partners/yellow-coworking.webp",
       "editions": [
         {
           "edition": "buenos-aires-2025",
@@ -218,7 +220,7 @@
       "slug": "zkp-labs",
       "name": "ZKP Labs",
       "url": null,
-      "logo_candidate": null,
+      "logo_candidate": "partners/zkp-labs.webp",
       "editions": [
         {
           "edition": "buenos-aires-2025",
@@ -230,7 +232,7 @@
       "slug": "antalpha-labs",
       "name": "Antalpha Labs",
       "url": null,
-      "logo_candidate": null,
+      "logo_candidate": "partners/antalpha-labs.webp",
       "editions": [
         {
           "edition": "buenos-aires-2025",
@@ -242,7 +244,7 @@
       "slug": "zkbankai",
       "name": "zkBankai",
       "url": null,
-      "logo_candidate": null,
+      "logo_candidate": "partners/zkbankai.webp",
       "editions": [
         {
           "edition": "buenos-aires-2025",
@@ -446,7 +448,7 @@
       "slug": "ethereum-colombia",
       "name": "Ethereum Colombia",
       "url": null,
-      "logo_candidate": null,
+      "logo_candidate": "partners/ethereum-colombia.webp",
       "editions": [
         {
           "edition": "buenos-aires-2025",

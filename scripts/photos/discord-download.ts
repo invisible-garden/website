@@ -60,6 +60,7 @@ async function main() {
   const headers = { Authorization: `Bot ${token}` };
   const index: {
     file: string;
+    attachmentId: string;
     author: string;
     date: string;
     width?: number;
@@ -93,7 +94,12 @@ async function main() {
       if (since && date < since) continue;
       for (const attachment of message.attachments) {
         if (!attachment.content_type?.startsWith("image/")) continue;
-        const name = `${date.toISOString().slice(0, 10)}_${safe(message.author.username)}_${safe(attachment.filename)}`;
+        // The attachment id keeps the name unique. Without it, two posts from
+        // the same person on the same day called "image.jpg" write to the same
+        // file and the first one is lost: that quietly cost 6 photos out of
+        // 564 on the first run, 2026-08-23. Discord's own names collide often,
+        // because phones and Discord both hand out generic ones.
+        const name = `${date.toISOString().slice(0, 10)}_${safe(message.author.username)}_${attachment.id}_${safe(attachment.filename)}`;
         const file = await fetch(attachment.url);
         if (!file.ok) {
           console.log(`  failed: ${attachment.filename} ${file.status}`);
@@ -105,6 +111,7 @@ async function main() {
         );
         index.push({
           file: name,
+          attachmentId: attachment.id,
           author: message.author.username,
           date: date.toISOString(),
           width: attachment.width,
