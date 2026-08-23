@@ -12,9 +12,8 @@ export function CoHosts() {
   return (
     <Section tone="paper">
       <SectionHeading
-        label="Who is behind it"
-        title="Three co-hosts, equal weight"
-        intro="Invisible Commons is run jointly. None of the three is the host and the others the guests."
+        title="Co-hosted by"
+        intro="Invisible Commons is run jointly"
       />
 
       <ul className="mt-10 grid gap-8 md:grid-cols-3">
