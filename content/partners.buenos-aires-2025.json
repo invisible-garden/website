@@ -1,0 +1,458 @@
+{
+  "$comment": [
+    "Buenos Aires 2025 partners. Leo, 2026-08-23: the sponsor band and the",
+    "partner run on the live invisible.garden homepage are that edition's, and",
+    "the Chiang Mai recap page carries Chiang Mai's, loaded separately in",
+    "content/partners.chiang-mai-2024.json.",
+    "",
+    "5 sponsors, each with the individual logo file the old site served, taken",
+    "from the Webflow CDN and converted to WebP. GCC is labelled 'Chinese",
+    "support sponsor' there; the tier enum has no such value, so it loads as a",
+    "sponsor and the label is not published. The unnamed 'white 1.png' in that",
+    "band is the Ethereum Foundation's 'ethereum everywhere' mark.",
+    "",
+    "31 community partners, names exactly as the homepage runs them, no logos:",
+    "the old site published them as a line of text.",
+    "",
+    "14 of these rows already exist from Chiang Mai and gain a second edition",
+    "link rather than a duplicate. AltLayer and ZKM also get their logo replaced",
+    "with the individual file, which is cleaner than the crop out of the Chiang",
+    "Mai composite.",
+    "",
+    "Load with: pnpm tsx scripts/db/seed-partners.ts content/partners.buenos-aires-2025.json"
+  ],
+  "partners": [
+    {
+      "slug": "ethereum-everywhere",
+      "name": "Ethereum Everywhere",
+      "url": null,
+      "logo_candidate": "partners/ethereum-everywhere.webp",
+      "editions": [
+        {
+          "edition": "buenos-aires-2025",
+          "tier": "sponsor"
+        }
+      ]
+    },
+    {
+      "slug": "arbitrum-dao",
+      "name": "Arbitrum DAO",
+      "url": null,
+      "logo_candidate": "partners/arbitrum-dao.webp",
+      "editions": [
+        {
+          "edition": "buenos-aires-2025",
+          "tier": "sponsor"
+        }
+      ]
+    },
+    {
+      "slug": "altlayer",
+      "name": "AltLayer",
+      "url": null,
+      "logo_candidate": "partners/altlayer.webp",
+      "editions": [
+        {
+          "edition": "buenos-aires-2025",
+          "tier": "sponsor"
+        }
+      ]
+    },
+    {
+      "slug": "zkm",
+      "name": "ZKM",
+      "url": null,
+      "logo_candidate": "partners/zkm.webp",
+      "editions": [
+        {
+          "edition": "buenos-aires-2025",
+          "tier": "sponsor"
+        }
+      ]
+    },
+    {
+      "slug": "gcc",
+      "name": "GCC",
+      "url": null,
+      "logo_candidate": "partners/gcc.webp",
+      "editions": [
+        {
+          "edition": "buenos-aires-2025",
+          "tier": "sponsor"
+        }
+      ]
+    },
+    {
+      "slug": "edcon",
+      "name": "EDCON",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [
+        {
+          "edition": "buenos-aires-2025",
+          "tier": "community"
+        }
+      ]
+    },
+    {
+      "slug": "hozk",
+      "name": "HoZK",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [
+        {
+          "edition": "buenos-aires-2025",
+          "tier": "community"
+        }
+      ]
+    },
+    {
+      "slug": "ethereum-costa-rica",
+      "name": "Ethereum Costa Rica",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [
+        {
+          "edition": "buenos-aires-2025",
+          "tier": "community"
+        }
+      ]
+    },
+    {
+      "slug": "ethpadthai",
+      "name": "EthPadThai",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [
+        {
+          "edition": "buenos-aires-2025",
+          "tier": "community"
+        }
+      ]
+    },
+    {
+      "slug": "ethkl",
+      "name": "EthKL",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [
+        {
+          "edition": "buenos-aires-2025",
+          "tier": "community"
+        }
+      ]
+    },
+    {
+      "slug": "openbuild",
+      "name": "OpenBuild",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [
+        {
+          "edition": "buenos-aires-2025",
+          "tier": "community"
+        }
+      ]
+    },
+    {
+      "slug": "ethpanda",
+      "name": "EthPanda",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [
+        {
+          "edition": "buenos-aires-2025",
+          "tier": "community"
+        }
+      ]
+    },
+    {
+      "slug": "women-buidl-foundation",
+      "name": "Women Buidl Foundation",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [
+        {
+          "edition": "buenos-aires-2025",
+          "tier": "community"
+        }
+      ]
+    },
+    {
+      "slug": "shanhaiwoo",
+      "name": "ShanHaiWoo",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [
+        {
+          "edition": "buenos-aires-2025",
+          "tier": "community"
+        }
+      ]
+    },
+    {
+      "slug": "dapp-learning",
+      "name": "Dapp Learning",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [
+        {
+          "edition": "buenos-aires-2025",
+          "tier": "community"
+        }
+      ]
+    },
+    {
+      "slug": "yellow-coworking",
+      "name": "Yellow Co-working",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [
+        {
+          "edition": "buenos-aires-2025",
+          "tier": "community"
+        }
+      ]
+    },
+    {
+      "slug": "zkp-labs",
+      "name": "ZKP Labs",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [
+        {
+          "edition": "buenos-aires-2025",
+          "tier": "community"
+        }
+      ]
+    },
+    {
+      "slug": "antalpha-labs",
+      "name": "Antalpha Labs",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [
+        {
+          "edition": "buenos-aires-2025",
+          "tier": "community"
+        }
+      ]
+    },
+    {
+      "slug": "zkbankai",
+      "name": "zkBankai",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [
+        {
+          "edition": "buenos-aires-2025",
+          "tier": "community"
+        }
+      ]
+    },
+    {
+      "slug": "seed-latam",
+      "name": "SEED Latam",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [
+        {
+          "edition": "buenos-aires-2025",
+          "tier": "community"
+        }
+      ]
+    },
+    {
+      "slug": "eth-kipu",
+      "name": "ETH Kipu",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [
+        {
+          "edition": "buenos-aires-2025",
+          "tier": "community"
+        }
+      ]
+    },
+    {
+      "slug": "ethereum-argentina",
+      "name": "Ethereum Argentina",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [
+        {
+          "edition": "buenos-aires-2025",
+          "tier": "community"
+        }
+      ]
+    },
+    {
+      "slug": "ethereum-volcano",
+      "name": "Ethereum Volcano",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [
+        {
+          "edition": "buenos-aires-2025",
+          "tier": "community"
+        }
+      ]
+    },
+    {
+      "slug": "odisea",
+      "name": "Odisea",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [
+        {
+          "edition": "buenos-aires-2025",
+          "tier": "community"
+        }
+      ]
+    },
+    {
+      "slug": "frutero-club",
+      "name": "Frutero Club",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [
+        {
+          "edition": "buenos-aires-2025",
+          "tier": "community"
+        }
+      ]
+    },
+    {
+      "slug": "ethereum-monterrey",
+      "name": "Ethereum Monterrey",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [
+        {
+          "edition": "buenos-aires-2025",
+          "tier": "community"
+        }
+      ]
+    },
+    {
+      "slug": "eth-cinco-de-mayo",
+      "name": "ETH Cinco de Mayo",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [
+        {
+          "edition": "buenos-aires-2025",
+          "tier": "community"
+        }
+      ]
+    },
+    {
+      "slug": "ethereum-tegucigalpa",
+      "name": "Ethereum Tegucigalpa",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [
+        {
+          "edition": "buenos-aires-2025",
+          "tier": "community"
+        }
+      ]
+    },
+    {
+      "slug": "ethereum-guatemala",
+      "name": "Ethereum Guatemala",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [
+        {
+          "edition": "buenos-aires-2025",
+          "tier": "community"
+        }
+      ]
+    },
+    {
+      "slug": "ethereum-uruguay",
+      "name": "Ethereum Uruguay",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [
+        {
+          "edition": "buenos-aires-2025",
+          "tier": "community"
+        }
+      ]
+    },
+    {
+      "slug": "ethereum-bolivia",
+      "name": "Ethereum Bolivia",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [
+        {
+          "edition": "buenos-aires-2025",
+          "tier": "community"
+        }
+      ]
+    },
+    {
+      "slug": "ethereum-mexico",
+      "name": "Ethereum Mexico",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [
+        {
+          "edition": "buenos-aires-2025",
+          "tier": "community"
+        }
+      ]
+    },
+    {
+      "slug": "ethereum-lima",
+      "name": "Ethereum Lima",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [
+        {
+          "edition": "buenos-aires-2025",
+          "tier": "community"
+        }
+      ]
+    },
+    {
+      "slug": "ethereum-ecuador",
+      "name": "Ethereum Ecuador",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [
+        {
+          "edition": "buenos-aires-2025",
+          "tier": "community"
+        }
+      ]
+    },
+    {
+      "slug": "la-multisig",
+      "name": "La Multisig",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [
+        {
+          "edition": "buenos-aires-2025",
+          "tier": "community"
+        }
+      ]
+    },
+    {
+      "slug": "ethereum-colombia",
+      "name": "Ethereum Colombia",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [
+        {
+          "edition": "buenos-aires-2025",
+          "tier": "community"
+        }
+      ]
+    }
+  ]
+}
