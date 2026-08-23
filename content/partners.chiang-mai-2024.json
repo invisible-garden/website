@@ -1,0 +1,200 @@
+{
+  "$comment": [
+    "Chiang Mai 2024 partners, read off the live Webflow recap page on",
+    "2026-08-23: invisible.garden/chiang-mai-recap, sections 'Shout out to",
+    "Sponsors' and 'Shout out to Community Partners'. Both were published there",
+    "as one composite image each, with no names in the markup and empty alt",
+    "text, so the names below were read from the artwork.",
+    "",
+    "Sponsor logos were cut out of the composite and uploaded to",
+    "partners/<slug>.webp. They are white-on-transparent, the artwork the",
+    "sponsors themselves supplied, so they need a dark surface.",
+    "",
+    "Community partners carry no logo: their artwork is a tiled mosaic that",
+    "cannot be cut apart cleanly. The band renders their name instead, which is",
+    "how the old homepage listed partners anyway.",
+    "",
+    "Spelling follows the old homepage's own text list where a name appears in",
+    "both. ETH Vietnam, Devfolio and ZuGarden are in the recap artwork but not",
+    "in that list.",
+    "",
+    "Not here, because no source says which edition they belong to: Arbitrum",
+    "DAO, Ethereum Everywhere and GCC, the three in the old homepage sponsor",
+    "band, and the 19 names in the homepage partner run that the Chiang Mai",
+    "artwork does not show. Most of those are Latin American and probably",
+    "Buenos Aires 2025, but probably is not good enough to publish.",
+    "",
+    "Load with: pnpm tsx scripts/db/seed-partners.ts content/partners.chiang-mai-2024.json"
+  ],
+  "partners": [
+    {
+      "slug": "polygon",
+      "name": "Polygon",
+      "url": null,
+      "logo_candidate": "partners/polygon.webp",
+      "editions": [{ "edition": "chiang-mai-2024", "tier": "sponsor" }]
+    },
+    {
+      "slug": "push-protocol",
+      "name": "Push",
+      "url": null,
+      "logo_candidate": "partners/push-protocol.webp",
+      "editions": [{ "edition": "chiang-mai-2024", "tier": "sponsor" }]
+    },
+    {
+      "slug": "brevis",
+      "name": "Brevis",
+      "url": null,
+      "logo_candidate": "partners/brevis.webp",
+      "editions": [{ "edition": "chiang-mai-2024", "tier": "sponsor" }]
+    },
+    {
+      "slug": "altlayer",
+      "name": "AltLayer",
+      "url": null,
+      "logo_candidate": "partners/altlayer.webp",
+      "editions": [{ "edition": "chiang-mai-2024", "tier": "sponsor" }]
+    },
+    {
+      "slug": "chainlink",
+      "name": "Chainlink",
+      "url": null,
+      "logo_candidate": "partners/chainlink.webp",
+      "editions": [{ "edition": "chiang-mai-2024", "tier": "sponsor" }]
+    },
+    {
+      "slug": "orbiter-finance",
+      "name": "Orbiter Finance",
+      "url": null,
+      "logo_candidate": "partners/orbiter-finance.webp",
+      "editions": [{ "edition": "chiang-mai-2024", "tier": "sponsor" }]
+    },
+    {
+      "slug": "nethermind",
+      "name": "Nethermind",
+      "url": null,
+      "logo_candidate": "partners/nethermind.webp",
+      "editions": [{ "edition": "chiang-mai-2024", "tier": "sponsor" }]
+    },
+    {
+      "slug": "zkm",
+      "name": "ZKM",
+      "url": null,
+      "logo_candidate": "partners/zkm.webp",
+      "editions": [{ "edition": "chiang-mai-2024", "tier": "sponsor" }]
+    },
+
+    {
+      "slug": "openbuild",
+      "name": "OpenBuild",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [{ "edition": "chiang-mai-2024", "tier": "community" }]
+    },
+    {
+      "slug": "ethkl",
+      "name": "EthKL",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [{ "edition": "chiang-mai-2024", "tier": "community" }]
+    },
+    {
+      "slug": "antalpha-labs",
+      "name": "Antalpha Labs",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [{ "edition": "chiang-mai-2024", "tier": "community" }]
+    },
+    {
+      "slug": "eth-vietnam",
+      "name": "ETH Vietnam",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [{ "edition": "chiang-mai-2024", "tier": "community" }]
+    },
+    {
+      "slug": "ethpanda",
+      "name": "EthPanda",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [{ "edition": "chiang-mai-2024", "tier": "community" }]
+    },
+    {
+      "slug": "devfolio",
+      "name": "Devfolio",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [{ "edition": "chiang-mai-2024", "tier": "community" }]
+    },
+    {
+      "slug": "yellow-coworking",
+      "name": "Yellow Co-working",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [{ "edition": "chiang-mai-2024", "tier": "community" }]
+    },
+    {
+      "slug": "ethereum-costa-rica",
+      "name": "Ethereum Costa Rica",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [{ "edition": "chiang-mai-2024", "tier": "community" }]
+    },
+    {
+      "slug": "shanhaiwoo",
+      "name": "ShanHaiWoo",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [{ "edition": "chiang-mai-2024", "tier": "community" }]
+    },
+    {
+      "slug": "zugarden",
+      "name": "ZuGarden",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [{ "edition": "chiang-mai-2024", "tier": "community" }]
+    },
+    {
+      "slug": "ethpadthai",
+      "name": "EthPadThai",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [{ "edition": "chiang-mai-2024", "tier": "community" }]
+    },
+    {
+      "slug": "dapp-learning",
+      "name": "Dapp Learning",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [{ "edition": "chiang-mai-2024", "tier": "community" }]
+    },
+    {
+      "slug": "zkbankai",
+      "name": "zkBankai",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [{ "edition": "chiang-mai-2024", "tier": "community" }]
+    },
+    {
+      "slug": "zkp-labs",
+      "name": "ZKP Labs",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [{ "edition": "chiang-mai-2024", "tier": "community" }]
+    },
+    {
+      "slug": "web3-village",
+      "name": "Web3 Village",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [{ "edition": "chiang-mai-2024", "tier": "community" }]
+    },
+    {
+      "slug": "ethereum-colombia",
+      "name": "Ethereum Colombia",
+      "url": null,
+      "logo_candidate": null,
+      "editions": [{ "edition": "chiang-mai-2024", "tier": "community" }]
+    }
+  ]
+}

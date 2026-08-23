@@ -45,7 +45,13 @@ const RULES: Rule[] = [
   ),
   // Things that must never appear, sections 3.2 and 3.3.
   { pattern: /\bEdge City\b/i, why: "never name another pop-up village" },
-  { pattern: /\bCosta Rica\b/i, why: "cancelled edition, no mentions" },
+  // The cancelled edition must not be mentioned. "Ethereum Costa Rica" is a
+  // different thing: a real community partner of Chiang Mai 2024, listed on
+  // the old site, so the rule steps around the group's name.
+  {
+    pattern: /(?<!Ethereum )\bCosta Rica\b/i,
+    why: "cancelled edition, no mentions",
+  },
   { pattern: /\bBerlin\b/i, why: "cancelled edition, no mentions" },
   { pattern: /Mentors Collective/i, why: "no longer exists" },
   {

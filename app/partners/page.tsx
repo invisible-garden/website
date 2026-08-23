@@ -37,7 +37,9 @@ export default async function PartnersPage() {
           for each edition names the organisations that supported it.
         </p>
       ) : (
-        <ul className="mt-10 flex flex-wrap items-center gap-10">
+        // Ink, because the sponsor marks are the white-on-transparent artwork
+        // their owners supplied. See components/partner-band.tsx.
+        <ul className="bg-ink mt-10 flex flex-wrap items-center gap-10 rounded-[--radius-card] px-8 py-7 text-white">
           {partners.map((partner) => {
             const logo = mediaUrl(partner.logo_path);
             const content = logo ? (

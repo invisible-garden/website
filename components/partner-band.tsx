@@ -1,14 +1,26 @@
 import Image from "next/image";
 import { mediaUrl } from "@/lib/media";
+import { cn } from "@/lib/utils";
 import type { PartnerWithTier } from "@/lib/queries";
 
 /**
  * A row of partner logos, grouped by tier. Renders nothing when the list is
- * empty, which is the state until the partner data is re-authored.
+ * empty.
+ *
+ * The logos sit on ink. Sponsors supplied white-on-transparent artwork, which
+ * is what the old site published and what we mirrored, so on a white surface
+ * they disappear completely. Recolouring someone's mark is not ours to do, so
+ * the surface moves instead.
  */
 function Logos({ partners }: { partners: PartnerWithTier[] }) {
+  const hasLogos = partners.some((partner) => partner.logo_path);
   return (
-    <ul className="mt-6 flex flex-wrap items-center gap-x-10 gap-y-6">
+    <ul
+      className={cn(
+        "mt-6 flex flex-wrap items-center gap-x-10 gap-y-6",
+        hasLogos && "bg-ink rounded-[--radius-card] px-8 py-7 text-white",
+      )}
+    >
       {partners.map((partner) => {
         const logo = mediaUrl(partner.logo_path);
         const mark = logo ? (
