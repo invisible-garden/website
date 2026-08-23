@@ -25,7 +25,7 @@ export default async function EditionsPage() {
         label="Editions"
         title="Where Invisible Garden has happened"
         level={1}
-        intro="Each gathering runs in a different city, with its own cohort, mentors, and outcomes."
+        intro="Each Invisible Garden gathering runs in a different city, with its own cohort, mentors, and outcomes. The event it co-hosts next is listed first."
       />
 
       {upcoming.length > 0 ? (

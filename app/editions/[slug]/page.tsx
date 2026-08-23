@@ -24,7 +24,7 @@ import {
   getFellows,
   getProjects,
 } from "@/lib/queries";
-import { siteConfig } from "@/lib/site-config";
+import { eventConfig, siteConfig } from "@/lib/site-config";
 
 // Statically generated and refreshed every 5 minutes. The data behind it is
 // refreshed in step, see the cache window in lib/supabase.ts.
@@ -67,8 +67,10 @@ export default async function EditionPage({
   const { slug } = await params;
   const edition = await getEdition(slug);
   if (!edition) notFound();
-  // The upcoming edition has no recap to show, the homepage is about it.
-  if (edition.status !== "past") redirect("/");
+  // The upcoming row is Invisible Commons, which is not this site's event to
+  // describe. It has no recap here and it is not an Invisible Garden edition,
+  // so the path hands over to its own site rather than to our homepage.
+  if (edition.status !== "past") redirect(eventConfig.url);
 
   const [people, fellows, projects, partners] = await Promise.all([
     getEditionPeople(slug),
