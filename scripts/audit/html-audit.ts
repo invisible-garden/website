@@ -65,7 +65,12 @@ function check(route: string, html: string, problems: Problem[]) {
   const images = [...html.matchAll(/<img\b[^>]*>/g)].map((m) => m[0]);
   const noAlt = images.filter((img) => !/\salt="/.test(img));
   if (noAlt.length > 0) add(`${noAlt.length} images without alt`);
-  const emptyAlt = images.filter((img) => /\salt=""/.test(img));
+  // An empty alt is right for decorative artwork, but only when the image is
+  // also hidden from assistive technology. Empty alt on its own still gets
+  // flagged, because that is usually a forgotten alt rather than a decision.
+  const emptyAlt = images.filter(
+    (img) => /\salt=""/.test(img) && !/aria-hidden="true"/.test(img),
+  );
   if (emptyAlt.length > 0) {
     add(`${emptyAlt.length} images with empty alt, check they are decorative`);
   }
