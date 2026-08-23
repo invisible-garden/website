@@ -62,9 +62,11 @@ Supabase or Webflow variable, you are on the wrong branch.
 
 ## Where it runs
 
-Its own Netlify site, from this branch, with its own deploy token and its own
-Umami site id. The domain is registered and points at Netlify when the page is
-ready, independently of the invisible.garden cutover.
+Its own Netlify site, `ic-website`, built from this branch, with its own deploy
+token and its own Umami site id. https://invisiblecommons.org points at it, DNS
+set up on 2026-08-23, independently of the invisible.garden cutover. The branch
+deploy also answers at
+https://invisible-commons--ic-website.netlify.app.
 
 ## Deployment
 

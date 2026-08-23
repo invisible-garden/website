@@ -89,7 +89,8 @@ innovative, journey, unlock, ecosystem as filler. Full rules in
 
 **Design tokens.** Colours, type sizes, radii and shadows live in
 `app/globals.css` under `@theme`. Never hard-code a hex in a component. The
-accent is **sea teal**, decided 2026-08-23:
+accent is **sea teal**, decided 2026-08-23 and approved by Leo the same day
+against the deploy. These are the values, do not drift from them:
 
 - `--color-teal` `#0e9594`, the accent. 3.66:1 on white, so large text and
   non-text elements only, never body text.
@@ -101,6 +102,12 @@ accent is **sea teal**, decided 2026-08-23:
 The hero gradient is vertical, `bg-deep-sea`, and every stop stays at 5:1 or
 better against white so hero body text is readable at the foot of the block.
 Invisible Garden's blue-to-sun `bg-horizon` is theirs, do not bring it back.
+
+**The site's mark.** `app/icon.svg` and `app/apple-icon.png` are a wave on the
+site gradient, generic by instruction (Leo, 2026-08-23). They are the event's
+mark, not a placeholder for a co-host's. Never put a co-host's logo in the
+favicon, the header or the social card: those are the site's own identity, and
+the hero row is where co-hosts are billed.
 
 **Accessibility.** WCAG AA. Alt text on every image, visible focus states,
 keyboard navigable.
@@ -141,9 +148,6 @@ a registration link when the participation model is decided.
 
 - Participation model and registration flow. The practical card says so
   visibly, which is the agreed placeholder.
-- The site's own mark. `app/icon.svg` is a neutral placeholder, the site
-  gradient and a horizon. Leo approves the real pick. A co-host's mark cannot
-  stand in for it.
 - Common Compute's own mark, one of the 12 Commons Ring variants. Until it
   lands, its name is set in type in the hero row while the other two show
   logos, which bills the three unevenly. Fix that the day the pick arrives.
