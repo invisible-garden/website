@@ -57,10 +57,12 @@ present Invisible Garden's history, community or identity as its own, and must
 never frame the event as the next Invisible Garden edition. Invisible Garden is
 one co-host name here.
 
-**No Invisible Garden imagery.** No participant photos, no photo-booth archive,
-no Webflow photos, no leaf mark, no Invisible Garden wordmark as the site's own
-identity. Those are Invisible Garden's community material and stay on
-invisible.garden. The page is design-led, type and colour, until the event
+**No Invisible Garden imagery, with one exception.** No participant photos, no
+photo-booth archive, no Webflow photos, and never the Invisible Garden leaf or
+wordmark as this site's own identity: the header, the favicon and the social
+card carry no co-host's mark. The exception is the hero's co-host row, where
+each of the three is billed with its own mark, which is what a mark is for.
+Everything else on the page is design-led, type and colour, until the event
 produces its own photos. Venue photos are out while the venue is unnamed.
 
 **Real people only.** Nobody appears on this site unless they are real and
@@ -142,6 +144,9 @@ a registration link when the participation model is decided.
 - The site's own mark. `app/icon.svg` is a neutral placeholder, the site
   gradient and a horizon. Leo approves the real pick. A co-host's mark cannot
   stand in for it.
+- Common Compute's own mark, one of the 12 Commons Ring variants. Until it
+  lands, its name is set in type in the hero row while the other two show
+  logos, which bills the three unevenly. Fix that the day the pick arrives.
 - The exact accent hexes above are the implementer's tuning of Leo's "sea
   teal", and still want his approval.
 - Common Compute and OpenBuild have not signed off their own blurbs. Both were

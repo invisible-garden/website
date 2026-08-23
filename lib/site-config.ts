@@ -26,6 +26,13 @@ export const siteConfig = {
  * The three co-hosts carry equal weight everywhere they appear, in billing and
  * in wording. Order is fixed for consistency across the page, it is not a
  * ranking.
+ *
+ * `logo` is a white-on-transparent mark for the hero gradient, with the
+ * intrinsic size of the file: each wordmark has its own aspect ratio, and
+ * giving them all one size letterboxes the narrow ones. Common Compute
+ * has not picked one of its 12 Commons Ring variants yet, so its name is set
+ * in type at the same height. Give it a mark as soon as the pick lands, so
+ * all three are billed the same way.
  */
 export const eventConfig = {
   name: siteConfig.name,
@@ -33,12 +40,18 @@ export const eventConfig = {
     {
       name: "Invisible Garden",
       url: "https://invisible.garden",
+      logo: {
+        src: "/images/logo/wordmark-white.svg",
+        width: 341,
+        height: 123,
+      },
       description:
         "Invisible Garden is a traveling academy for Ethereum developers, run as pop-up dev cities since 2024.",
     },
     {
       name: "Common Compute",
       url: "https://commoncompute.org",
+      logo: null,
       // Written from their own site on 2026-08-22, at Leo's direction. Their
       // sign-off is still outstanding.
       description:
@@ -47,6 +60,7 @@ export const eventConfig = {
     {
       name: "OpenBuild",
       url: "https://openbuild.xyz",
+      logo: { src: "/images/logo/openbuild-white.svg", width: 169, height: 36 },
       // Drafted from openbuild.xyz, shipped on Leo's instruction 2026-08-22.
       // Their own sign-off is still outstanding.
       description:
