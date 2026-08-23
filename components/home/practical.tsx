@@ -1,7 +1,6 @@
 import { ButtonLink } from "@/components/ui/button";
 import { Chip } from "@/components/ui/chip";
 import { Section, SectionHeading } from "@/components/ui/section";
-import { formatDateRange } from "@/lib/dates";
 import { eventConfig, siteConfig } from "@/lib/site-config";
 
 /**
@@ -20,9 +19,7 @@ export function Practical() {
       <dl className="mt-10 grid gap-8 md:grid-cols-3">
         <div>
           <dt className="text-label font-mono uppercase">Dates</dt>
-          <dd className="text-headline-sm mt-2">
-            {formatDateRange(eventConfig.startsOn, eventConfig.endsOn)}
-          </dd>
+          <dd className="text-headline-sm mt-2">{eventConfig.datesLabel}</dd>
         </div>
         <div>
           <dt className="text-label font-mono uppercase">Place</dt>

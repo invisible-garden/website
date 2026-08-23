@@ -1,7 +1,6 @@
 import { ButtonLink } from "@/components/ui/button";
 import { Chip } from "@/components/ui/chip";
 import { Container } from "@/components/ui/container";
-import { formatDateRange } from "@/lib/dates";
 import { eventConfig, siteConfig } from "@/lib/site-config";
 
 /**
@@ -38,7 +37,7 @@ export function Hero() {
 
         <p className="text-body-lg mt-8 font-mono">
           {eventConfig.city}, {eventConfig.country} &middot;{" "}
-          {formatDateRange(eventConfig.startsOn, eventConfig.endsOn)}
+          {eventConfig.datesLabel}
         </p>
 
         <p className="text-body-md mt-3">

@@ -58,6 +58,9 @@ export const eventConfig = {
   country: "India",
   startsOn: "2026-10-17",
   endsOn: "2026-10-31",
+  /** Written out, because the shared date helper on `main` renders the month
+   *  twice and that helper is not this branch's to change. */
+  datesLabel: "17 to 31 October 2026",
   /** Names only, for prose and social cards. */
   get organiserNames(): string[] {
     return this.organisers.map((organiser) => organiser.name);

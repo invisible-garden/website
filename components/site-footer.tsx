@@ -1,4 +1,3 @@
-import { formatDateRange } from "@/lib/dates";
 import { eventConfig, siteConfig } from "@/lib/site-config";
 
 /**
@@ -14,7 +13,7 @@ export function SiteFooter() {
           <p className="font-display text-headline-sm">{siteConfig.name}</p>
           <p className="text-body-sm mt-2 font-mono">
             {eventConfig.city}, {eventConfig.country} &middot;{" "}
-            {formatDateRange(eventConfig.startsOn, eventConfig.endsOn)}
+            {eventConfig.datesLabel}
           </p>
         </div>
         <a
