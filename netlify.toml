@@ -1,7 +1,5 @@
 # Netlify build config. The only host-specific file in the repo, everything
-# else is standard Next.js so moving hosts stays cheap, see tech-requirements.
-# Redirects live in next.config.ts, which the Next runtime honours, rather than
-# in a _redirects file, for the same portability reason.
+# else is standard Next.js so moving hosts stays cheap.
 
 [build]
   command = "pnpm build"
@@ -14,3 +12,25 @@
 # major. Upgrade Next majors only after the runtime supports them.
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+# Security headers. The site is static, self-hosts its fonts through
+# next/font, and loads nothing from another origin, so the policy can be
+# tight.
+#
+# `unsafe-inline` for scripts is not optional here: Next puts its hydration
+# payload in inline <script> tags with no nonce on a statically exported page.
+# Same for styles, which Tailwind inlines during the build.
+#
+# When Umami is added, its script host has to join script-src, and its
+# collect endpoint has to join connect-src, or the page will silently stop
+# reporting.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none'; object-src 'none'"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+    # No includeSubDomains and no preload: this is one host, and neither is
+    # reversible in any useful time frame.
+    Strict-Transport-Security = "max-age=31536000"

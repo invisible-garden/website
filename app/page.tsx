@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { EventSchema } from "@/components/event-schema";
 import { CoHosts } from "@/components/home/co-hosts";
 import { FormatExplainer } from "@/components/home/format-explainer";
 import { Hero } from "@/components/home/hero";
@@ -19,6 +20,7 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
+      <EventSchema />
       <Hero />
       <FormatExplainer />
       <CoHosts />
