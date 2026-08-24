@@ -35,7 +35,9 @@ export function PhotoGallery({
     setError(null);
     try {
       const response = await fetch(
-        `/api/editions/${slug}/photos?offset=${offset.current}`,
+        // Offset in the path: the Netlify adapter's cache ignores unknown
+        // query parameters, which collapsed every page into the first one.
+        `/api/editions/${slug}/photos/${offset.current}`,
       );
       if (!response.ok) throw new Error(String(response.status));
       const data = (await response.json()) as { photos: EditionPhoto[] };
