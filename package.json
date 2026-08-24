@@ -37,7 +37,8 @@
     "photos:coverage": "tsx scripts/photos/webflow-coverage.ts",
     "db:seed-people": "tsx scripts/db/seed-people.ts",
     "db:person-photo": "tsx scripts/db/set-person-photo.ts",
-    "photos:publish": "tsx scripts/photos/publish-booth.ts"
+    "photos:publish": "tsx scripts/photos/publish-booth.ts",
+    "photos:gallery": "tsx scripts/photos/load-booth-gallery.ts"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",

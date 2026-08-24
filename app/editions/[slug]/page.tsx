@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { FellowList } from "@/components/fellow-list";
 import { PartnerBand } from "@/components/partner-band";
@@ -20,6 +21,7 @@ import {
   getEdition,
   getEditionPartners,
   getEditionPeople,
+  getEditionPhotoCount,
   getEditions,
   getFellows,
   getProjects,
@@ -72,11 +74,12 @@ export default async function EditionPage({
   // so the path hands over to its own site rather than to our homepage.
   if (edition.status !== "past") redirect(eventConfig.url);
 
-  const [people, fellows, projects, partners] = await Promise.all([
+  const [people, fellows, projects, partners, photoCount] = await Promise.all([
     getEditionPeople(slug),
     getFellows(slug),
     getProjects(slug),
     getEditionPartners(slug),
+    getEditionPhotoCount(slug),
   ]);
   const content = editionContent(slug);
   const Recap = RECAP_COPY[slug];
@@ -205,12 +208,22 @@ export default async function EditionPage({
         </Section>
       ) : null}
 
-      {content.photos.length > 0 ? (
+      {content.photos.length > 0 || photoCount > 0 ? (
         <Section>
           <SectionHeading label="Photos" title="What it looked like" />
           <div className="mt-10">
             <PhotoStrip photos={content.photos} />
           </div>
+          {photoCount > content.photos.length ? (
+            <p className="text-body-lg mt-8">
+              <Link
+                href={`/editions/${edition.slug}/photos`}
+                className="underline underline-offset-4"
+              >
+                See all {photoCount} photo booth pictures
+              </Link>
+            </p>
+          ) : null}
         </Section>
       ) : null}
 

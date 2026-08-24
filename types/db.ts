@@ -17,6 +17,7 @@ export type FellowRow = Tables["fellows"]["Row"];
 export type ProjectRow = Tables["projects"]["Row"];
 export type PartnerRow = Tables["partners"]["Row"];
 export type EditionPartnerRow = Tables["edition_partners"]["Row"];
+export type EditionPhotoRow = Tables["edition_photos"]["Row"];
 
 export type EditionInsert = Tables["editions"]["Insert"];
 export type PersonInsert = Tables["people"]["Insert"];

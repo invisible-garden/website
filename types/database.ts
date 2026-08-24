@@ -86,6 +86,44 @@ export type Database = {
           },
         ]
       }
+      edition_photos: {
+        Row: {
+          created_at: string
+          credit: string | null
+          edition_id: string
+          id: string
+          photo_alt: string
+          photo_path: string
+          sort_order: number
+        }
+        Insert: {
+          created_at?: string
+          credit?: string | null
+          edition_id: string
+          id?: string
+          photo_alt: string
+          photo_path: string
+          sort_order?: number
+        }
+        Update: {
+          created_at?: string
+          credit?: string | null
+          edition_id?: string
+          id?: string
+          photo_alt?: string
+          photo_path?: string
+          sort_order?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "edition_photos_edition_id_fkey"
+            columns: ["edition_id"]
+            isOneToOne: false
+            referencedRelation: "editions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       editions: {
         Row: {
           accent_color: string | null

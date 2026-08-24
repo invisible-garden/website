@@ -2,6 +2,7 @@ import "server-only";
 import { byProminence, personOrder } from "@/lib/people-order";
 import { createSupabaseClient } from "@/lib/supabase";
 import type {
+  EditionPhotoRow,
   EditionRow,
   FellowRow,
   PartnerRow,
@@ -198,4 +199,51 @@ export async function getPartners(): Promise<PartnerRow[]> {
     .order("name", { ascending: true });
   if (error) throw error;
   return data ?? [];
+}
+
+export type EditionPhoto = Pick<
+  EditionPhotoRow,
+  "photo_path" | "photo_alt" | "credit"
+>;
+
+/** Page size of the edition gallery, client and API agree on it. */
+export const GALLERY_PAGE_SIZE = 24;
+
+/** One page of the photo gallery, oldest posting first, with the total so the
+ *  client knows when to stop asking. The editions embed is only there so the
+ *  slug filter resolves, see getEditionPhotoCount; it is stripped before
+ *  returning. */
+export async function getEditionPhotos(
+  editionSlug: string,
+  limit: number = GALLERY_PAGE_SIZE,
+  offset: number = 0,
+): Promise<EditionPhoto[]> {
+  const supabase = createSupabaseClient();
+  const { data, error } = await supabase
+    .from("edition_photos")
+    .select("photo_path, photo_alt, credit, editions!inner(slug)")
+    .eq("editions.slug", editionSlug)
+    .order("sort_order", { ascending: true })
+    .range(offset, offset + limit - 1);
+  if (error) throw error;
+  return (data ?? []).map((row) => ({
+    photo_path: row.photo_path,
+    photo_alt: row.photo_alt,
+    credit: row.credit,
+  }));
+}
+
+/** How many gallery photos an edition has, for links and empty states.
+ *  The embed must appear in the select list for the filter to resolve, a bare
+ *  count with an embedded filter fails with an empty PostgREST error. */
+export async function getEditionPhotoCount(
+  editionSlug: string,
+): Promise<number> {
+  const supabase = createSupabaseClient();
+  const { count, error } = await supabase
+    .from("edition_photos")
+    .select("id, editions!inner(slug)", { count: "exact", head: true })
+    .eq("editions.slug", editionSlug);
+  if (error) throw error;
+  return count ?? 0;
 }

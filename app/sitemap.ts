@@ -22,11 +22,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...staticRoutes,
     ...editions
       .filter((edition) => edition.status === "past")
-      .map((edition) => ({
-        url: `${siteConfig.url}/editions/${edition.slug}`,
-        lastModified: now,
-        priority: 0.6,
-      })),
+      .flatMap((edition) => [
+        {
+          url: `${siteConfig.url}/editions/${edition.slug}`,
+          lastModified: now,
+          priority: 0.6,
+        },
+        {
+          url: `${siteConfig.url}/editions/${edition.slug}/photos`,
+          lastModified: now,
+          priority: 0.4,
+        },
+      ]),
     ...people.map((person) => ({
       url: `${siteConfig.url}/people/${person.slug}`,
       lastModified: now,
