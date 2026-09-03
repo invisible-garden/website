@@ -1,5 +1,9 @@
 # Invisible Commons website
 
+**Update 2026-09-03: Invisible Commons is called off.** This branch now
+serves a plain "Under construction" holding page, noindex, with no event
+content. The domain is to be reused for something else.
+
 https://invisiblecommons.org, a one-page site for **Invisible Commons**, Goa,
 India, 17 to 31 October 2026, a joint project of Invisible Garden, Common
 Compute and OpenBuild.

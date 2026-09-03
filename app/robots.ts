@@ -1,9 +1,6 @@
 import type { MetadataRoute } from "next";
-import { siteConfig } from "@/lib/site-config";
 
 export default function robots(): MetadataRoute.Robots {
-  return {
-    rules: { userAgent: "*", allow: "/" },
-    sitemap: `${siteConfig.url}/sitemap.xml`,
-  };
+  // The page stays crawlable so its noindex meta is seen, see app/layout.tsx.
+  return { rules: { userAgent: "*", allow: "/" } };
 }

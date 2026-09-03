@@ -2,6 +2,13 @@
 
 Guidance for working in this repository, on the `invisible-commons` branch.
 
+**Update 2026-09-03: Invisible Commons is called off, the event will not
+happen.** This branch is now a plain holding page: "Under construction", one
+line of copy, noindex in `app/layout.tsx`. The event content, the co-host
+material and the social card are deleted, and the domain is to be reused for
+something else. Do not restore the event anywhere on this branch. Everything
+below about the event page describes history.
+
 ## Which site this is
 
 This branch is **invisiblecommons.org**, a one-page site for **Invisible
