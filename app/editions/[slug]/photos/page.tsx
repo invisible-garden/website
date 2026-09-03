@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import { PhotoGallery } from "@/components/photo-gallery";
 import { Container } from "@/components/ui/container";
 import { formatDateRange } from "@/lib/dates";
@@ -11,7 +11,6 @@ import {
   getEditionPhotos,
   getEditions,
 } from "@/lib/queries";
-import { eventConfig } from "@/lib/site-config";
 
 // Statically generated and refreshed every 5 minutes, like the recap. The
 // first gallery page ships inside this HTML; further pages come from the API
@@ -44,7 +43,6 @@ export default async function EditionPhotosPage({
   const { slug } = await params;
   const edition = await getEdition(slug);
   if (!edition) notFound();
-  if (edition.status !== "past") redirect(eventConfig.url);
 
   const [initialPhotos, total] = await Promise.all([
     getEditionPhotos(slug, GALLERY_PAGE_SIZE, 0),

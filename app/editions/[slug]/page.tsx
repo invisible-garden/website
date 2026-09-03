@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import { FellowList } from "@/components/fellow-list";
 import { PartnerBand } from "@/components/partner-band";
 import { PhotoStrip } from "@/components/photo-strip";
@@ -26,7 +26,7 @@ import {
   getFellows,
   getProjects,
 } from "@/lib/queries";
-import { eventConfig, siteConfig } from "@/lib/site-config";
+import { siteConfig } from "@/lib/site-config";
 
 // Statically generated and refreshed every 5 minutes. The data behind it is
 // refreshed in step, see the cache window in lib/supabase.ts.
@@ -69,10 +69,6 @@ export default async function EditionPage({
   const { slug } = await params;
   const edition = await getEdition(slug);
   if (!edition) notFound();
-  // The upcoming row is Invisible Commons, which is not this site's event to
-  // describe. It has no recap here and it is not an Invisible Garden edition,
-  // so the path hands over to its own site rather than to our homepage.
-  if (edition.status !== "past") redirect(eventConfig.url);
 
   const [people, fellows, projects, partners, photoCount] = await Promise.all([
     getEditionPeople(slug),

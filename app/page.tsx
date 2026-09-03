@@ -21,9 +21,10 @@ export const metadata: Metadata = {
  * mb/ig/ig-homepage-brief.md: heading, what next, track record, community,
  * plus the support band Leo added on 2026-08-23.
  *
- * It used to be a page about the 2026 event, content-brief 3.1. That event now
- * has its own site at invisiblecommons.org, so the format, subjects and
- * practical blocks moved there and the homepage links out instead.
+ * "What next" carries the Invisible Garden reunion in India, 27 October to
+ * 7 November 2026, decided 2026-09-03 after Invisible Commons was called off.
+ * The event's old blocks stay off this page either way; when the reunion gets
+ * details, they go to their own place rather than back here.
  */
 export default async function HomePage() {
   const [people, editions, partners] = await Promise.all([

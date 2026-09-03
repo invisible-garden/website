@@ -19,6 +19,15 @@ The homepage is Invisible Garden's front door: heading, what next, track
 record, community. It used to be a page about the 2026 event, and it is not
 any more.
 
+Update 2026-09-03: Invisible Commons is called off, the event will not
+happen. The next event is an **Invisible Garden reunion in India, 27 October
+to 7 November 2026**, details to be announced, carried by the homepage What
+next section (`components/home/what-next.tsx`). `eventConfig` is deleted and
+the goa-2026 row is out of `editions`. The split paragraphs above stay true
+about the branch, but every rule below about where Invisible Commons may
+appear describes history, not the current site. Do not "restore" Invisible
+Commons anywhere on `main`.
+
 Planning documents live in `mb/`, a symlink to the notes vault. They are not
 committed and they outrank anything written here:
 

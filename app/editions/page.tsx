@@ -16,8 +16,6 @@ export const metadata: Metadata = {
 
 export default async function EditionsPage() {
   const editions = await getEditions();
-  const upcoming = editions.filter((e) => e.status !== "past");
-  const past = editions.filter((e) => e.status === "past");
 
   return (
     <Section>
@@ -25,21 +23,11 @@ export default async function EditionsPage() {
         label="Editions"
         title="Where Invisible Garden has happened"
         level={1}
-        intro="Each Invisible Garden gathering runs in a different city, with its own cohort, mentors, and outcomes. The event it co-hosts next is listed first."
+        intro="Each Invisible Garden gathering runs in a different city, with its own cohort, mentors, and outcomes."
       />
 
-      {upcoming.length > 0 ? (
-        <ul className="mt-10 grid gap-6 md:grid-cols-2">
-          {upcoming.map((edition) => (
-            <li key={edition.slug}>
-              <EditionCard edition={edition} headingLevel={2} />
-            </li>
-          ))}
-        </ul>
-      ) : null}
-
-      <ul className="mt-6 grid gap-6 md:grid-cols-2">
-        {past.map((edition) => (
+      <ul className="mt-10 grid gap-6 md:grid-cols-2">
+        {editions.map((edition) => (
           <li key={edition.slug}>
             <EditionCard edition={edition} headingLevel={2} />
           </li>

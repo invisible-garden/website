@@ -1,52 +1,65 @@
-import { ButtonLink } from "@/components/ui/button";
 import { Chip } from "@/components/ui/chip";
 import { Section, SectionHeading } from "@/components/ui/section";
-import { eventConfig } from "@/lib/site-config";
 
 /**
  * What Invisible Garden is doing next, per mb/ig/ig-homepage-brief.md
  * section 2.
  *
- * Framing rule: Invisible Commons is an event Invisible Garden co-hosts, one
- * of three organisations, never "the next Invisible Garden edition". The event
- * is described in full on its own site, so this section says what it is, when,
- * and where to read the rest.
+ * Invisible Commons was called off after the 2026-08-23 site split, decided
+ * 2026-09-03. The next event is Invisible Garden's own again: a reunion in
+ * India, 27 October to 7 November 2026. Only the dates and the country are
+ * set, so this section says exactly that and stops. The details button is a
+ * placeholder, not a link; it becomes a ButtonLink when there is a page to
+ * send people to.
  */
-export function WhatNext() {
-  const others = eventConfig.organiserNames.filter(
-    (name) => name !== "Invisible Garden",
-  );
 
+/** Reunion facts as decided by Leo on 2026-09-03. No city yet, India only. */
+const reunion = {
+  name: "Invisible Garden Reunion",
+  country: "India",
+  datesLabel: "27 October to 7 November 2026",
+  /** Devcon 8 runs 3 to 6 November 2026 in Mumbai, so the reunion overlaps
+   *  it. Stated as fact, no anchoring claim, that decision is still open. */
+  devcon: {
+    name: "Devcon 8",
+    city: "Mumbai",
+    datesLabel: "3 to 6 November 2026",
+  },
+} as const;
+
+export function WhatNext() {
   return (
     <Section>
       <SectionHeading
         label="What next"
-        title={`${eventConfig.name}, ${eventConfig.city}, October 2026`}
+        title={`${reunion.name}, ${reunion.country}`}
       />
 
       <div className="mt-6 flex flex-wrap gap-3">
-        <Chip>{eventConfig.datesLabel}</Chip>
-        <Chip tone="sage">
-          {eventConfig.city}, {eventConfig.country}
-        </Chip>
+        <Chip>{reunion.datesLabel}</Chip>
+        <Chip tone="sage">{reunion.country}</Chip>
       </div>
 
       <div className="text-body-lg mt-6 max-w-2xl space-y-4">
         <p>
-          Invisible Garden co-hosts {eventConfig.name} with{" "}
-          {others.join(" and ")}. Two weeks of talks, co-working, and building,
-          in {eventConfig.city}, {eventConfig.country}.
+          Twelve days in {reunion.country}, with the community from previous
+          editions.
         </p>
         <p>
-          It ends three days before {eventConfig.devcon.name} in{" "}
-          {eventConfig.devcon.city}, {eventConfig.devcon.datesLabel}.
+          It overlaps {reunion.devcon.name} in {reunion.devcon.city},{" "}
+          {reunion.devcon.datesLabel}.
         </p>
       </div>
 
       <div className="mt-8">
-        <ButtonLink href={eventConfig.url}>
-          Read about {eventConfig.name}
-        </ButtonLink>
+        <button
+          type="button"
+          disabled
+          aria-disabled="true"
+          className="text-body-md bg-blue-deep inline-flex cursor-not-allowed items-center rounded-full px-6 py-3 font-medium text-white opacity-70"
+        >
+          Details to be announced
+        </button>
       </div>
     </Section>
   );

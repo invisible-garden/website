@@ -24,7 +24,6 @@
     "db:migrate": "supabase db push",
     "db:verify": "tsx scripts/db/verify.ts && tsx scripts/db/check-anon.ts",
     "db:migrate:api": "tsx scripts/db/apply-migrations.ts",
-    "db:seed": "tsx scripts/db/seed-editions.ts",
     "migrate:site-assets": "tsx scripts/migrate-webflow/index.ts site-assets",
     "test": "vitest run",
     "verify": "pnpm typecheck && pnpm lint && pnpm test && pnpm build",
