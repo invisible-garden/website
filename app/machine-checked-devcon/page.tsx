@@ -149,7 +149,7 @@ export default function MachineCheckedDevconPage() {
                 alt="Road to Devcon"
                 width={960}
                 height={960}
-                className="h-16 w-auto md:h-20"
+                className="h-64 w-auto md:h-80"
               />
             </a>
             <div className="mt-8 flex flex-wrap gap-2">
@@ -189,11 +189,11 @@ export default function MachineCheckedDevconPage() {
           white mark both need ink, 4Seas and EthTAO have no logo in any asset
           we hold so they ride as names. */}
       <div className="bg-ink py-10 text-white">
-        <Container>
+        <Container className="flex flex-col items-center text-center">
           <p className="text-label font-mono text-white/70 uppercase">
             Community partners
           </p>
-          <ul className="mt-5 flex flex-wrap items-center gap-x-10 gap-y-6">
+          <ul className="mt-5 flex flex-wrap items-center justify-center gap-x-10 gap-y-6">
             <li>
               <Image
                 src="/images/logo/wordmark-white.svg"
