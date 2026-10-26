@@ -15,6 +15,7 @@ const ROUTES = [
   "/people",
   "/people/justin-drake",
   "/partners",
+  "/machine-checked-devcon",
   "/does-not-exist",
 ];
 

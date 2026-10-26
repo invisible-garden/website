@@ -36,6 +36,13 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       { source: "/mentors", destination: "/people", permanent: true },
+      // Short link for the hackathon announcement, participant page brief
+      // section 4. Long URL is the canonical one.
+      {
+        source: "/hackathon",
+        destination: "/machine-checked-devcon",
+        permanent: true,
+      },
       // Webflow collection item pages. Editions kept the same path shape.
       {
         source: "/speakers-mentors/:slug",

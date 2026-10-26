@@ -15,6 +15,7 @@ const ROUTES = [
   "/editions/buenos-aires-2025",
   "/people",
   "/partners",
+  "/machine-checked-devcon",
 ];
 
 interface Rule {
