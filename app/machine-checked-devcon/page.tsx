@@ -144,12 +144,15 @@ export default function MachineCheckedDevconPage() {
               rel="noreferrer"
               className="inline-block"
             >
+              {/* The asset is trimmed to the mark itself, so h-* is the real
+                  visible size. 144/176px matches the approved render from
+                  the padded original at h-64/md:h-80. */}
               <Image
                 src="/images/hackathon/road-to-devcon.webp"
                 alt="Road to Devcon"
-                width={960}
-                height={960}
-                className="h-64 w-auto md:h-80"
+                width={548}
+                height={548}
+                className="h-36 w-auto md:h-44"
               />
             </a>
             <div className="mt-8 flex flex-wrap gap-2">
