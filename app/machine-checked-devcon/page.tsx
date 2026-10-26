@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { ButtonLink } from "@/components/ui/button";
 import { Chip } from "@/components/ui/chip";
 import { Container } from "@/components/ui/container";
 import { Section, SectionHeading } from "@/components/ui/section";
+import { mediaUrl } from "@/lib/media";
 import { siteConfig } from "@/lib/site-config";
 
 /**
@@ -317,6 +319,47 @@ export default function MachineCheckedDevconPage() {
 
       <Section>
         <SectionHeading label="Who runs it" title="Organisers and partners" />
+        {/* Ink band, because every mark here is white-on-transparent artwork:
+            IG's own white wordmark, EthPadThai's logo cut from the Webflow
+            mosaic (same one the Chiang Mai recap band uses, from the media
+            bucket), and Road to Devcon's official white logo, vendored from
+            devcon.org/road-to-devcon/logo.webp. */}
+        <ul className="bg-ink mt-10 flex flex-wrap items-center gap-x-10 gap-y-6 rounded-[--radius-card] px-8 py-7 text-white">
+          <li>
+            <Image
+              src="/images/logo/wordmark-white.svg"
+              alt={siteConfig.name}
+              width={160}
+              height={58}
+              unoptimized
+              className="h-12 w-auto object-contain"
+            />
+          </li>
+          <li>
+            <Image
+              src={mediaUrl("partners/ethpadthai.webp")!}
+              alt="EthPadThai"
+              width={160}
+              height={48}
+              className="h-12 w-auto object-contain"
+            />
+          </li>
+          <li>
+            <a
+              href="https://devcon.org/en/road-to-devcon/"
+              rel="noreferrer"
+              aria-label="Road to Devcon"
+            >
+              <Image
+                src="/images/hackathon/road-to-devcon.webp"
+                alt="Road to Devcon"
+                width={48}
+                height={48}
+                className="h-12 w-auto object-contain"
+              />
+            </a>
+          </li>
+        </ul>
         <div className="text-body-lg mt-8 max-w-3xl space-y-4">
           <p>
             Invisible Garden organises the week. Invisible Garden is a traveling
