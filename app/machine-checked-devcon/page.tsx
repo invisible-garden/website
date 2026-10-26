@@ -112,7 +112,6 @@ const deadlines = [
   },
   {
     title: "Judging by 20 November, results by 30 November.",
-    body: "The judges assess the whole body of merged work.",
   },
 ] as const;
 
@@ -124,51 +123,63 @@ export default function MachineCheckedDevconPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(eventSchema) }}
       />
 
-      <div className="bg-horizon py-16 text-white md:py-24">
-        <Container>
-          {/* Road to Devcon's support goes in front: its official white mark,
-              on an ink badge so it owns its background and reads at size.
-              The bare mark over the gradient was thin and patchy. */}
-          <a
-            href="https://devcon.org/en/road-to-devcon/"
-            rel="noreferrer"
-            className="bg-ink inline-flex rounded-[--radius-sm] p-3"
-          >
-            <Image
-              src="/images/hackathon/road-to-devcon.webp"
-              alt="Road to Devcon"
-              width={960}
-              height={960}
-              className="h-12 w-auto md:h-14"
-            />
-          </a>
-          <div className="mt-8 flex flex-wrap gap-2">
-            <Chip tone="outline" className="border-white/60 text-white">
-              Online
-            </Chip>
-            <Chip tone="outline" className="border-white/60 text-white">
-              {hackathon.datesLabel}
-            </Chip>
-            <Chip tone="outline" className="border-white/60 text-white">
-              {hackathon.deadlineLabel}
-            </Chip>
-            <Chip tone="outline" className="border-white/60 text-white">
-              $1,000 prize pool
-            </Chip>
-          </div>
-          <h1 className="font-display text-display mt-6">{hackathon.name}</h1>
-          <p className="text-body-lg mt-6 max-w-2xl">{hackathon.descriptor}</p>
-          <div className="mt-10 flex flex-wrap gap-4">
-            <ButtonLink href={hackathon.applyForm} variant="invert">
-              Apply now
-            </ButtonLink>
-            <ButtonLink
-              href={hackathon.discord}
-              variant="secondary"
-              className="text-white hover:bg-white/10"
+      {/* Same treatment as the homepage hero: the pixel garden behind, copy on
+          an ink panel, because white text over artwork is a contrast gamble
+          (see components/home/hero.tsx). Road to Devcon's white mark sits on
+          the panel, where it reads at full size with no patch behind it. */}
+      <div className="relative isolate overflow-hidden bg-white">
+        <Image
+          src="/images/hero/garden.webp"
+          alt=""
+          aria-hidden
+          fill
+          priority
+          sizes="100vw"
+          className="-z-10 object-cover object-bottom"
+        />
+        <Container className="py-16 md:py-24">
+          <div className="bg-ink/85 max-w-3xl rounded-[--radius-card] p-8 text-white md:p-12">
+            <a
+              href="https://devcon.org/en/road-to-devcon/"
+              rel="noreferrer"
+              className="inline-block"
             >
-              Join the Discord
-            </ButtonLink>
+              <Image
+                src="/images/hackathon/road-to-devcon.webp"
+                alt="Road to Devcon"
+                width={960}
+                height={960}
+                className="h-16 w-auto md:h-20"
+              />
+            </a>
+            <div className="mt-8 flex flex-wrap gap-2">
+              <Chip tone="outline" className="border-white/60 text-white">
+                Online
+              </Chip>
+              <Chip tone="outline" className="border-white/60 text-white">
+                {hackathon.datesLabel}
+              </Chip>
+              <Chip tone="outline" className="border-white/60 text-white">
+                {hackathon.deadlineLabel}
+              </Chip>
+              <Chip tone="outline" className="border-white/60 text-white">
+                $1,000 prize pool
+              </Chip>
+            </div>
+            <h1 className="font-display text-display mt-6">{hackathon.name}</h1>
+            <p className="text-body-lg mt-6">{hackathon.descriptor}</p>
+            <div className="mt-10 flex flex-wrap gap-4">
+              <ButtonLink href={hackathon.applyForm} variant="invert">
+                Apply now
+              </ButtonLink>
+              <ButtonLink
+                href={hackathon.discord}
+                variant="secondary"
+                className="text-white hover:bg-white/10"
+              >
+                Join the Discord
+              </ButtonLink>
+            </div>
           </div>
         </Container>
       </div>
@@ -287,11 +298,11 @@ export default function MachineCheckedDevconPage() {
         </div>
       </Section>
 
-      <Section tone="paper">
+      <Section tone="paper" id="rules">
         <SectionHeading
-          label="The loop"
+          label="The rules"
           title="How the week works"
-          intro="All work lives in the issues of the leanp2p repo. Issues depend on each other, so finishing one opens the next."
+          intro="All work lives in the issues of the leanp2p repo. Issues depend on each other, and closed means merged: a dependency still in review keeps the next issue closed to claims."
         />
         <ol className="text-body-lg mt-10 max-w-3xl list-decimal space-y-4 pl-8">
           {loop.map((step) => (
@@ -300,13 +311,20 @@ export default function MachineCheckedDevconPage() {
             </li>
           ))}
         </ol>
-        <p className="text-body-lg mt-8 max-w-3xl">
-          The rules stay canonical in the{" "}
-          <a href={hackathon.repo} rel="noreferrer">
-            repo
-          </a>
-          . If this page and the repo ever disagree, the repo wins.
-        </p>
+        <div className="text-body-lg mt-8 max-w-3xl space-y-4">
+          <p>
+            These are the rules in full. Until the leanp2p repo carries its own
+            RULES.md, this page is canonical.
+          </p>
+          <p>
+            Everything runs on the clock in UTC. Organisers and mentors answer
+            questions in the{" "}
+            <a href={hackathon.discord} rel="noreferrer">
+              event channel
+            </a>{" "}
+            all week, and acceptances are announced there.
+          </p>
+        </div>
       </Section>
 
       <Section>
@@ -314,7 +332,8 @@ export default function MachineCheckedDevconPage() {
         <ul className="text-body-lg mt-8 max-w-3xl space-y-4">
           {deadlines.map((item) => (
             <li key={item.title}>
-              <strong className="font-mono">{item.title}</strong> {item.body}
+              <strong className="font-mono">{item.title}</strong>{" "}
+              {"body" in item ? item.body : ""}
             </li>
           ))}
         </ul>
@@ -322,18 +341,43 @@ export default function MachineCheckedDevconPage() {
           <div>
             <h3 className="text-headline-sm">How entries are scored</h3>
             <p className="text-body-lg mt-3">
-              Code quality multiplied by how much of the work carries
-              machine-checked proofs.
+              Submissions are scored on two axes, code quality and how much of
+              the work carries machine-checked proofs, and the final score
+              multiplies the two. Well engineered code earns its value together
+              with proofs.
             </p>
           </div>
           <div>
             <h3 className="text-headline-sm">Prize eligibility</h3>
             <p className="text-body-lg mt-3">
-              Meaningful contributions only: at least one claimed issue closed,
-              real implementation or proof work, defensible in the video, inside
-              the event window. Typo fixes, formatting, dependency bumps, and
-              trivial refactors do not count by themselves. Judges assess the
-              whole body of merged work and have the final say.
+              Prizes recognise meaningful contributions. The judges assess your
+              whole body of merged work from the week, and they have the final
+              say on what counts. The baseline:
+            </p>
+            <ul className="text-body-lg mt-4 list-disc space-y-3 pl-8">
+              <li>
+                Your work closes at least one claimed issue, with the PR opened
+                before code close and merged.
+              </li>
+              <li>
+                The contribution is real implementation work or real proof work.
+                Mechanical changes, typo fixes, formatting, dependency bumps,
+                and trivial refactors do not count by themselves.
+              </li>
+              <li>
+                You can explain and defend your work in the video, including
+                your reasoning and your proofs. A contribution you cannot defend
+                in the video does not count for prizes.
+              </li>
+              <li>
+                All counted work falls inside the event window, 2 to 7 November.
+              </li>
+            </ul>
+            <p className="text-body-lg mt-4">
+              If a participant&apos;s overall contributions stay at a basic
+              level, the judges may rule them out of prize consideration. The
+              week is still worth it: the work is public, the learning is yours,
+              and every merged PR is yours to show.
             </p>
           </div>
         </div>
@@ -347,12 +391,9 @@ export default function MachineCheckedDevconPage() {
             contributors are being confirmed.
           </p>
           <p>
-            The pool is a thank you, not the reason to join. The full rules,
-            including eligibility, live in the{" "}
-            <a href={hackathon.repo} rel="noreferrer">
-              repo
-            </a>
-            .
+            The pool is a thank you, not the reason to join. The{" "}
+            <a href="#rules">full rules, including eligibility</a>, are on this
+            page.
           </p>
         </div>
       </Section>
