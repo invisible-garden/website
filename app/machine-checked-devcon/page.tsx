@@ -126,10 +126,22 @@ export default function MachineCheckedDevconPage() {
 
       <div className="bg-horizon py-16 text-white md:py-24">
         <Container>
-          <div className="flex flex-wrap gap-2">
-            <Chip tone="outline" className="border-white/60 text-white">
-              Part of Road to Devcon
-            </Chip>
+          {/* Road to Devcon's own white mark, above everything: the support
+              goes in front, not in a footnote. Linked to its official page. */}
+          <a
+            href="https://devcon.org/en/road-to-devcon/"
+            rel="noreferrer"
+            className="inline-block"
+          >
+            <Image
+              src="/images/hackathon/road-to-devcon.webp"
+              alt="Road to Devcon"
+              width={960}
+              height={960}
+              className="h-14 w-auto md:h-16"
+            />
+          </a>
+          <div className="mt-8 flex flex-wrap gap-2">
             <Chip tone="outline" className="border-white/60 text-white">
               Online
             </Chip>
@@ -138,6 +150,9 @@ export default function MachineCheckedDevconPage() {
             </Chip>
             <Chip tone="outline" className="border-white/60 text-white">
               {hackathon.deadlineLabel}
+            </Chip>
+            <Chip tone="outline" className="border-white/60 text-white">
+              $1,000 prize pool
             </Chip>
           </div>
           <h1 className="font-display text-display mt-6">{hackathon.name}</h1>
@@ -153,6 +168,30 @@ export default function MachineCheckedDevconPage() {
             >
               Join the Discord
             </ButtonLink>
+          </div>
+          {/* Community partners under the text, on ink: EthPadThai's mark is
+              white-on-transparent, and 4Seas and EthTAO have no logo in any
+              asset we hold, so they ride as names, the standard treatment for
+              logo-less partners. */}
+          <div className="mt-12">
+            <p className="text-label font-mono uppercase">Community partners</p>
+            <ul className="bg-ink mt-4 flex flex-wrap items-center gap-x-10 gap-y-6 rounded-[--radius-card] px-8 py-7 text-white">
+              <li>
+                <Image
+                  src={mediaUrl("partners/ethpadthai.webp")!}
+                  alt="EthPadThai"
+                  width={160}
+                  height={48}
+                  className="h-12 w-auto object-contain"
+                />
+              </li>
+              <li>
+                <span className="text-body-lg">4Seas</span>
+              </li>
+              <li>
+                <span className="text-body-lg">EthTAO</span>
+              </li>
+            </ul>
           </div>
         </Container>
       </div>
@@ -304,60 +343,18 @@ export default function MachineCheckedDevconPage() {
 
       <Section>
         <SectionHeading label="Who runs it" title="Organisers and partners" />
-        {/* Ink band, because every mark here is white-on-transparent artwork:
-            IG's own white wordmark, EthPadThai's logo cut from the Webflow
-            mosaic (same one the Chiang Mai recap band uses, from the media
-            bucket), and Road to Devcon's official white logo, vendored from
-            devcon.org/road-to-devcon/logo.webp. */}
-        <ul className="bg-ink mt-10 flex flex-wrap items-center gap-x-10 gap-y-6 rounded-[--radius-card] px-8 py-7 text-white">
-          <li>
-            <Image
-              src="/images/logo/wordmark-white.svg"
-              alt={siteConfig.name}
-              width={160}
-              height={58}
-              unoptimized
-              className="h-12 w-auto object-contain"
-            />
-          </li>
-          <li>
-            <Image
-              src={mediaUrl("partners/ethpadthai.webp")!}
-              alt="EthPadThai"
-              width={160}
-              height={48}
-              className="h-12 w-auto object-contain"
-            />
-          </li>
-          {/* No logo exists for 4Seas anywhere in our assets, and the partner
-              brief gives none, so the band carries the name, the same
-              treatment the edition partner bands use without artwork. */}
-          <li>
-            <span className="text-body-lg">4Seas</span>
-          </li>
-          <li>
-            <a
-              href="https://devcon.org/en/road-to-devcon/"
-              rel="noreferrer"
-              aria-label="Road to Devcon"
-            >
-              <Image
-                src="/images/hackathon/road-to-devcon.webp"
-                alt="Road to Devcon"
-                width={48}
-                height={48}
-                className="h-12 w-auto object-contain"
-              />
-            </a>
-          </li>
-        </ul>
+        {/* The marks live in the hero now, Road to Devcon above the heading
+            and the community partner band under the text, so this section
+            carries the prose only. */}
         <div className="text-body-lg mt-8 max-w-3xl space-y-4">
           <p>
             Invisible Garden organises the week. Invisible Garden is a traveling
             academy for Ethereum developers, with editions in Chiang Mai in 2024
             and Buenos Aires in 2025.
           </p>
-          <p>EthPadThai and 4Seas are the community partners of the week.</p>
+          <p>
+            EthPadThai, 4Seas and EthTAO are the community partners of the week.
+          </p>
           <p>
             The week is part of Road to Devcon, supported by the Devcon
             organisation.
