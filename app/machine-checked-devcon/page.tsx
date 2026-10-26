@@ -198,9 +198,8 @@ export default function MachineCheckedDevconPage() {
       {/* Community partners, attached to the hero's foot as a full-width band
           rather than a floating card. IG's wordmark and EthPadThai's mark are
           white-on-transparent so the band is ink. Eth CDM ships a coloured
-          transparent mark (about 4:1 on ink, fine at this size). EthTAO's only
-          artwork is a dark mark on white, so it rides as a rounded white tile.
-          4Seas has no logo anywhere, so the name stands in. */}
+          transparent mark (about 4:1 on ink, fine at this size). EthTAO and
+          4Seas only have dark artwork, so they ride on rounded white tiles. */}
       <div className="bg-ink py-10 text-white">
         <Container className="flex flex-col items-center text-center">
           <p className="text-label font-mono text-white/70 uppercase">
@@ -245,7 +244,13 @@ export default function MachineCheckedDevconPage() {
               />
             </li>
             <li>
-              <span className="text-headline-md">4Seas</span>
+              <Image
+                src="/images/hackathon/4seas.webp"
+                alt="4Seas"
+                width={500}
+                height={113}
+                className="h-16 w-auto rounded-[--radius-sm] bg-white object-contain px-3"
+              />
             </li>
           </ul>
         </Container>
