@@ -197,9 +197,9 @@ export default function MachineCheckedDevconPage() {
 
       {/* Community partners, attached to the hero's foot as a full-width band
           rather than a floating card. IG's wordmark and EthPadThai's mark are
-          white-on-transparent so the band is ink. Eth CDM ships a coloured
-          transparent mark (about 4:1 on ink, fine at this size). EthTAO and
-          4Seas only have dark artwork, so they ride on rounded white tiles. */}
+          white-on-transparent so the band is ink. Eth CDM, EthTAO and 4Seas
+          only have dark or coloured artwork, so they ride on rounded white
+          tiles. */}
       <div className="bg-ink py-10 text-white">
         <Container className="flex flex-col items-center text-center">
           <p className="text-label font-mono text-white/70 uppercase">
@@ -231,7 +231,7 @@ export default function MachineCheckedDevconPage() {
                 alt="Eth Cinco de Mayo"
                 width={291}
                 height={100}
-                className="h-20 w-auto object-contain"
+                className="h-20 w-auto rounded-[--radius-sm] bg-white object-contain px-3 py-1"
               />
             </li>
             <li>
@@ -381,7 +381,7 @@ export default function MachineCheckedDevconPage() {
             </p>
           </div>
           <div>
-            <h3 className="text-headline-sm">Prize eligibility</h3>
+            <h3 className="text-headline-sm">Prize eligibility*</h3>
             <p className="text-body-lg mt-3">
               Prizes recognise meaningful contributions. The judges assess your
               whole body of merged work from the week, and they have the final
@@ -411,6 +411,10 @@ export default function MachineCheckedDevconPage() {
               level, the judges may rule them out of prize consideration. The
               week is still worth it: the work is public, the learning is yours,
               and every merged PR is yours to show.
+            </p>
+            <p className="text-body-md mt-4">
+              * With fewer than 7 active participants, the prize pool can be
+              reduced.
             </p>
           </div>
         </div>
