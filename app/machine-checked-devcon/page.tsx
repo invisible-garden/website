@@ -15,10 +15,14 @@ import { siteConfig } from "@/lib/site-config";
  * Draft stage, decided with Leo 2026-10-26: the page ships unlinked. No nav
  * entry, no homepage section, no sitemap row until the announcement.
  *
- * Held from the brief, open questions section 6, do not add without deciding:
- * the Road to Devcon support line (mechanism unconfirmed), named judges and
- * mentors, a fee statement, a time-commitment expectation, and the "Devcon"
- * name carry itself, which waits on the Devcon organisation's OK.
+ * Decided with Leo 2026-10-26, after the first draft: the "Devcon" name
+ * carry is authorised, the Road to Devcon support is confirmed and goes in
+ * the hero and the organisers section, participation is free, the IG
+ * community rules apply, and the "apply" vocabulary is right for this page
+ * even though the main site bans it as a flow. Still open: judges and
+ * mentors stay unnamed until confirmed, the fee question is settled (free)
+ * but the time-commitment expectation is not, and the page enters the
+ * sitemap only when Leo says the link is public.
  */
 
 /** Facts from the brief's table, section 3. Nothing else is a fact. */
@@ -133,6 +137,9 @@ export default function MachineCheckedDevconPage() {
         <Container>
           <div className="flex flex-wrap gap-2">
             <Chip tone="outline" className="border-white/60 text-white">
+              Part of Road to Devcon
+            </Chip>
+            <Chip tone="outline" className="border-white/60 text-white">
               Online
             </Chip>
             <Chip tone="outline" className="border-white/60 text-white">
@@ -181,6 +188,10 @@ export default function MachineCheckedDevconPage() {
           <p>
             The cohort stays under ten contributors, small on purpose, so your
             work gets real attention.
+          </p>
+          <p>
+            Participation is free, and the Invisible Garden community rules
+            apply all week.
           </p>
         </div>
       </Section>
@@ -313,6 +324,10 @@ export default function MachineCheckedDevconPage() {
             and Buenos Aires in 2025.
           </p>
           <p>EthPadThai is the community partner of the week.</p>
+          <p>
+            The week is part of Road to Devcon, supported by the Devcon
+            organisation.
+          </p>
           <p>The tasks live in the Etheorem project&apos;s leanp2p repo.</p>
         </div>
       </Section>
