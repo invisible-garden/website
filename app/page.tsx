@@ -21,10 +21,10 @@ export const metadata: Metadata = {
  * mb/ig/ig-homepage-brief.md: heading, what next, track record, community,
  * plus the support band Leo added on 2026-08-23.
  *
- * "What next" carries the Invisible Garden reunion in India, 27 October to
- * 7 November 2026, decided 2026-09-03 after Invisible Commons was called off.
- * The event's old blocks stay off this page either way; when the reunion gets
- * details, they go to their own place rather than back here.
+ * "What next" features the Machine-Checked Devcon Week hackathon, linked to
+ * its page, decided 2026-10-26. It is framed as an online hackathon, never
+ * as an Invisible Garden edition. The India reunion from 2026-09-03 stays
+ * below it as a secondary block until it has details of its own.
  */
 export default async function HomePage() {
   const [people, editions, partners] = await Promise.all([
