@@ -139,49 +139,57 @@ export default function MachineCheckedDevconPage() {
         />
         <Container className="py-16 md:py-24">
           <div className="bg-ink/85 max-w-3xl rounded-[--radius-card] p-8 text-white md:p-12">
-            <a
-              href="https://devcon.org/en/road-to-devcon/"
-              rel="noreferrer"
-              className="inline-block"
-            >
-              {/* The asset is trimmed to the mark itself, so h-* is the real
-                  visible size. 144/176px matches the approved render from
-                  the padded original at h-64/md:h-80. */}
-              <Image
-                src="/images/hackathon/road-to-devcon.webp"
-                alt="Road to Devcon"
-                width={548}
-                height={548}
-                className="h-36 w-auto md:h-44"
-              />
-            </a>
-            <div className="mt-8 flex flex-wrap gap-2">
-              <Chip tone="outline" className="border-white/60 text-white">
-                Online
-              </Chip>
-              <Chip tone="outline" className="border-white/60 text-white">
-                {hackathon.datesLabel}
-              </Chip>
-              <Chip tone="outline" className="border-white/60 text-white">
-                {hackathon.deadlineLabel}
-              </Chip>
-              <Chip tone="outline" className="border-white/60 text-white">
-                $1,000 prize pool
-              </Chip>
-            </div>
-            <h1 className="font-display text-display mt-6">{hackathon.name}</h1>
-            <p className="text-body-lg mt-6">{hackathon.descriptor}</p>
-            <div className="mt-10 flex flex-wrap gap-4">
-              <ButtonLink href={hackathon.applyForm} variant="invert">
-                Apply now
-              </ButtonLink>
-              <ButtonLink
-                href={hackathon.discord}
-                variant="secondary"
-                className="text-white hover:bg-white/10"
+            {/* Logo left, title and the rest to its right where the panel has
+                room, stacked on small screens. */}
+            <div className="flex flex-col gap-8 md:flex-row md:items-start md:gap-10">
+              <a
+                href="https://devcon.org/en/road-to-devcon/"
+                rel="noreferrer"
+                className="inline-block shrink-0 self-start"
               >
-                Join the Discord
-              </ButtonLink>
+                {/* The asset is trimmed to the mark itself, so h-* is the real
+                    visible size. 144/176px matches the approved render from
+                    the padded original at h-64/md:h-80. */}
+                <Image
+                  src="/images/hackathon/road-to-devcon.webp"
+                  alt="Road to Devcon"
+                  width={548}
+                  height={548}
+                  className="h-36 w-auto md:h-44"
+                />
+              </a>
+              <div>
+                <div className="flex flex-wrap gap-2">
+                  <Chip tone="outline" className="border-white/60 text-white">
+                    Online
+                  </Chip>
+                  <Chip tone="outline" className="border-white/60 text-white">
+                    {hackathon.datesLabel}
+                  </Chip>
+                  <Chip tone="outline" className="border-white/60 text-white">
+                    {hackathon.deadlineLabel}
+                  </Chip>
+                  <Chip tone="outline" className="border-white/60 text-white">
+                    $1,000 prize pool
+                  </Chip>
+                </div>
+                <h1 className="font-display text-display mt-6">
+                  {hackathon.name}
+                </h1>
+                <p className="text-body-lg mt-6">{hackathon.descriptor}</p>
+                <div className="mt-10 flex flex-wrap gap-4">
+                  <ButtonLink href={hackathon.applyForm} variant="invert">
+                    Apply now
+                  </ButtonLink>
+                  <ButtonLink
+                    href={hackathon.discord}
+                    variant="secondary"
+                    className="text-white hover:bg-white/10"
+                  >
+                    Join the Discord
+                  </ButtonLink>
+                </div>
+              </div>
             </div>
           </div>
         </Container>
