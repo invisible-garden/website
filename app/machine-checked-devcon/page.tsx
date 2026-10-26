@@ -74,17 +74,6 @@ const eventSchema = {
   url: `${siteConfig.url}/machine-checked-devcon`,
 };
 
-const tracks = [
-  {
-    title: "Ethereum networking layer",
-    body: "Implement components of Ethereum's peer-to-peer stack. Real protocol code, reviewed by the organisers.",
-  },
-  {
-    title: "Formal verification in Lean 4",
-    body: "Prove properties of protocol code. Every proof is checked by Lean's kernel, that is what machine-checked means.",
-  },
-] as const;
-
 const loop = [
   {
     title: "Pick an issue.",
@@ -200,28 +189,24 @@ export default function MachineCheckedDevconPage() {
 
       <Section tone="paper">
         <SectionHeading
-          label="Tracks"
-          title="Two tracks, one repo"
-          intro="All tasks come from the same public repository. Pick the side you want to work on, or move between them."
+          label="The work"
+          title="Implementation and proofs together"
         />
-        <div className="mt-10 grid gap-6 md:grid-cols-2">
-          {tracks.map((track) => (
-            <div
-              key={track.title}
-              className="rounded-[--radius-card] border border-[color:var(--color-border-subtle)] bg-white p-8"
-            >
-              <h3 className="text-headline-sm">{track.title}</h3>
-              <p className="text-body-md mt-4">{track.body}</p>
-            </div>
-          ))}
+        <div className="text-body-lg mt-8 max-w-3xl space-y-4">
+          <p>
+            You implement pieces of Ethereum&apos;s networking layer in Lean 4
+            and prove properties of what you build. Every proof is checked by
+            Lean&apos;s kernel, and implementation and proofs live together in
+            one codebase.
+          </p>
+          <p>
+            The tasks live in the{" "}
+            <a href={hackathon.repo} rel="noreferrer">
+              leanp2p repo on GitHub
+            </a>
+            .
+          </p>
         </div>
-        <p className="text-body-lg mt-8">
-          The tasks live in the{" "}
-          <a href={hackathon.repo} rel="noreferrer">
-            leanp2p repo on GitHub
-          </a>
-          .
-        </p>
       </Section>
 
       <Section>
@@ -344,6 +329,12 @@ export default function MachineCheckedDevconPage() {
               className="h-12 w-auto object-contain"
             />
           </li>
+          {/* No logo exists for 4Seas anywhere in our assets, and the partner
+              brief gives none, so the band carries the name, the same
+              treatment the edition partner bands use without artwork. */}
+          <li>
+            <span className="text-body-lg">4Seas</span>
+          </li>
           <li>
             <a
               href="https://devcon.org/en/road-to-devcon/"
@@ -366,7 +357,7 @@ export default function MachineCheckedDevconPage() {
             academy for Ethereum developers, with editions in Chiang Mai in 2024
             and Buenos Aires in 2025.
           </p>
-          <p>EthPadThai is the community partner of the week.</p>
+          <p>EthPadThai and 4Seas are the community partners of the week.</p>
           <p>
             The week is part of Road to Devcon, supported by the Devcon
             organisation.
