@@ -196,9 +196,11 @@ export default function MachineCheckedDevconPage() {
       </div>
 
       {/* Community partners, attached to the hero's foot as a full-width band
-          rather than a floating card: IG's white wordmark and EthPadThai's
-          white mark both need ink, 4Seas and EthTAO have no logo in any asset
-          we hold so they ride as names. */}
+          rather than a floating card. IG's wordmark and EthPadThai's mark are
+          white-on-transparent so the band is ink. Eth CDM ships a coloured
+          transparent mark (about 4:1 on ink, fine at this size). EthTAO's only
+          artwork is a dark mark on white, so it rides as a rounded white tile.
+          4Seas has no logo anywhere, so the name stands in. */}
       <div className="bg-ink py-10 text-white">
         <Container className="flex flex-col items-center text-center">
           <p className="text-label font-mono text-white/70 uppercase">
@@ -212,7 +214,7 @@ export default function MachineCheckedDevconPage() {
                 width={160}
                 height={58}
                 unoptimized
-                className="h-10 w-auto object-contain"
+                className="h-20 w-auto object-contain"
               />
             </li>
             <li>
@@ -221,14 +223,29 @@ export default function MachineCheckedDevconPage() {
                 alt="EthPadThai"
                 width={160}
                 height={48}
-                className="h-12 w-auto object-contain"
+                className="h-24 w-auto object-contain"
               />
             </li>
             <li>
-              <span className="text-body-lg">4Seas</span>
+              <Image
+                src="/images/hackathon/eth-cdm.webp"
+                alt="Eth Cinco de Mayo"
+                width={291}
+                height={100}
+                className="h-20 w-auto object-contain"
+              />
             </li>
             <li>
-              <span className="text-body-lg">EthTAO</span>
+              <Image
+                src="/images/hackathon/ethtao.webp"
+                alt="EthTAO"
+                width={399}
+                height={404}
+                className="h-24 w-auto rounded-[--radius-sm] bg-white object-contain p-1"
+              />
+            </li>
+            <li>
+              <span className="text-headline-md">4Seas</span>
             </li>
           </ul>
         </Container>
@@ -421,7 +438,8 @@ export default function MachineCheckedDevconPage() {
             and Buenos Aires in 2025.
           </p>
           <p>
-            EthPadThai, 4Seas and EthTAO are the community partners of the week.
+            EthPadThai, 4Seas, EthTAO and Eth Cinco de Mayo are the community
+            partners of the week.
           </p>
           <p>
             The week is part of Road to Devcon, supported by the Devcon
