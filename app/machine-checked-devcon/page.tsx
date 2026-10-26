@@ -126,19 +126,20 @@ export default function MachineCheckedDevconPage() {
 
       <div className="bg-horizon py-16 text-white md:py-24">
         <Container>
-          {/* Road to Devcon's own white mark, above everything: the support
-              goes in front, not in a footnote. Linked to its official page. */}
+          {/* Road to Devcon's support goes in front: its official white mark,
+              on an ink badge so it owns its background and reads at size.
+              The bare mark over the gradient was thin and patchy. */}
           <a
             href="https://devcon.org/en/road-to-devcon/"
             rel="noreferrer"
-            className="inline-block"
+            className="bg-ink inline-flex rounded-[--radius-sm] p-3"
           >
             <Image
               src="/images/hackathon/road-to-devcon.webp"
               alt="Road to Devcon"
               width={960}
               height={960}
-              className="h-14 w-auto md:h-16"
+              className="h-12 w-auto md:h-14"
             />
           </a>
           <div className="mt-8 flex flex-wrap gap-2">
@@ -169,30 +170,45 @@ export default function MachineCheckedDevconPage() {
               Join the Discord
             </ButtonLink>
           </div>
-          {/* Community partners under the text, on ink: EthPadThai's mark is
-              white-on-transparent, and 4Seas and EthTAO have no logo in any
-              asset we hold, so they ride as names, the standard treatment for
-              logo-less partners. */}
-          <div className="mt-12">
-            <p className="text-label font-mono uppercase">Community partners</p>
-            <ul className="bg-ink mt-4 flex flex-wrap items-center gap-x-10 gap-y-6 rounded-[--radius-card] px-8 py-7 text-white">
-              <li>
-                <Image
-                  src={mediaUrl("partners/ethpadthai.webp")!}
-                  alt="EthPadThai"
-                  width={160}
-                  height={48}
-                  className="h-12 w-auto object-contain"
-                />
-              </li>
-              <li>
-                <span className="text-body-lg">4Seas</span>
-              </li>
-              <li>
-                <span className="text-body-lg">EthTAO</span>
-              </li>
-            </ul>
-          </div>
+        </Container>
+      </div>
+
+      {/* Community partners, attached to the hero's foot as a full-width band
+          rather than a floating card: IG's white wordmark and EthPadThai's
+          white mark both need ink, 4Seas and EthTAO have no logo in any asset
+          we hold so they ride as names. */}
+      <div className="bg-ink py-10 text-white">
+        <Container>
+          <p className="text-label font-mono text-white/70 uppercase">
+            Community partners
+          </p>
+          <ul className="mt-5 flex flex-wrap items-center gap-x-10 gap-y-6">
+            <li>
+              <Image
+                src="/images/logo/wordmark-white.svg"
+                alt={siteConfig.name}
+                width={160}
+                height={58}
+                unoptimized
+                className="h-10 w-auto object-contain"
+              />
+            </li>
+            <li>
+              <Image
+                src={mediaUrl("partners/ethpadthai.webp")!}
+                alt="EthPadThai"
+                width={160}
+                height={48}
+                className="h-12 w-auto object-contain"
+              />
+            </li>
+            <li>
+              <span className="text-body-lg">4Seas</span>
+            </li>
+            <li>
+              <span className="text-body-lg">EthTAO</span>
+            </li>
+          </ul>
         </Container>
       </div>
 
