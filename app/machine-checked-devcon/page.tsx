@@ -226,6 +226,19 @@ export default function MachineCheckedDevconPage() {
               />
             </li>
             <li>
+              {/* OpenBuild's white wordmark, the one this repo already ships
+                  for the Chiang Mai partner band. logo.openbuild.xyz is a
+                  Google Drive folder, not a fetchable asset. */}
+              <Image
+                src="/images/logo/openbuild-white.svg"
+                alt="OpenBuild"
+                width={169}
+                height={36}
+                unoptimized
+                className="h-16 w-auto object-contain"
+              />
+            </li>
+            <li>
               <Image
                 src="/images/hackathon/eth-cdm.webp"
                 alt="Eth Cinco de Mayo"
@@ -447,8 +460,8 @@ export default function MachineCheckedDevconPage() {
             and Buenos Aires in 2025.
           </p>
           <p>
-            EthPadThai, 4Seas, EthTAO and Eth Cinco de Mayo are the community
-            partners of the week.
+            EthPadThai, 4Seas, EthTAO, OpenBuild and Eth Cinco de Mayo are the
+            community partners of the week.
           </p>
           <p>
             The week is part of Road to Devcon, supported by the Devcon
