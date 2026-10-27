@@ -239,6 +239,17 @@ export default function MachineCheckedDevconPage() {
               />
             </li>
             <li>
+              {/* GCC's white full trademark from their official logo pack,
+                  trimmed from the 8000px canvas and resized. */}
+              <Image
+                src="/images/hackathon/gcc.webp"
+                alt="GCC"
+                width={800}
+                height={184}
+                className="h-16 w-auto object-contain"
+              />
+            </li>
+            <li>
               <Image
                 src="/images/hackathon/eth-cdm.webp"
                 alt="Eth Cinco de Mayo"
@@ -460,8 +471,8 @@ export default function MachineCheckedDevconPage() {
             and Buenos Aires in 2025.
           </p>
           <p>
-            EthPadThai, 4Seas, EthTAO, OpenBuild and Eth Cinco de Mayo are the
-            community partners of the week.
+            EthPadThai, 4Seas, EthTAO, OpenBuild, GCC and Eth Cinco de Mayo are
+            the community partners of the week.
           </p>
           <p>
             The week is part of Road to Devcon, supported by the Devcon
