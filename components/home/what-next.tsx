@@ -15,6 +15,10 @@ import { Section, SectionHeading } from "@/components/ui/section";
  *
  * The India reunion stays as a secondary block: it was decided 2026-09-03,
  * overlaps the hackathon, and still has no details to link to.
+ *
+ * Ended 2026-11-13: the hackathon is over, so the deadline chip says
+ * "Ended", the copy is past tense, and the button still points at the
+ * hackathon page, which now records the week.
  */
 
 /** Facts as decided in the participant page brief. Kept local, the hackathon
@@ -22,7 +26,7 @@ import { Section, SectionHeading } from "@/components/ui/section";
 const hackathon = {
   name: "Machine-Checked Devcon Week",
   datesLabel: "2 to 7 November 2026",
-  deadlineLabel: "Apply by 1 November",
+  statusLabel: "Ended",
   path: "/machine-checked-devcon",
 } as const;
 
@@ -48,7 +52,7 @@ export function WhatNext() {
       <div className="mt-6 flex flex-wrap gap-3">
         <Chip>Online hackathon</Chip>
         <Chip tone="outline">{hackathon.datesLabel}</Chip>
-        <Chip tone="peach">{hackathon.deadlineLabel}</Chip>
+        <Chip tone="peach">{hackathon.statusLabel}</Chip>
       </div>
 
       <div className="text-body-lg mt-6 max-w-2xl space-y-4">
@@ -57,9 +61,9 @@ export function WhatNext() {
           editions: no pop-up city, one repo, one week of building.
         </p>
         <p>
-          Implement and prove Ethereum&apos;s networking layer in Lean 4, with
-          every proof checked by the kernel. A curated cohort under ten, prizes,
-          free to join.
+          Participants implemented and proved Ethereum&apos;s networking layer
+          in Lean 4, with every proof checked by the kernel. A curated cohort
+          under ten, prizes, free to join.
         </p>
       </div>
 

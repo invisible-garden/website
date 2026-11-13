@@ -25,6 +25,10 @@ import { siteConfig } from "@/lib/site-config";
  * mentors stay unnamed until confirmed, the fee question is settled (free)
  * but the time-commitment expectation is not, and the page enters the
  * sitemap only when Leo says the link is public.
+ *
+ * Ended 2026-11-13: the week is over, so the apply buttons and the form
+ * link are gone. The hero and the closing section state that it ended,
+ * and the page stays up as the record of the week.
  */
 
 /** Facts from the brief's table, section 3. Nothing else is a fact. */
@@ -33,17 +37,14 @@ const hackathon = {
   descriptor:
     "An online hackathon during Devcon week: learn Lean 4, formal verification, and Ethereum networking by building.",
   datesLabel: "2 to 7 November 2026",
-  deadlineLabel: "Apply by 1 November",
   repo: "https://github.com/etheorem/leanp2p",
-  applyForm:
-    "https://docs.google.com/forms/d/e/1FAIpQLSf0ydWzOCIRA3jxds9Xms454q47NfoVmlXOQP3tJQkm1ekJ3g/viewform",
   discord: "https://discord.gg/SxvYP4vvg",
 } as const;
 
 export const metadata: Metadata = {
   title: "Machine-Checked Devcon Week, online hackathon, 2-7 November",
   description:
-    "Online hackathon, 2 to 7 November 2026. Build Lean 4 proofs and Ethereum networking components on real protocol tasks. Apply by 1 November.",
+    "Online hackathon, 2 to 7 November 2026. Build Lean 4 proofs and Ethereum networking components on real protocol tasks. The week is over.",
   alternates: { canonical: "/machine-checked-devcon" },
   // Page-level override: this page travels as a link, X posts, Discord
   // channels, Telegram groups, and the generic site card says nothing about
@@ -51,7 +52,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Machine-Checked Devcon Week, online hackathon, 2-7 November",
     description:
-      "Online hackathon, 2 to 7 November 2026. Build Lean 4 proofs and Ethereum networking components on real protocol tasks. Apply by 1 November.",
+      "Online hackathon, 2 to 7 November 2026. Build Lean 4 proofs and Ethereum networking components on real protocol tasks. The week is over.",
     url: `${siteConfig.url}/machine-checked-devcon`,
   },
 };
@@ -63,7 +64,8 @@ const eventSchema = {
   description: hackathon.descriptor,
   startDate: "2026-11-02",
   endDate: "2026-11-07",
-  eventStatus: "https://schema.org/EventScheduled",
+  // No eventStatus: schema.org has no past value, only scheduled, cancelled
+  // and the like, so the dates alone carry that the week is over.
   eventAttendanceMode: "https://schema.org/OnlineEventAttendanceMode",
   location: { "@type": "VirtualLocation", url: siteConfig.url },
   organizer: {
@@ -167,9 +169,6 @@ export default function MachineCheckedDevconPage() {
                     {hackathon.datesLabel}
                   </Chip>
                   <Chip tone="outline" className="border-white/60 text-white">
-                    {hackathon.deadlineLabel}
-                  </Chip>
-                  <Chip tone="outline" className="border-white/60 text-white">
                     $1,000 prize pool
                   </Chip>
                 </div>
@@ -177,10 +176,12 @@ export default function MachineCheckedDevconPage() {
                   {hackathon.name}
                 </h1>
                 <p className="text-body-lg mt-6">{hackathon.descriptor}</p>
-                <div className="mt-10 flex flex-wrap gap-4">
-                  <ButtonLink href={hackathon.applyForm} variant="invert">
-                    Apply now
-                  </ButtonLink>
+                <div className="mt-10 flex flex-wrap items-center gap-4">
+                  {/* The week is over, so the apply form is closed. The chip
+                      states it instead of a button linking to the form. */}
+                  <Chip tone="outline" className="border-white/60 text-white">
+                    The hackathon has ended
+                  </Chip>
                   <ButtonLink
                     href={hackathon.discord}
                     variant="secondary"
@@ -292,8 +293,8 @@ export default function MachineCheckedDevconPage() {
             from a public repo and learn by shipping code and proofs.
           </p>
           <p>
-            Participation is curated. You apply, the organisers review, and
-            acceptances are announced in the event channel on the{" "}
+            Participation was curated. You applied, the organisers reviewed, and
+            acceptances were announced in the event channel on the{" "}
             <a href={hackathon.discord} rel="noreferrer">
               Invisible Garden Discord
             </a>
@@ -345,13 +346,7 @@ export default function MachineCheckedDevconPage() {
             comfortable writing code. Any level counts. What matters is
             motivation and drive.
           </p>
-          <p>
-            The{" "}
-            <a href={hackathon.applyForm} rel="noreferrer">
-              form
-            </a>{" "}
-            asks about your experience and why you want in. It is short.
-          </p>
+          <p>Applications closed on 1 November.</p>
         </div>
       </Section>
 
@@ -484,15 +479,12 @@ export default function MachineCheckedDevconPage() {
 
       <Section tone="ink">
         <div className="max-w-3xl">
-          <h2 className="text-headline-lg">{hackathon.deadlineLabel}</h2>
+          <h2 className="text-headline-lg">The hackathon has ended</h2>
           <p className="text-body-lg mt-4">
-            Applications close 1 November 2026. The week runs 2 to 7 November,
-            online, with a cohort under ten.
+            The week ran 2 to 7 November, online, with a cohort under ten.
+            Results are due by 30 November.
           </p>
-          <div className="mt-8 flex flex-wrap gap-4">
-            <ButtonLink href={hackathon.applyForm} variant="invert">
-              Apply now
-            </ButtonLink>
+          <div className="mt-8">
             <ButtonLink
               href={hackathon.discord}
               variant="secondary"
