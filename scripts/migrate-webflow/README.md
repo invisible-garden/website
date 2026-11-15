@@ -30,5 +30,4 @@ Partners have no source data. `content/partners.draft.json` is a checklist
 recovered from the live site, and `scripts/db/seed-partners.ts` loads it once a
 human confirms tiers and adds link URLs.
 
-The Webflow site stays paid and published until the new site is verified in
-production. That is the rollback path.
+The migrated site is live at https://invisible.garden.

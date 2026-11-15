@@ -1,8 +1,7 @@
 # Invisible Garden website
 
-The new https://invisible.garden, replacing the Webflow site. Built for
-**Invisible Commons**, Goa, India, 17 to 31 October 2026, a joint project of
-Invisible Garden and Common Compute.
+The Invisible Garden website at https://invisible.garden, using content migrated
+from Webflow.
 
 Next.js 15 (App Router, TypeScript), Tailwind CSS 4, Supabase Postgres and
 Storage, deployed on Netlify. Page copy is MDX in this repo. Mentors, speakers,
@@ -65,16 +64,15 @@ Every variable is listed in `.env.example`. Two rules, no exceptions:
 
 ## Where it runs
 
-The site deploys to https://ig-website.netlify.app on every push to `main`,
-and the real domain still points at the old Webflow site until cutover.
+The site deploys on every push to `main`. Its primary domain is
+https://invisible.garden; it is also available at https://ig-website.netlify.app.
 
 ## Deployment
 
 Netlify free tier, preview deploy per pull request. Build config in
 `netlify.toml`. The Next major version is pinned: the Netlify runtime is an
-adapter and can lag a new Next major, so upgrade only once it catches up. CI runs typecheck, lint and build on
-every pull request. The Webflow site stays paid and published until the new site
-is verified in production, that is the rollback path.
+adapter and can lag a new Next major, so upgrade only once it catches up. CI runs
+typecheck, lint and build on every pull request.
 
 ## Deferred work
 

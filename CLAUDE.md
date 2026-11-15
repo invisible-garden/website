@@ -4,8 +4,8 @@ Guidance for working in this repository.
 
 ## What this is
 
-`main` is the website for **Invisible Garden**, replacing the Webflow site at
-https://invisible.garden and taking the Webflow CMS data with it into Supabase.
+`main` is the website for **Invisible Garden** at https://invisible.garden,
+using the Webflow CMS data migrated into Supabase.
 
 **There are two sites in this repository.** Since 2026-08-23 the 2026 event,
 Invisible Commons, has its own site at invisiblecommons.org, built from the
@@ -164,8 +164,9 @@ exists, and never render them while `headline_reviewed` is false.
 
 ## Current state
 
-Phases 0 to 4 are done. The site builds, deploys to
-https://ig-website.netlify.app on every push to main, and every route renders
+Phases 0 to 4 are done. The site builds and deploys on every push to main.
+Its primary domain is https://invisible.garden; it is also available at
+https://ig-website.netlify.app. Every route renders
 from real data. `mb/DEFERRED.md` lists what is still blocked on the team. It lives in the notes
 vault, not in the repo, so management can read it. Keep it current.
 
@@ -185,8 +186,8 @@ vault, not in the repo, so management can read it. Keep it current.
   because they now live on the `invisible-commons` branch.
 - Phase 5, deployment: Netlify is connected with env vars set. Analytics is
   deferred by Leo until Plausible or Umami is chosen.
-- Phases 6 and 7, cutover: redirects are written and verified, the rest waits
-  on DNS.
+- Phases 6 and 7, cutover: redirects are written and verified, and the primary
+  domain serves this site.
 
 ## Open decisions, do not guess these
 

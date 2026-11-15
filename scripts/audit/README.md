@@ -3,10 +3,10 @@
 Three checks, each taking an origin so they run against localhost or a deploy.
 
 ```bash
-pnpm audit:html    https://ig-website.netlify.app   # markup and metadata
-pnpm audit:copy    https://ig-website.netlify.app   # content-brief voice rules
-pnpm audit:browser https://ig-website.netlify.app   # a real browser
-pnpm audit:a11y    https://ig-website.netlify.app   # axe, WCAG 2.1 AA
+pnpm audit:html    https://invisible.garden   # markup and metadata
+pnpm audit:copy    https://invisible.garden   # content-brief voice rules
+pnpm audit:browser https://invisible.garden   # a real browser
+pnpm audit:a11y    https://invisible.garden   # axe, WCAG 2.1 AA
 ```
 
 ## Why three
