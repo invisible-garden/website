@@ -3,7 +3,6 @@ import { Community } from "@/components/home/community";
 import { Hero } from "@/components/home/hero";
 import { PastSupport } from "@/components/home/past-support";
 import { TrackRecord } from "@/components/home/track-record";
-import { WhatNext } from "@/components/home/what-next";
 import { getEditions, getPartners, getPeople } from "@/lib/queries";
 import { siteConfig } from "@/lib/site-config";
 
@@ -18,13 +17,8 @@ export const metadata: Metadata = {
 
 /**
  * The homepage is Invisible Garden's front door. Section order follows
- * mb/ig/ig-homepage-brief.md: heading, what next, track record, community,
+ * mb/ig/ig-homepage-brief.md: heading, track record, community,
  * plus the support band Leo added on 2026-08-23.
- *
- * "What next" features the Machine-Checked Devcon Week hackathon, linked to
- * its page, decided 2026-10-26. It is framed as an online hackathon, never
- * as an Invisible Garden edition. The India reunion from 2026-09-03 stays
- * below it as a secondary block until it has details of its own.
  */
 export default async function HomePage() {
   const [people, editions, partners] = await Promise.all([
@@ -42,7 +36,6 @@ export default async function HomePage() {
   return (
     <>
       <Hero />
-      <WhatNext />
       <TrackRecord editions={editions} />
       <Community people={featured} />
       <PastSupport partners={partners} />
